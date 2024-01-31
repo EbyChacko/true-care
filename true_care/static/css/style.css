@@ -83,11 +83,8 @@ footer h5 {
 
 .social{
     font-size: 24px;
-    margin-right: 25px;
-}
-
-.carousel-container {
-    box-shadow: #c7c7c7 0 10px 10px -5px;
+    margin-right: 10px;
+    margin-left: 10px;
 }
 
 .dotted {
@@ -99,6 +96,7 @@ footer h5 {
 
 .links li {
     margin-bottom: 10px; /* Adjust this value to increase/decrease space between lines */
+   
 }
 
 .why_true_care{
