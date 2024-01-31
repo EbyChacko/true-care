@@ -33,23 +33,23 @@
         <div class="collapse navbar-collapse text-start" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
+              <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">About Us</a>
+              <a class="nav-link" href="{% url 'about' %}">About Us</a>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link" href="#" aria-current="page">
+              <a class="nav-link" href="{% url 'departments' %}" aria-current="page">
                 Our Departments
               </a>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link" href="#" aria-current="page">
+              <a class="nav-link" href="{% url 'doctors' %}" aria-current="page">
                 Our Doctors
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Contact Us</a>
+              <a class="nav-link" href="{% url 'contact' %}">Contact Us</a>
             </li>
           </ul>
           <form class="d-flex" role="search">
@@ -62,73 +62,65 @@
     </nav>
   </header>
 
-  <!-- <div class="container text-center p-3 m-3 emergency">
-      <div class="row">
-        <div class="col-sm-12 col-xl-6">
-          <h6 class="text-uppercase">Emergency Contact</h6>
-          <h5>+353 23 456 7890</h5>
-        </div>
-      </div>
-    </div> -->
+
 
   {% block content %} {% endblock %}
 
-  <footer class="footer bg-black text-white py-5 text-center">
+  <footer class=" bg-black text-white py-5 text-center">
     <div class="container">
       <div class="row">
-        <div class="col-md-4 mb-3 text-start pt-2">
+        <div class="col-md-12 col-xl-4 mb-3 text-start pt-2">
           <h5 class="text-uppercase font-weight-bold">Emergency Contact</h5>
-          <p>123-456-7890</p>
+          <p>+353 23 456 7890</p>
         </div>
-        <div class="col-md-4 mb-3 text-start pt-2">
+        <div class="col-md-12 col-xl-4  mb-3 text-start pt-2">
           <h5 class="text-uppercase font-weight-bold">Appointments</h5>
-          <p>089 123 45 67</p>
+          <p>+353 89 123 4567</p>
         </div>
-        <div class="col-md-4 mb-3 text-start pt-2">
+        <div class="col-md-12 col-xl-4  mb-3 text-start pt-2">
           <h5 class="text-uppercase font-weight-bold">Email Us</h5>
           <p>info@truecarehospital.com</p>
         </div>
       </div>
       <hr>
       <div class="row mt-3">
-        <div class="col-sm-12 col-md-4 text-start pt-4">
+        <div class=" col-md-12 col-xl-4  text-start pt-4">
           <h5 class="text-uppercase  font-weight-bold">Links</h5>
-          <ol class="navbar-nav me-auto mb-2 mb-lg-0">
+          <ul class="links">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
+              <a href="#">Home</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">About Us</a>
+            <li>
+              <a  href="#">About Us</a>
             </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link" href="#" aria-current="page">
+            <li>
+              <a  href="#">
                 Our Departments
               </a>
             </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link" href="#" aria-current="page">
+            <li>
+              <a href="#">
                 Our Doctors
               </a>
             </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link" href="#" aria-current="page">
+            <li>
+              <a  href="#">
                 Make an appointment
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Contact Us</a>
+            <li>
+              <a href="#">Contact Us</a>
             </li>
-          </ol>
+          </ul>
         </div>
-        <div class="col-sm-12 col-md-4 text-start pt-4">
+        <div class="col-md-12 col-xl-4  text-start pt-4">
           <h5 class="text-uppercase  font-weight-bold">Address</h5>
           <p class="mb-0">
-            True Care Hospital<br>
-            Main Street, Ballinasloe<br>
-            Co-Galway, H53HF20
+            True Care Hospital, Main Street<br>
+            Ballinasloe, Co-Galway, H53HF20
           </p>
         </div>
-        <div class="col-sm-12 col-md-4 text-start pt-4">
+        <div class="col-md-12 col-xl-4  text-start pt-4">
           <h5 class="text-uppercase  font-weight-bold">Location</h5>
           <div class="embed-responsive embed-responsive-16by9">
             <div style="width: 100%"><iframe width="100%" height="230" frameborder="0" scrolling="no" marginheight="0"
@@ -140,19 +132,19 @@
         </div>
         <hr>
         <div class="row mt-3">
-          <div class="col-sm-12 col-md-6 text-center pt-4">
+          <div class="col-xl-6 col-xl-4  text-center pt-4">
             <p></p>
             <p class="mb-0">&copy;
               <script>document.write(new Date().getFullYear())</script> TrueCare Hospital : All rights reserved
             </p>
           </div>
-          <div class="col-sm-12 col-md-6 text-center pt-4">
+          <div class="col-sm-12 col-xl-6 text-center pt-4">
             <p>Follow us on</p>
-            <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
-            <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
-            <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-facebook-f social"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-twitter social"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-instagram social"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-linkedin social"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-youtube social"></i></a>
           </div>
         </div>
       </div>
@@ -164,6 +156,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
     integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
     crossorigin="anonymous"></script>
+  <script src="{% static 'js/script.js' %}"></script>
 </body>
 
 </html>
