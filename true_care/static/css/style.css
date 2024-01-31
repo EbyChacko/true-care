@@ -90,8 +90,8 @@ footer h5 {
     box-shadow: #c7c7c7 0 10px 10px -5px;
 }
 
-hr.dotted {
-    border-top: 2px dotted #323232;
+.dotted {
+    border-top: 2px dotted #747474;
 }
 .links{
     letter-spacing: 2px;
