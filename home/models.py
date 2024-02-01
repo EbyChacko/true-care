@@ -16,18 +16,43 @@ class Department(models.Model):
         return self.department_name
 
 
-class Patients(models.Model):
-    patient_name = models.CharField(max_length=250)
-    patient_age = models.TextField()
-    patient_address = models.TextField()
-    patient_zipcode = models.CharField(max_length=20)
-    patient_country = models.CharField(max_length=200)
-    patient_mobile = models.CharField(max_length=15)
-    patient_email = models.CharField(max_length=200)
-    patient_password = models.CharField(max_length=250)
+class PersonalDetail(models.Model):
+    name = models.CharField(max_length=250)
+    gender = models.CharField(max_length=1, default='M', choices=(('M', 'Male'), ('F', 'Female'), ('O', 'Other')))
+    address = models.TextField()
+    zipcode = models.CharField(max_length=20)
+    country = models.CharField(max_length=200)
+    mobile = models.CharField(max_length=15)
+    email = models.EmailField()
+    password = models.CharField(max_length=250)
 
     class Meta:
-        ordering:['patient_name']
+        ordering:['name']
 
     def __str__(self):
-        return self.patient_name
+        return self.name
+    
+class Doctor(models.Model):
+    personal_details = models.OneToOneField(PersonalDetail, on_delete=models.CASCADE)
+    designation = models.CharField()
+    education = models.CharField()
+    speciality = models.CharField()
+    department = models.ForeignKey(Department, on_delete=models.CASCADE)
+    
+    class Meta:
+        ordering:['self.personal_details']
+
+    def __str__(self):
+         return f"Doctor: {self.personal_details}, {self.speciality}, {self.department}"
+
+
+class Patient(models.Model):
+    personal_details = models.OneToOneField(PersonalDetail, on_delete=models.CASCADE)
+    patient_age = models.TextField()
+    password = models.CharField()
+
+    class Meta:
+        ordering:['self.personal_details']
+
+    def __str__(self):
+         return f"Patient: {self.personal_details}"
