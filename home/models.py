@@ -23,7 +23,7 @@ class PersonalDetail(models.Model):
     zipcode = models.CharField(max_length=20)
     country = models.CharField(max_length=200)
     mobile = models.CharField(max_length=15)
-    email = models.EmailField()
+    email = models.EmailField(unique=True)
     password = models.CharField(max_length=250)
 
     class Meta:
@@ -48,11 +48,25 @@ class Doctor(models.Model):
 
 class Patient(models.Model):
     personal_details = models.OneToOneField(PersonalDetail, on_delete=models.CASCADE)
-    patient_age = models.TextField()
-    password = models.CharField()
+    patient_age = models.CharField()
 
     class Meta:
         ordering:['self.personal_details']
 
     def __str__(self):
          return f"Patient: {self.personal_details}"
+    
+
+
+class booking(models.Model):
+    patient_id = models.ForeignKey(Patient, on_delete=models.CASCADE)
+    department = models.ForeignKey(Department, on_delete=models.CASCADE)
+    doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE)
+    booking_date = models.DateField()
+    date_booked = models.DateField(auto_now_add=True)
+    approved = models.BooleanField(default=False)
+    class Meta:
+        ordering:['self.date.booked']
+
+    def __str__(self):
+         return f"{self.id}: Booking by {self.patient_id} at {self.department} department for {self.doctor}"
