@@ -38,44 +38,40 @@
   <header>
     <nav class="navbar navbar-expand-xl bg-body-tertiary">
       <div class="container-fluid">
-
-        <a class="navbar-brand" href="#"><img class="true_care_logo" style="max-width: 250px;"
-            src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1706618762/samples/true_care/True_Care_Transparent_hozwzl.png"
-            alt="true_care logo"></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse text-start" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'about' %}">About Us</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link" href="{% url 'departments' %}" aria-current="page">
-                Departments
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'contact' %}">Contact Us</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link" href="{% url 'doctors' %}" aria-current="page">
-                Appointments
-              </a>
-            </li>
-          </ul>
-          <form class="d-flex" role="search">
-            <input class="form-control rounded-5 me-2" type="search" placeholder="Search" aria-label="Search">
-            <!-- <button class="btn btn-outline-success" type="submit">Search</button> -->
-            <button class="btn button" role="button" type="submit">Search</button>
-          </form>
-        </div>
+          <a class="navbar-brand" href="#">
+              <img class="true_care_logo" style="max-width: 250px;"
+                  src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1706618762/samples/true_care/True_Care_Transparent_hozwzl.png"
+                  alt="true_care logo">
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse text-start" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item {% if request.path == 'home' %}actived{% endif %}">
+                      <a class="nav-link" href="{% url 'home' %}">Home</a>
+                  </li>
+                  <li class="nav-item {% if request.path == 'about' %}actived{% endif %}">
+                      <a class="nav-link" href="{% url 'about' %}">About Us</a>
+                  </li>
+                  <li class="nav-item {% if request.path == 'departments' %}actived{% endif %}">
+                      <a class="nav-link" href="{% url 'departments' %}">Departments</a>
+                  </li>
+                  <li class="nav-item {% if request.path == 'contact' %}actived{% endif %}">
+                      <a class="nav-link" href="{% url 'contact' %}">Contact Us</a>
+                  </li>
+                  <li class="nav-item {% if request.path == 'appointment' %}actived{% endif %}">
+                      <a class="nav-link" href="{% url 'appointment' %}">Appointments</a>
+                  </li>
+              </ul>
+              <form class="d-flex" role="search">
+                  <input class="form-control rounded-5 me-2" type="search" placeholder="Search" aria-label="Search">
+                  <button class="btn button" role="button" type="submit">Search</button>
+              </form>
+          </div>
       </div>
-    </nav>
+  </nav>
   </header>
 
 

@@ -21,8 +21,10 @@ def departments(request):
 
 def department_details(request, slug):
     department = get_object_or_404(Department, slug=slug)
+    doctors = Doctor.objects.filter(department=department)
     dict_dept_details = {
-        'department': department
+        'department': department,
+        'doctors': doctors,
     }
     return render(request, 'department_details.html', dict_dept_details)
 

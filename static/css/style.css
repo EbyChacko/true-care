@@ -18,7 +18,7 @@ body {
     /* Change to the desired hover color */
 }
 
-a:hover{
+a:hover {
     color: #ee41ee;
 }
 
@@ -46,10 +46,10 @@ a:hover{
     border: 0;
 }
 
-.button1{
+.button1 {
     border-radius: 99px;
     box-sizing: border-box;
-    color: #000000;
+    color: #ee41ee;
     cursor: pointer;
     font-size: 16px;
     font-weight: 500;
@@ -67,14 +67,19 @@ a:hover{
 .button:hover {
     /* border: solid 1px rgb(60, 7, 174); */
     box-shadow: #c7c7c7 0 10px 5px -5px;
-    color:#ee41ee;
+    color: #ee41ee;
+
+}
+
+.actived {
+    color: #ee41ee;
 
 }
 
 .button1:hover {
     /* border: solid 1px rgb(60, 7, 174); */
     box-shadow: #c7c7c7 0 10px 5px -5px;
-    color:#5E5DF0;
+    color: #5E5DF0;
 }
 
 .emergency {
@@ -90,7 +95,7 @@ footer {
     min-height: 100px;
     height: auto;
     color: #FFFFFF;
-    padding:50px;
+    padding: 50px;
 }
 
 footer a {
@@ -103,7 +108,8 @@ footer a:hover {
     color: #3498db;
     /* Change to the desired hover color */
 }
-footer p{
+
+footer p {
     letter-spacing: 2px;
 }
 
@@ -111,28 +117,37 @@ footer h5 {
     color: #e98d24;
 }
 
-.social{
+.social {
     font-size: 24px;
     margin-right: 10px;
     margin-left: 10px;
 }
 
 .dotted {
-    border-top: 2px dotted #747474;
+    border-bottom: 2px dotted #353535;
 }
-.links{
+
+.links {
     letter-spacing: 2px;
 }
 
 .links li {
-    margin-bottom: 10px; /* Adjust this value to increase/decrease space between lines */
-   
+    margin-bottom: 10px;
+    /* Adjust this value to increase/decrease space between lines */
+
 }
 
-.why_true_care{
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+.why_true_care {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
 }
-.about-toggle{
+
+.about-toggle {
     text-decoration: none;
 }
 
+.doctor_photo {
+    max-width: 230px;
+    border-radius: 30px;
+    border: 1px solid rgb(97, 97, 97);
+    box-shadow: #c7c7c7 0 10px 5px -5px;
+}
