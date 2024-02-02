@@ -10,14 +10,27 @@
             <img src=" https://res.cloudinary.com/dgd5gtn1w/image/upload/v1706716321/samples/true_care/departments_jtziwa.webp"
                 class="d-block w-100 img-fluid pt-3" alt="Departments image">
 
-            <div class="col-sm-12 text-start py-5">
-                <h2>Medical departments</h2>
-                <p>Located in the vibrant heart of Ireland, True Care Hospitals is one of the largest
-                    private multi-specialist hospitals in Europe. Fr. John laid the hospital's cornerstone in
-                    Ballinasloe in 1990. We are dedicated to providing the most sophisticated healthcare to people from
-                    all
-                    walks
-                    of life. </p>
+            <div class="col-sm-12 text-centre pt-5 pb-3">
+                <h2>Our Medical Departments</h2>
+                <hr class="dotted">
+            </div>
+
+            <div class="row  mb-3 mt-4">
+
+                {% for d in dept %}
+                <div class="col-md-3 m-2 p-3 bg-body-tertiary mx-auto"
+                    style="max-width:24%; display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <h3>{{d.department_name}}</h3>
+                        <p>{{d.overview}}</p>
+                    </div>
+                    <button class="btn button" href="#" style="align-self: flex-bottom;">Learn More..</button>
+                </div>
+                {% if forloop.counter|divisibleby:4 and not forloop.last %}
+            </div>
+            <div class="row mb-3">
+                {% endif %}
+                {% endfor %}
             </div>
         </div>
     </div>

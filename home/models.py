@@ -38,6 +38,7 @@ class Doctor(models.Model):
     education = models.CharField()
     speciality = models.CharField()
     department = models.ForeignKey(Department, on_delete=models.CASCADE)
+    picture = models.ImageField(upload_to='doctors')
     
     class Meta:
         ordering:['self.personal_details']
