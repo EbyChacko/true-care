@@ -15,21 +15,22 @@
                 <hr class="dotted">
             </div>
 
-            <div class="row  mb-3 mt-4">
-
+            <div class="row">
                 {% for d in dept %}
-                <div class="col-md-3 m-2 p-3 bg-body-tertiary mx-auto"
-                    style="max-width:24%; display: flex; flex-direction: column; justify-content: space-between;">
+                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 p-5 px-4 pt-4 mx-auto; border"
+                    style=" display: flex; flex-direction: column; justify-content: space-between;">
                     <div>
                         <h3>{{d.department_name}}</h3>
-                        <p>{{d.overview}}</p>
+                        <hr class="dotted">
+                        <p class="text-start">{{d.overview}}</p>
                     </div>
-                    <button class="btn button" href="#" style="align-self: flex-bottom;">Learn More..</button>
-                </div>
-                {% if forloop.counter|divisibleby:4 and not forloop.last %}
+                    <a class="btn button" href="#" style="align-self: flex-bottom;">Learn More..</a>
+                    
+                </div>          
+                <!-- {% if forloop.counter|divisibleby:4 and not forloop.last %}
             </div>
             <div class="row mb-3">
-                {% endif %}
+                {% endif %} -->
                 {% endfor %}
             </div>
         </div>
