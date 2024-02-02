@@ -88,7 +88,7 @@ footer h5 {
 }
 
 .dotted {
-    border-top: 2px dotted #505050;
+    border-top: 2px dotted #747474;
 }
 .links{
     letter-spacing: 2px;
@@ -105,3 +105,4 @@ footer h5 {
 .about-toggle{
     text-decoration: none;
 }
+
