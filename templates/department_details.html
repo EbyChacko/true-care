@@ -7,36 +7,29 @@
 <div class="container-fluid bg-body-secondery text-center">
     <div class="container">
         <div class="row">
-            <img src=" https://res.cloudinary.com/dgd5gtn1w/image/upload/v1706716321/samples/true_care/departments_jtziwa.webp"
+            <img src=" https://res.cloudinary.com/dgd5gtn1w/image/upload/v1706879937/samples/true_care/departments_1_ktrog6.webp"
                 class="d-block w-100 img-fluid pt-3" alt="Departments image">
 
-            <div class="col-sm-12 text-centre pt-5 pb-3">
-                <h2>Our Medical Departments</h2>
+            <div class="col-sm-12 text-start pt-5 pb-3">
+                <h2>{{ department.department_name }} Department</h2>
                 <hr class="dotted">
             </div>
-
-            <div class="container">
+            <a class="text-reset text-decoration-none p-3 text-start" href="{% url 'departments' %}"><i class="fa-solid fa-circle-arrow-left"></i> Back to Departments</a>
+            <div class="container text-start">
                 <div class="row">
                     <div class="col card mb-4  mt-3 left  top">
                         <div class="card-body">
-                            <!-- The post content goes inside the card-text. -->
-                            <!-- Use the | safe filter inside the template tags -->
-                            <p class="card-text ">
-                                {{ department.department_name | safe }}
-                            </p>
-                            <p class="card-text ">
-                                {{ department.overview | safe }}
-                            </p>
-                            <p class="card-text ">
-                                {{ department.description | safe }}
-                            </p>
-                            
+                            <h4>Overview</h4>
+                            <p>{{ department.overview }}</p>
+                            <h4>Specialities..</h4>
+                            <p>{{ department.description }}</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </div>
 
 {% endblock %}

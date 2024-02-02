@@ -19,9 +19,18 @@ def departments(request):
     }
     return render(request,'departments.html', dict_dept)
 
+def department_details(request, slug):
+    department = get_object_or_404(Department, slug=slug)
+    dict_dept_details = {
+        'department': department
+    }
+    return render(request, 'department_details.html', dict_dept_details)
 
 def appointment(request):
     return render(request,'appointment.html')
 
 def doctors(request):
-    return render(request,'appointment.html')
+    dict_doctor={
+        'doctor': Doctor.objects.all()
+    }
+    return render(request,'doctors.html', dict_doctor)

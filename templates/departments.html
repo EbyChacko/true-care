@@ -24,7 +24,7 @@
                         <hr class="dotted">
                         <p class="text-start">{{d.overview}}</p>
                     </div>
-                    <a class="btn button" href="#" style="align-self: flex-bottom;">Learn More..</a>
+                    <a class="btn button" href="{% url 'department_details' slug=d.slug %}" style="align-self: flex-bottom;">Learn More..</a>
                     
                 </div>          
                 <!-- {% if forloop.counter|divisibleby:4 and not forloop.last %}

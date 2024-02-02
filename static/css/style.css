@@ -18,6 +18,10 @@ body {
     /* Change to the desired hover color */
 }
 
+a:hover{
+    color: #ee41ee;
+}
+
 .true_care_logo {
     max-width: 250px;
 }
@@ -42,9 +46,35 @@ body {
     border: 0;
 }
 
+.button1{
+    border-radius: 99px;
+    box-sizing: border-box;
+    color: #000000;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    opacity: 1;
+    outline: 0 solid transparent;
+    padding: 8px 18px;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    min-width: 120px;
+    word-break: break-word;
+}
+
 .button:hover {
     /* border: solid 1px rgb(60, 7, 174); */
     box-shadow: #c7c7c7 0 10px 5px -5px;
+    color:#ee41ee;
+
+}
+
+.button1:hover {
+    /* border: solid 1px rgb(60, 7, 174); */
+    box-shadow: #c7c7c7 0 10px 5px -5px;
+    color:#5E5DF0;
 }
 
 .emergency {
