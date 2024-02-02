@@ -9,13 +9,27 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{% block title %} {% endblock %}</title>
-
+  <!-- bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <!-- fontowsom -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     integrity="sha384-<YOUR_SHOULD_GET_THE_LATEST_INTEGRITY>" crossorigin="anonymous">
-      
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <!-- intl-tel-input CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/css/intlTelInput.css"
+    integrity="sha384-j2f5F5sDTyLH8PqGzz5I2JkRvwXRaQlmhcc7QgYwAQkH9+PQhqDeC+daPXn9YeZS" crossorigin="anonymous">
+  <!-- intl-tel-input JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/js/intlTelInput.min.js"
+    integrity="sha384-zjm2XQ5fmA5F7I1bSdMNddO+sPSA4NdtQJzWUpTihIevhPSbOReGZ+9bbVc2ekPF"
+    crossorigin="anonymous"></script>
+  <!-- Flags CSS (optional) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/img/flags.png"
+    integrity="sha384-r+YmJ5RV/5Z9IxLt1cAqV5KLrDV8kv7VTfAyrLPUAL2KsNeDAt8qUfyd3FmiZi2t" crossorigin="anonymous">
+
   <link href="{% static 'css/style.css' %}" rel="stylesheet">
 </head>
 
@@ -159,6 +173,15 @@
     integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
     crossorigin="anonymous"></script>
   <script src="{% static 'js/script.js' %}"></script>
+
+  <script>
+    $("#phone").intlTelInput({
+        initialCountry: "auto",
+        separateDialCode: true,
+        utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/js/utils.js"
+    });
+</script>
+
 </body>
 
 </html>
