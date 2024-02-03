@@ -151,3 +151,8 @@ footer h5 {
     border: 1px solid rgb(97, 97, 97);
     box-shadow: #c7c7c7 0 10px 5px -5px;
 }
+
+.message_container{
+    min-height: 350px;
+    margin-bottom: 300px;
+}

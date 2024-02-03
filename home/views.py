@@ -1,7 +1,8 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404,redirect
 from django.views import generic, View
 from django.http import HttpResponse
 from .models import Department, Patient, Doctor, PersonalDetail, booking
+from .forms import CustomerMessageForm
 
 # Create your views here.
 def index(request):
@@ -36,3 +37,16 @@ def doctors(request):
         'doctor': Doctor.objects.all()
     }
     return render(request,'doctors.html', dict_doctor)
+
+def contact(request):
+    if request.method == 'POST':
+        form = CustomerMessageForm(request.POST)
+        if form.is_valid():
+            form.save()  # Save the form data to the database
+            return redirect('message_confirmation')  # Redirect to a success page
+    else:
+        form = CustomerMessageForm()
+    return render(request, 'contact.html', {'form': form})
+
+def MessageConfirmation(request):
+    return render(request, 'informations.html')

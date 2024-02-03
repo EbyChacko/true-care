@@ -50,31 +50,32 @@
             </div>
             <div class="col-sm-12 col-xl-8 text-center pt-5 pb-3 bg-white mb-5">
                 <div class=" p-4">
-                    <h3 class="pb-5">Let us connected </h3>
+                    <h3 >How Can We Help You Today ?</h3>
+                    <h5 class="pb-5 text-secondary">Write your Queries here...</h5>
                     <img src=" https://res.cloudinary.com/dgd5gtn1w/image/upload/v1706890519/samples/true_care/contact-page-image_dryv16.png"
-                        class=" w-50 img-fluid pb-4 " alt="Departments image">
-                    <form>
-                        <div class="form-floating mb-3">
-                            <input type="Name" class="form-control" id="Name" placeholder="Full Name" required>
-                            <label for="Name">Full Name :</label>
+                        class=" w-50 img-fluid pb-4 " alt="Departments image" style="min-width: 250px;">
+
+                    <form method="post" action="{% url 'contact' %}">
+                        {% csrf_token %}
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="inputGroup-sizing-default" style="width:100px">Name</span>
+                            <input type="text" name="{{ form.name.name }}" class="form-control" id="{{ form.name.id_for_label }}"  required>
                         </div>
-                        <div class="form-floating mb-3">
-                            <input type="mobile" class="form-control" id="mobile" placeholder="Password" required>
-                            <label for="Mobile">Mobile :</label>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="inputGroup-sizing-default" style="width:100px">Mobile</span>
+                            <input type="tel" name="{{ form.mobile.name }}" class="form-control" id="{{ form.mobile.id_for_label }}"  required>
                         </div>
-                        <div class="form-floating mb-3">
-                            <input type="email" class="form-control" id="email" placeholder="name@example.com" required>
-                            <label for="email">Email address :</label>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="inputGroup-sizing-default" style="width:100px">Email</span>
+                            <input type="email" name="{{ form.email.name }}" class="form-control" id="{{ form.email.id_for_label }}"  required>
                         </div>
-                        <div class="form-floating mb-3">
-                            <textarea rows="15" cols="36" class="form-control" id="message"
-                                placeholder="Your Message"></textarea>
-                            <label for="message">Message :</label>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text align-self-start" id="inputGroup-sizing-default" style="width:100px; height:100px;">Message</span>
+                            <textarea name="{{ form.message.name }}" rows="15" cols="36" class="form-control" id="{{ form.message.id_for_label }}" style="height:100px"></textarea>
                         </div>
                         <input type="submit" class="btn button" value="Send Message">
-                        <input type="reset" value="Reset Form" class=" btn button1">
+                        <input type="reset" value="Reset Form" class="btn button1">
                     </form>
-
                 </div>
             </div>
         </div>

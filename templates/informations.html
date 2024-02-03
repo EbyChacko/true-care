@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %} Contact Us {% endblock %}
+
+{% block content %}
+
+<div class="container-fluid bg-body-secondery text-center">
+    <div class="container">
+        <div class="row">
+            <div
+                class="col-sm-12 text-centre pt-5 pb-3 d-flex align-items-center justify-content-center message_container">
+                <div>
+                    <h1><i class="fa-solid fa-envelope-circle-check"></i></h1>
+                    <h1>Your message has been sent successfully!</h1>
+                    <p>Thank you for contacting us. We'll get back to you soon.</p>
+                    <a class="text-reset text-decoration-none p-5 text-start" href="{% url 'home' %}"><i
+                            class="fa-solid fa-circle-arrow-left"></i> Return to home page</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
