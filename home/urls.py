@@ -13,4 +13,5 @@ urlpatterns = [
     path('doctors/', views.doctors, name='doctors'),
     path('contact/', contact, name='contact'),
     path('message_confirmation/', views.MessageConfirmation, name='message_confirmation'),
+    
 ]

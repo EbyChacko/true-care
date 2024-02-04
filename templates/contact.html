@@ -15,8 +15,10 @@
             </div>
 
         </div>
+        <!-- Main contact details container -->
         <div class="row">
             <div class="col-sm-12 col-xl-4 text-centre bg-body-tertiary pt-5 pb-3 bg-white mb-5">
+                <!-- emergency contact -->
                 <div class=" p-4">
                     <h1><i class="fa-solid fa-truck-medical"></i></h1>
                     <h6 class="">Emergency</h6>
@@ -26,6 +28,7 @@
 
                 </div>
                 <hr class="dotted">
+                <!-- contact for appointments -->
                 <div class=" p-5">
                     <h1><i class="fa-solid fa-calendar-check"></i></h1>
                     <h6 class="">Appointment</h6>
@@ -37,6 +40,7 @@
                     </a>
                 </div>
                 <hr class="dotted">
+                <!-- Contact details for the internationalmclients -->
                 <div class=" p-5">
                     <h1><i class="fa-solid fa-plane-circle-check"></i></h1>
                     <h6 class="">International Clients</h6>
@@ -48,6 +52,7 @@
                     </a>
                 </div>
             </div>
+            <!-- message form container -->
             <div class="col-sm-12 col-xl-8 text-center pt-5 pb-3 bg-white mb-5">
                 <div class=" p-4">
                     <h3 >How Can We Help You Today ?</h3>
@@ -55,27 +60,31 @@
                     <img src=" https://res.cloudinary.com/dgd5gtn1w/image/upload/v1706890519/samples/true_care/contact-page-image_dryv16.png"
                         class=" w-50 img-fluid pb-4 " alt="Departments image" style="min-width: 250px;">
 
-                    <form method="post" action="{% url 'contact' %}">
-                        {% csrf_token %}
-                        <div class="input-group mb-3">
-                            <span class="input-group-text" id="inputGroup-sizing-default" style="width:100px">Name</span>
-                            <input type="text" name="{{ form.name.name }}" class="form-control" id="{{ form.name.id_for_label }}"  required>
-                        </div>
-                        <div class="input-group mb-3">
-                            <span class="input-group-text" id="inputGroup-sizing-default" style="width:100px">Mobile</span>
-                            <input type="tel" name="{{ form.mobile.name }}" class="form-control" id="{{ form.mobile.id_for_label }}"  required>
-                        </div>
-                        <div class="input-group mb-3">
-                            <span class="input-group-text" id="inputGroup-sizing-default" style="width:100px">Email</span>
-                            <input type="email" name="{{ form.email.name }}" class="form-control" id="{{ form.email.id_for_label }}"  required>
-                        </div>
-                        <div class="input-group mb-3">
-                            <span class="input-group-text align-self-start" id="inputGroup-sizing-default" style="width:100px; height:100px;">Message</span>
-                            <textarea name="{{ form.message.name }}" rows="15" cols="36" class="form-control" id="{{ form.message.id_for_label }}" style="height:100px"></textarea>
-                        </div>
-                        <input type="submit" class="btn button" value="Send Message">
-                        <input type="reset" value="Reset Form" class="btn button1">
-                    </form>
+                        <form method="post" action="{% url 'contact' %}" >
+                            {% csrf_token %}
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="inputGroup-sizing-default" style="width:100px">Name</span>
+                                <input type="text" name="{{ form.name.name }}" class="form-control" id="name" >
+                            </div>
+                            <p id="nameError" style="color: red; visibility: hidden;" class="text-start"></p>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="inputGroup-sizing-default" style="width:100px">Mobile</span>
+                                <input type="tel" name="{{ form.mobile.name }}" class="form-control" id="mobile" >
+                            </div>
+                            <p id="mobileError" style="color: red; visibility: hidden;" class="text-start"></p>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="inputGroup-sizing-default" style="width:100px">Email</span>
+                                <input type="text" name="{{ form.email.name }}" class="form-control" id="email">
+                            </div>
+                            <p id="emailError" style="color: red; visibility: hidden;" class="text-start"></p>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text align-self-start" id="inputGroup-sizing-default" style="width:100px; height:100px;">Message</span>
+                                <textarea name="{{ form.message.name }}" rows="15" cols="36" class="form-control" id="message" style="height:100px"></textarea>
+                            </div>
+                            <p id="messageError" style="color: red; visibility: hidden;" class="text-start"></p>
+                            <input type="submit" class="btn button" value="Send Message" onclick="return validateForm()">
+                            <input type="reset" value="Reset Form" class="btn button1">
+                        </form>
                 </div>
             </div>
         </div>

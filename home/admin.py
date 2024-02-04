@@ -3,17 +3,22 @@ from .models import Department, Patient, Doctor, PersonalDetail, booking, Custom
 from django_summernote.admin import SummernoteModelAdmin
 
 
+# register the department in the admin pannel
 @admin.register(Department)
 class DepartmentAdmin(admin.ModelAdmin):
     summernote_fields = ('description')
     list_display = ('department_name',)
     prepopulated_fields = {'slug': ('department_name',)}
 
+
+# register the personal details in the admin pannel
 @admin.register(PersonalDetail)
 class PersonalDetailAdmin(admin.ModelAdmin):
     list_display = ('name', 'email', 'mobile', 'country')
     search_fields = ('name', 'email')
 
+
+# register the doctor details in the admin pannel
 @admin.register(Doctor)
 class DoctorAdmin(admin.ModelAdmin):
     list_display = ('get_personal_details_name', 'designation', 'education', 'speciality', 'department')
@@ -24,6 +29,8 @@ class DoctorAdmin(admin.ModelAdmin):
     get_personal_details_name.short_description = 'Doctor Name'
     get_personal_details_name.admin_order_field = 'personal_details__name'
 
+
+# register the patient details in the admin pannel
 @admin.register(Patient)
 class PatientAdmin(admin.ModelAdmin):
     list_display = ('get_personal_details_name', 'patient_age', 'get_personal_details_email', 'get_mobile')
@@ -40,11 +47,15 @@ class PatientAdmin(admin.ModelAdmin):
     get_personal_details_email.short_description = 'Email Address'
     get_mobile.short_description = 'Mobile Number'
 
+
+# register the booking details in the admin pannel
 @admin.register(booking)
 class BookingAdmin(admin.ModelAdmin):
     list_display = ('patient_id', 'department', 'doctor', 'booking_date', 'date_booked', 'approved')
     search_fields = ('patient_id__personal_details__name', 'department__department_name', 'doctor__personal_details__name')
 
+
+# # register the Customer message in the admin pannel
 @admin.register(CustomerMessage)
 class messageAdmin(admin.ModelAdmin):
     list_display = ('name','mobile','email','message')

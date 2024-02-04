@@ -9,27 +9,29 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{% block title %} {% endblock %}</title>
+
   <!-- bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
   <!-- fontowsom -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     integrity="sha384-<YOUR_SHOULD_GET_THE_LATEST_INTEGRITY>" crossorigin="anonymous">
+
   <!-- jQuery -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
     crossorigin="anonymous"></script>
-  <!-- intl-tel-input CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/css/intlTelInput.css"
-    integrity="sha384-j2f5F5sDTyLH8PqGzz5I2JkRvwXRaQlmhcc7QgYwAQkH9+PQhqDeC+daPXn9YeZS" crossorigin="anonymous">
-  <!-- intl-tel-input JS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/js/intlTelInput.min.js"
-    integrity="sha384-zjm2XQ5fmA5F7I1bSdMNddO+sPSA4NdtQJzWUpTihIevhPSbOReGZ+9bbVc2ekPF"
-    crossorigin="anonymous"></script>
-  <!-- Flags CSS (optional) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/img/flags.png"
-    integrity="sha384-r+YmJ5RV/5Z9IxLt1cAqV5KLrDV8kv7VTfAyrLPUAL2KsNeDAt8qUfyd3FmiZi2t" crossorigin="anonymous">
 
+  <!-- Favicon images for deferent screen sizes -->
+  <link rel="icon" type="image/png" sizes="16x16"
+    href="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1706990312/samples/true_care/favicon_16_acgmi3.png">
+  <link rel="icon" type="image/png" sizes="32x32"
+    href="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1706990312/samples/true_care/favicon_32_iu0aq6.png">
+  <link rel="icon" type="image/png" sizes="48x48"
+    href="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1706990312/samples/true_care/favicon_48_yirbba.png">
+  <link rel="icon" type="image/png" sizes="512x512"
+    href="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1706990312/samples/true_care/favicon_512_oeqj5w.png">
   <link href="{% static 'css/style.css' %}" rel="stylesheet">
 </head>
 
@@ -38,46 +40,44 @@
   <header>
     <nav class="navbar navbar-expand-xl bg-body-tertiary">
       <div class="container-fluid">
-          <a class="navbar-brand" href="#">
-              <img class="true_care_logo" style="max-width: 250px;"
-                  src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1706618762/samples/true_care/True_Care_Transparent_hozwzl.png"
-                  alt="true_care logo">
-          </a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-              aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse text-start" id="navbarSupportedContent">
-              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                  <li class="nav-item {% if request.path == 'home' %}actived{% endif %}">
-                      <a class="nav-link" href="{% url 'home' %}">Home</a>
-                  </li>
-                  <li class="nav-item {% if request.path == 'about' %}actived{% endif %}">
-                      <a class="nav-link" href="{% url 'about' %}">About Us</a>
-                  </li>
-                  <li class="nav-item {% if request.path == 'departments' %}actived{% endif %}">
-                      <a class="nav-link" href="{% url 'departments' %}">Departments</a>
-                  </li>
-                  <li class="nav-item {% if request.path == 'contact' %}actived{% endif %}">
-                      <a class="nav-link" href="{% url 'contact' %}">Contact Us</a>
-                  </li>
-                  <li class="nav-item {% if request.path == 'appointment' %}actived{% endif %}">
-                      <a class="nav-link" href="{% url 'appointment' %}">Appointments</a>
-                  </li>
-              </ul>
-              <form class="d-flex" role="search">
-                  <input class="form-control rounded-5 me-2" type="search" placeholder="Search" aria-label="Search">
-                  <button class="btn button" role="button" type="submit">Search</button>
-              </form>
-          </div>
+        <a class="navbar-brand" href="#">
+          <img class="true_care_logo" style="max-width: 250px;"
+            src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1706618762/samples/true_care/True_Care_Transparent_hozwzl.png"
+            alt="true_care logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse text-start" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item {% if request.path == 'home' %}text-purple{% endif %}">
+              <a class="nav-link" href="{% url 'home' %}">Home</a>
+            </li>
+            <li class="nav-item {% if request.path == 'about' %}text-purple{% endif %}">
+              <a class="nav-link" href="{% url 'about' %}">About Us</a>
+            </li>
+            <li class="nav-item {% if request.path == 'departments' %}text-purple{% endif %}">
+              <a class="nav-link" href="{% url 'departments' %}">Departments</a>
+            </li>
+            <li class="nav-item {% if request.path == 'contact' %}text-purple{% endif %}">
+              <a class="nav-link" href="{% url 'contact' %}">Contact Us</a>
+            </li>
+            <li class="nav-item {% if request.path == 'appointment' %}text-purple{% endif %}">
+              <a class="nav-link" href="{% url 'appointment' %}">Appointments</a>
+            </li>
+          </ul>
+          <a class=" me-4" href="" role="button" id="sign_up" type="submit">Sign-up</a>
+          <a class="btn button" href="" role="button" id="login" type="submit">Login</a>
+        </div>
       </div>
-  </nav>
+    </nav>
   </header>
 
 
 
   {% block content %} {% endblock %}
-
+  <!-- Footer -->
   <footer class=" bg-black text-white py-5 text-center">
     <div class="container">
       <div class="row">
@@ -132,6 +132,7 @@
             Ballinasloe, Co-Galway, H53HF20
           </p>
         </div>
+        <!-- Google Map -->
         <div class="col-md-12 col-xl-4  text-start pt-4">
           <h5 class="text-uppercase  font-weight-bold">Location</h5>
           <div class="embed-responsive embed-responsive-16by9">
@@ -169,14 +170,6 @@
     integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
     crossorigin="anonymous"></script>
   <script src="{% static 'js/script.js' %}"></script>
-
-  <script>
-    $("#phone").intlTelInput({
-        initialCountry: "auto",
-        separateDialCode: true,
-        utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/js/utils.js"
-    });
-</script>
 
 </body>
 
