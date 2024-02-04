@@ -67,8 +67,14 @@
               <a class="nav-link" href="{% url 'appointment' %}">Appointments</a>
             </li>
           </ul>
-          <a class=" me-4" href="" role="button" id="sign_up" type="submit">Sign-up</a>
-          <a class="btn button" href="" role="button" id="login" type="submit">Login</a>
+          {% if user.is_authenticated %}
+          <a class="me-4 text-uppercase" style="color:blueviolet" href="{% url 'account_logout' %}" role="button"
+             type="submit"><i class="fas fa-user"></i> {{ user }}</a>
+          <a class=" me-4" href="{% url 'account_logout' %}" role="button" type="submit">Log out</a>
+          {% else %}
+          <a class=" me-4" href="{% url 'account_signup' %}" role="button" id="sign_up" type="submit">Sign up</a>
+          <a class="btn button" href="{% url 'account_login' %}" role="button" id="login" type="submit">Login</a>
+          {% endif %}
         </div>
       </div>
     </nav>
