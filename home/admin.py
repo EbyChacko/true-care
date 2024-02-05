@@ -55,8 +55,9 @@ class BookingAdmin(admin.ModelAdmin):
     search_fields = ('patient_id__personal_details__name', 'department__department_name', 'doctor__personal_details__name')
 
 
-# # register the Customer message in the admin pannel
+# register the Customer message in the admin pannel
 @admin.register(CustomerMessage)
 class messageAdmin(admin.ModelAdmin):
     list_display = ('name','mobile','email','message')
     search_fields = ('name','mobile','email')
+

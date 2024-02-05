@@ -25,7 +25,6 @@ class PersonalDetail(models.Model):
     country = models.CharField(max_length=200)
     mobile = models.CharField(max_length=15)
     email = models.EmailField(unique=True)
-    password = models.CharField(max_length=250)
 
     class Meta:
         ordering:['name']
@@ -52,6 +51,7 @@ class Doctor(models.Model):
 
 #model for the patients details
 class Patient(models.Model):
+    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
     personal_details = models.OneToOneField(PersonalDetail, on_delete=models.CASCADE)
     patient_age = models.CharField()
 
@@ -61,6 +61,7 @@ class Patient(models.Model):
     def __str__(self):
          return f"Patient: {self.personal_details}"
     
+
 
 # model for the booing details
 class booking(models.Model):
@@ -87,3 +88,4 @@ class CustomerMessage(models.Model):
 
     def __str__(self):
         return self.name
+    

@@ -1,8 +1,9 @@
 from django.shortcuts import render, get_object_or_404,redirect
 from django.views import generic, View
 from django.http import HttpResponse
+from django.urls import reverse_lazy
 from .models import Department, Patient, Doctor, PersonalDetail, booking
-from .forms import CustomerMessageForm
+from .forms import CustomerMessageForm,  PersonalDetailForm, PatientForm, BookingForm
 
 # Create your views here.
 def index(request):
@@ -34,7 +35,14 @@ def department_details(request, slug):
     return render(request, 'department_details.html', dict_dept_details)
 
 def appointment(request):
-    return render(request,'appointment.html')
+    if request.method == 'POST':
+        form = BookingForm(request.POST)
+        if form.is_valid():
+            form.save() 
+            return redirect('message_confirmation')  
+    else:
+        form = BookingForm()
+    return render(request, 'appointment.html', {'form': form})
 
 
 # to show the doctors detaisl in the doctors.html page
@@ -58,3 +66,27 @@ def contact(request):
 
 def MessageConfirmation(request):
     return render(request, 'informations.html')
+
+def profile_view(request, personal_detail_id):
+    personal_detail = get_object_or_404(PersonalDetail, pk=personal_detail_id)
+    patient = get_object_or_404(Patient, personal_details=personal_detail)
+
+    if request.method == 'POST':
+        personal_detail_form = PersonalDetailForm(request.POST, instance=personal_detail)
+        patient_form = PatientForm(request.POST, instance=patient)
+
+        if personal_detail_form.is_valid() and patient_form.is_valid():
+            personal_detail_form.save()
+            patient_form.save()
+    else:
+        personal_detail_form = PersonalDetailForm(instance=personal_detail)
+        patient_form = PatientForm(instance=patient)
+
+    return render(request, 'update_profile.html', {
+        'personal_detail': personal_detail,
+        'patient': patient,
+        'personal_detail_form': personal_detail_form,
+        'patient_form': patient_form
+    })
+
+

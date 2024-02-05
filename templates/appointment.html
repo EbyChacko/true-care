@@ -4,8 +4,29 @@
 
 {% block content %}
 
+<div class="container">
+    <div class="row ">
+        <div class="col-sm-12 p-3 my-3 d-flex align-items-center justify-content-center">
+            <div class="text_centre">
+                <h1><i class="fa-solid fa-hospital-user "></i></h1>
+                <h3 class="pb-3" >Appointment</h3>
+                <form class="login bg-white text-start rounded-5 p-5" method="POST" action="">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    {% if redirect_field_value %}
+                    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                    {% endif %}
+                    <button class="btn button right" type="submit">Submit</button>  
+                </form>
+            </div>
 
-<div class="container-fluid bg-body-secondery text-center">
+        </div>
+    </div>
+</div>
+
+
+
+<!-- <div class="container-fluid bg-body-secondery text-center">
     <div class="container">
         <div class="row">
             <div class="col-sm-12 text-centre pt-5 pb-3">
@@ -59,7 +80,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
 
 {% endblock %}

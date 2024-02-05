@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}Edit Details{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row ">
+        <div class="col-sm-12 p-3 my-3 d-flex align-items-center justify-content-center">
+            <div class="text_centre">
+                <h3 class="pb-3">Update Profile</h3>
+
+                <form method="post" action="{% url 'update_profile' personal_detail.id %}">
+                    {% csrf_token %}
+                    <!-- Display and allow editing of personal details fields -->
+                    {{ personal_detail_form.as_p }}
+                    <!-- Display and allow editing of patient details fields -->
+                    {{ patient_form.as_p }}
+                    <button class="btn button right" type="submit">Update</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
