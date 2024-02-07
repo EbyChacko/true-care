@@ -36,14 +36,21 @@ def department_details(request, slug):
 
 def appointment(request):
     if request.method == 'POST':
-        form = BookingForm(request.POST)
-        if form.is_valid():
-            form.save() 
+        booking_form = BookingForm(request.POST)
+        if booking_form.is_valid():
+            booking_form.save()
             return redirect('message_confirmation')  
     else:
-        form = BookingForm()
-    return render(request, 'appointment.html', {'form': form})
+        booking_form = BookingForm()
 
+    departments = Department.objects.all()
+    doctors = Doctor.objects.all()
+
+    return render(request, 'appointment.html', {
+        'booking_form': booking_form,
+        'departments': departments,
+        'doctors': doctors,
+    })
 
 # to show the doctors detaisl in the doctors.html page
 def doctors(request):

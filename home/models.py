@@ -24,7 +24,8 @@ class PersonalDetail(models.Model):
     zipcode = models.CharField(max_length=20)
     country = models.CharField(max_length=200)
     mobile = models.CharField(max_length=15)
-    email = models.EmailField(unique=True)
+    email = models.EmailField()
+    picture = models.ImageField(upload_to='patients', null=True, )
 
     class Meta:
         ordering:['name']
@@ -52,8 +53,8 @@ class Doctor(models.Model):
 #model for the patients details
 class Patient(models.Model):
     user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
-    personal_details = models.OneToOneField(PersonalDetail, on_delete=models.CASCADE)
-    patient_age = models.CharField()
+    personal_details = models.OneToOneField(PersonalDetail, null=True, on_delete=models.CASCADE)
+    patient_age = models.CharField( null=True)
 
     class Meta:
         ordering:['self.personal_details']

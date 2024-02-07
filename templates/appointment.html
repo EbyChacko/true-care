@@ -8,79 +8,83 @@
     <div class="row ">
         <div class="col-sm-12 p-3 my-3 d-flex align-items-center justify-content-center">
             <div class="text_centre">
-                <h1><i class="fa-solid fa-hospital-user "></i></h1>
-                <h3 class="pb-3" >Appointment</h3>
+                <h1><i class="fa-regular fa-file-lines"></i></h1>
+                <h3 class="pb-3">Appointment Form </h3>
                 <form class="login bg-white text-start rounded-5 p-5" method="POST" action="">
                     {% csrf_token %}
-                    {{ form.as_p }}
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="" style="width:130px">Name</span>
+                        <input type="text" name="{{ form.patient_id.personal_details.name.name }}" class="form-control" id="name" required>
+                    </div>
+                    <p id="nameError" style="color: red; visibility: hidden;" class="text-start"></p>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="" style="width:130px">E-mail</span>
+                        <input type="text" name="{{ form.patient_id.personal_details.email.name }}" class="form-control" id="email" required>
+                    </div>
+                    <p id="emailError" style="color: red; visibility: hidden;" class="text-start"></p>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="" style="width:130px">Mobile</span>
+                        <input type="tel" name="{{ form.patient_id.personal_details.mobile.name }}" class="form-control" id="mobile" required>
+                    </div>
+                    <p id="mobileError" style="color: red; visibility: hidden;" class="text-start"></p>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="" style="width:130px">Gender</span>
+                        <input type="text" name="{{ form.patient_id.personal_details.gender.name }}" class="form-control" id="gender" required>
+                    </div>
+                    <p id="genderError" style="color: red; visibility: hidden;" class="text-start"></p>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text align-self-start" id=""
+                            style="width:130px; height:100px;">Address</span>
+                        <textarea name="{{ form.patient_id.personal_details.address.name }}" rows="15" cols="36"
+                            class="form-control" id="message" style="height:100px" id="address" required></textarea>
+                    </div>
+                    <p id="AddressError" style="color: red; visibility: hidden;" class="text-start"></p>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="" style="width:130px" id="country" required>Country</span>
+                        <input type="text" name="{{ form.patient_id.personal_details.country.name }}" class="form-control">
+                    </div>
+                    <p id="countryError" style="color: red; visibility: hidden;" class="text-start"></p>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="" style="width:130px" id="zipcode" required>Zip-Code</span>
+                        <input type="text" name="{{ form.patient_id.personal_details.zipcode.name }}" class="form-control">
+                    </div>
+                    <p id="zipcodeError" style="color: red; visibility: hidden;" class="text-start"></p>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="" style="width:130px">Department</span>
+                        <select name="{{ form.department.name }}" class="form-control" id="department" required>
+                            <option value="">Select Department...</option>
+                            {% for department in departments %}
+                            <option value="{{ form.department.id }}">{{ department.department_name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <p id="departmentError" style="color: red; visibility: hidden;" class="text-start"></p>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="" style="width:130px" id="doctor" required>Doctor</span>
+                        <select name="{{ form.doctor.name }}" class="form-control">
+                            <option value="">Select Doctor...</option>
+                            {% for doctor in doctors %}
+                            <option value="{{ form.doctor.id }}">{{ doctor.personal_details.name }} ({{ doctor.department.department_name }})</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <p id="doctorError" style="color: red; visibility: hidden;" class="text-start"></p>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="" style="width:130px" id="booking_date" required >Date</span>
+                        <input type="date" name="{{ form.booking_date.name }}" class="form-control">
+                    </div>
+                    <p id="booking_dateError" style="color: red; visibility: hidden;" class="text-start"></p>
+                    <!-- {{ booking_form.as_p }} -->
                     {% if redirect_field_value %}
                     <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
                     {% endif %}
-                    <button class="btn button right" type="submit">Submit</button>  
+                    <button class="btn button right" type="submit">Submit</button>
                 </form>
             </div>
 
         </div>
     </div>
 </div>
-
-
-
-<!-- <div class="container-fluid bg-body-secondery text-center">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12 text-centre pt-5 pb-3">
-                <h2>Appointment Form</h2>
-                <hr class="dotted">
-            </div>
-
-        </div>
-        <div class="row">
-            <div class="col-sm-12 col-lg-12 col-xl-8 text-center pt-5 pb-3 bg-white mx-auto mb-5">
-                <div class=" p-4">
-                    <form>
-                        <div class="form-floating mb-3">
-                            <input type="Name" class="form-control" id="Name" placeholder="Full Name" required>
-                            <label for="Name">Full Name :</label>
-                        </div>
-                        <div class="form-floating mb-3">
-                            <input type="mobile" class="form-control" id="mobile" placeholder="Password" required>
-                            <label for="Mobile">Mobile</label>
-                        </div>
-                        <div class="form-floating mb-3">
-                            <input type="email" class="form-control" id="email" placeholder="name@example.com" required>
-                            <label for="email">Email address</label>
-                        </div>
-                        <div class="mb-3">
-                            <select class="form-select" aria-label="Default select example" id="department">
-                                <option selected>Choose Department</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <select class="form-select" aria-label="Default select example" id="doctor">
-                                <option selected>Doctor Name</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                            </select>
-                        </div>
-                        <div class="form-floating mb-3">
-                            <textarea rows="15" cols="36" class="form-control" id="message"
-                                placeholder="Your Message"></textarea>
-                            <label for="message">Message</label>
-                        </div>
-                        <input type="submit" class="btn button" value="Submit">
-                        <input type="reset" value="Clear Form" class=" btn button1">
-                    </form>
-
-                </div>
-            </div>
-        </div>
-    </div>
-</div> -->
 
 
 {% endblock %}

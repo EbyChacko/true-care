@@ -63,22 +63,22 @@
                         <form method="post" action="{% url 'contact' %}" >
                             {% csrf_token %}
                             <div class="input-group mb-3">
-                                <span class="input-group-text" id="inputGroup-sizing-default" style="width:100px">Name</span>
+                                <span class="input-group-text"  style="width:100px">Name</span>
                                 <input type="text" name="{{ form.name.name }}" class="form-control" id="name" >
                             </div>
                             <p id="nameError" style="color: red; visibility: hidden;" class="text-start"></p>
                             <div class="input-group mb-3">
-                                <span class="input-group-text" id="inputGroup-sizing-default" style="width:100px">Mobile</span>
+                                <span class="input-group-text" style="width:100px">Mobile</span>
                                 <input type="tel" name="{{ form.mobile.name }}" class="form-control" id="mobile" >
                             </div>
                             <p id="mobileError" style="color: red; visibility: hidden;" class="text-start"></p>
                             <div class="input-group mb-3">
-                                <span class="input-group-text" id="inputGroup-sizing-default" style="width:100px">Email</span>
+                                <span class="input-group-text"" style="width:100px">Email</span>
                                 <input type="text" name="{{ form.email.name }}" class="form-control" id="email">
                             </div>
                             <p id="emailError" style="color: red; visibility: hidden;" class="text-start"></p>
                             <div class="input-group mb-3">
-                                <span class="input-group-text align-self-start" id="inputGroup-sizing-default" style="width:100px; height:100px;">Message</span>
+                                <span class="input-group-text align-self-start" id="" style="width:100px; height:100px;">Message</span>
                                 <textarea name="{{ form.message.name }}" rows="15" cols="36" class="form-control" id="message" style="height:100px"></textarea>
                             </div>
                             <p id="messageError" style="color: red; visibility: hidden;" class="text-start"></p>
