@@ -64,8 +64,10 @@
               <a class="nav-link" href="{% url 'contact' %}">Contact Us</a>
             </li>
             <li class="nav-item {% if request.path == 'appointment' %}text-purple{% endif %}">
-              <a class="nav-link" href="{% url 'appointment' %}">Appointments</a>
+              <a class="nav-link"
+                href="{% if user.is_authenticated %}{% url 'appointment' %}{% else %}{% url 'login_or_signup' %}{% endif %}">Appointments</a>
             </li>
+
           </ul>
           {% if user.is_authenticated %}
           <a class="me-4 mb-3 text-uppercase nav-item nav-link" style="color:blueviolet"

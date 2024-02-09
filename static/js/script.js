@@ -60,21 +60,21 @@ function validateForm() {
 // Update_details form validation
 function validateUpdateForm() {
     console.log("inside the validator")
-    var name = document.getElementById("personal_detail_name").value;
-    var mobile = document.getElementById("personal_detail_mobile").value;
-    var email = document.getElementById("personal_detail_email").value;
-    var address = document.getElementById("personal_detail_address").value;
-    var dateOfBirth = document.getElementById("personal_detail_date_of_birth").value;
-    var country = document.getElementById("personal_detail_country").value;
-    var zipcode = document.getElementById("personal_detail_zipcode").value;
+    var name = document.getElementById("name").value;
+    var mobile = document.getElementById("mobile").value;
+    var email = document.getElementById("email").value;
+    var address = document.getElementById("address").value;
+    var dateOfBirth = document.getElementById("date_of_birth").value;
+    var country = document.getElementById("country").value;
+    var zipcode = document.getElementById("zipcode").value;
 
-    var nameError = document.getElementById("personal_detail_nameError");
-    var mobileError = document.getElementById("personal_detail_mobileError");
-    var emailError = document.getElementById("personal_detail_emailError");
-    var addressError = document.getElementById("personal_detail_addressError");
-    var dateOfBirthError = document.getElementById("personal_detail_dateOfBirthError");
-    var countryError = document.getElementById("personal_detail_countryError");
-    var zipcodeError = document.getElementById("personal_detail_zipcodeError");
+    var nameError = document.getElementById("nameError");
+    var mobileError = document.getElementById("mobileError");
+    var emailError = document.getElementById("emailError");
+    var addressError = document.getElementById("addressError");
+    var dateOfBirthError = document.getElementById("dateOfBirthError");
+    var countryError = document.getElementById("countryError");
+    var zipcodeError = document.getElementById("zipcodeError");
 
     // Reset previous error messages
     nameError.innerHTML = "";

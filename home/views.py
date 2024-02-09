@@ -5,7 +5,6 @@ from django.http import HttpResponse
 from django.urls import reverse_lazy
 from .models import Department, Patient, Doctor, PersonalDetail, booking
 from .forms import CustomerMessageForm,  PersonalDetailForm, PatientForm, BookingForm
-from pprint import pprint
 # Create your views here.
 def index(request):
     return render(request,'index.html')
@@ -81,13 +80,15 @@ def MessageConfirmation(request):
 def profile_view(request):
     personal_detail = request.user.patient.personal_details
     patient = request.user.patient
-
     if request.method == 'POST':
         personal_detail_form = PersonalDetailForm(request.POST, request.FILES, instance=personal_detail)
         patient_form = PatientForm(request.POST, instance=patient)
         if personal_detail_form.is_valid() and patient_form.is_valid():
             personal_detail_form.save()
             patient_form.save()
+            request.user.username = personal_detail_form.cleaned_data['name']
+            request.user.email = personal_detail_form.cleaned_data['email']
+            request.user.save()
             return redirect('message_confirmation')
     else:
         personal_detail_form = PersonalDetailForm(instance=personal_detail)
@@ -102,3 +103,5 @@ def profile_view(request):
     })
 
 
+def login_or_signup(request):
+    return render(request,'login_or_signup.html')
