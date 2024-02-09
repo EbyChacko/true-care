@@ -56,3 +56,90 @@ function validateForm() {
     return isValid;
 }
 
+
+// Update_details form validation
+function validateUpdateForm() {
+    console.log("inside the validator")
+    var name = document.getElementById("personal_detail_name").value;
+    var mobile = document.getElementById("personal_detail_mobile").value;
+    var email = document.getElementById("personal_detail_email").value;
+    var address = document.getElementById("personal_detail_address").value;
+    var dateOfBirth = document.getElementById("personal_detail_date_of_birth").value;
+    var country = document.getElementById("personal_detail_country").value;
+    var zipcode = document.getElementById("personal_detail_zipcode").value;
+
+    var nameError = document.getElementById("personal_detail_nameError");
+    var mobileError = document.getElementById("personal_detail_mobileError");
+    var emailError = document.getElementById("personal_detail_emailError");
+    var addressError = document.getElementById("personal_detail_addressError");
+    var dateOfBirthError = document.getElementById("personal_detail_dateOfBirthError");
+    var countryError = document.getElementById("personal_detail_countryError");
+    var zipcodeError = document.getElementById("personal_detail_zipcodeError");
+
+    // Reset previous error messages
+    nameError.innerHTML = "";
+    mobileError.innerHTML = "";
+    emailError.innerHTML = "";
+    addressError.innerHTML = "";
+    dateOfBirthError.innerHTML = "";
+    countryError.innerHTML = "";
+    zipcodeError.innerHTML = "";
+
+    var isValid = true;
+
+    // Validate Name
+    if (name.trim() === "") {
+        nameError.innerHTML = "Name is required.";
+        isValid = false;
+        nameError.style.visibility = "visible";
+    }
+
+    // Validate Mobile
+    function validateMobileNumber(mobile) {
+        var mobileValidations = /^(\+\d{1,3}\s?\d{1,}\s?\d{1,}\s?\d{1,}|\d{10})$/;
+        return mobileValidations.test(mobile);
+    }
+    if (mobile.trim() === "" || !validateMobileNumber(mobile)) {
+        mobileError.innerHTML = "Mobile is required and must be a 10 digit number.";
+        isValid = false;
+        mobileError.style.visibility = "visible";
+    }
+
+    // Validate Email
+    var emailExtentions = /^[^\s@]+@[^\s@]+\.(com|in|ie|org|net|edu|gov|mil|int|co|uk|us|au|)$/;
+    if (email.trim() === "" || !emailExtentions.test(email)) {
+        emailError.innerHTML = "Email is required and must be a valid email address.";
+        isValid = false;
+        emailError.style.visibility = "visible";
+    }
+
+    // Validate Address
+    if (address.trim() === "") {
+        addressError.innerHTML = "Address is required.";
+        isValid = false;
+        addressError.style.visibility = "visible";
+    }
+
+    // Validate Date of Birth
+    if (dateOfBirth.trim() === "") {
+        dateOfBirthError.innerHTML = "Date of Birth is required.";
+        isValid = false;
+        dateOfBirthError.style.visibility = "visible";
+    }
+
+    // Validate Country
+    if (country.trim() === "") {
+        countryError.innerHTML = "Country is required.";
+        isValid = false;
+        countryError.style.visibility = "visible";
+    }
+
+    // Validate Zip Code
+    if (zipcode.trim() === "") {
+        zipcodeError.innerHTML = "Zip Code is required.";
+        isValid = false;
+        zipcodeError.style.visibility = "visible";
+    }
+
+    return isValid;
+}

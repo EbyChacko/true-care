@@ -11,12 +11,13 @@ class CustomerMessageForm(forms.ModelForm):
 class PersonalDetailForm(forms.ModelForm):
     class Meta:
         model = PersonalDetail
-        fields = '__all__'
+        fields = ['name', 'gender', 'address', 'zipcode', 'country', 'mobile', 'email', 'picture']
+
 
 class PatientForm(forms.ModelForm):
     class Meta:
         model = Patient
-        fields = '__all__'
+        fields = ['date_of_birth']
 
 
 class DateInput(forms.DateInput):

@@ -54,7 +54,7 @@ class Doctor(models.Model):
 class Patient(models.Model):
     user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
     personal_details = models.OneToOneField(PersonalDetail, null=True, on_delete=models.CASCADE)
-    patient_age = models.CharField( null=True)
+    date_of_birth = models.DateField(null=True)
 
     class Meta:
         ordering:['self.personal_details']

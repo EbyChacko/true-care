@@ -1,10 +1,11 @@
 from django.shortcuts import render, get_object_or_404,redirect
+from django.contrib.auth.decorators import login_required
 from django.views import generic, View
 from django.http import HttpResponse
 from django.urls import reverse_lazy
 from .models import Department, Patient, Doctor, PersonalDetail, booking
 from .forms import CustomerMessageForm,  PersonalDetailForm, PatientForm, BookingForm
-
+from pprint import pprint
 # Create your views here.
 def index(request):
     return render(request,'index.html')
@@ -35,6 +36,7 @@ def department_details(request, slug):
     return render(request, 'department_details.html', dict_dept_details)
 
 def appointment(request):
+    print(request.user)
     if request.method == 'POST':
         booking_form = BookingForm(request.POST)
         if booking_form.is_valid():
@@ -74,17 +76,19 @@ def contact(request):
 def MessageConfirmation(request):
     return render(request, 'informations.html')
 
-def profile_view(request, personal_detail_id):
-    personal_detail = get_object_or_404(PersonalDetail, pk=personal_detail_id)
-    patient = get_object_or_404(Patient, personal_details=personal_detail)
+
+@login_required
+def profile_view(request):
+    personal_detail = request.user.patient.personal_details
+    patient = request.user.patient
 
     if request.method == 'POST':
-        personal_detail_form = PersonalDetailForm(request.POST, instance=personal_detail)
+        personal_detail_form = PersonalDetailForm(request.POST, request.FILES, instance=personal_detail)
         patient_form = PatientForm(request.POST, instance=patient)
-
         if personal_detail_form.is_valid() and patient_form.is_valid():
             personal_detail_form.save()
             patient_form.save()
+            return redirect('message_confirmation')
     else:
         personal_detail_form = PersonalDetailForm(instance=personal_detail)
         patient_form = PatientForm(instance=patient)
@@ -93,7 +97,8 @@ def profile_view(request, personal_detail_id):
         'personal_detail': personal_detail,
         'patient': patient,
         'personal_detail_form': personal_detail_form,
-        'patient_form': patient_form
+        'patient_form': patient_form,
+        'date_of_birth': patient.date_of_birth.strftime('%Y-%m-%d') if patient.date_of_birth else '',
     })
 
 

@@ -13,5 +13,5 @@ urlpatterns = [
     path('doctors/', views.doctors, name='doctors'),
     path('contact/', contact, name='contact'),
     path('message_confirmation/', views.MessageConfirmation, name='message_confirmation'),
-    path('update_profile/<int:personal_detail_id>/', views.profile_view, name='update_profile'),
+   path('update_profile/', views.profile_view, name='update_profile'),
 ]

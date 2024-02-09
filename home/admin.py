@@ -33,7 +33,7 @@ class DoctorAdmin(admin.ModelAdmin):
 # register the patient details in the admin pannel
 @admin.register(Patient)
 class PatientAdmin(admin.ModelAdmin):
-    list_display = ('get_personal_details_name', 'patient_age', 'get_personal_details_email', 'get_mobile')
+    list_display = ('get_personal_details_name','date_of_birth', 'get_personal_details_email', 'get_mobile')
     search_fields = ('personal_details__name', 'personal_details__email', 'patient_age')
 
     def get_personal_details_name(self, obj):

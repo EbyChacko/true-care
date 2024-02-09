@@ -1,29 +1,96 @@
 {% extends "base.html" %}
 
-{% load i18n %}
-
 {% block head_title %}Edit Details{% endblock %}
 
 {% block content %}
-<div class="container">
-    <div class="row ">
+<!-- <div class="container">
+    <div class="row">
         <div class="col-sm-12 p-3 my-3 d-flex align-items-center justify-content-center">
             <div class="text_centre">
                 <h3 class="pb-3">Update Profile</h3>
 
-                <form method="post" action="{% url 'update_profile' personal_detail.id %}">
+                <form method="post" action="">
                     {% csrf_token %}
-                    <!-- Display and allow editing of personal details fields -->
                     {{ personal_detail_form.as_p }}
-                    <!-- Display and allow editing of patient details fields -->
                     {{ patient_form.as_p }}
                     <button class="btn button right" type="submit">Update</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+<div class="container">
+    <div class="row ">
+        <div class="col-sm-12 p-3 my-3 d-flex align-items-center justify-content-center">
+            <div class="text_centre">
+                <h1><i class="fa-solid fa-id-card"></i></h1>
+                <h3 class="pb-3">Update Your Profile </h3>
+                <form class="login bg-white text-start rounded-5 p-5" method="POST" action="{% url 'update_profile' %}" enctype="multipart/form-data" onsubmit="return validateUpdateForm()">
+                    {% csrf_token %}
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="" style="width:130px">Name</span>
+                        <input type="text" name="personal_detail_name" value="{{ personal_detail_form.name.value}}"
+                            class="form-control" id="name">
+                    </div>
+                    <p id="personal_detail_nameError" style="color: red; visibility: hidden;" class="text-start"></p>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="" style="width:130px">E-mail</span>
+                        <input type="text" name="personal_detail_email" value="{{ personal_detail_form.email.value}}"
+                            class="form-control" id="email">
+                    </div>
+                    <p id="personal_detail_emailError" style="color: red; visibility: hidden;" class="text-start"></p>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="" style="width:130px">Mobile</span>
+                        <input type="tel" name="personal_detail_mobile" value="{{ personal_detail_form.mobile.value}}"
+                            class="form-control" id="mobile">
+                    </div>
+                    <p id="personal_detail_mobileError" style="color: red; visibility: hidden;" class="text-start"></p>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="" style="width:130px">Gender</span>
+                        <select name="gender" id="gender" class="form-select">
+                            <option value="M" {% if personal_detail_form.gender.value == 'M' %} selected {% endif %}>Male</option>
+                            <option value="F" {% if personal_detail_form.gender.value == 'F' %} selected {% endif %}>Female</option>
+                            <option value="O" {% if personal_detail_form.gender.value == 'O' %} selected {% endif %}>Other</option>
+                        </select>
+                    </div>
+                    <p id="personal_detail_genderError" style="color: red; visibility: hidden;" class="text-start"></p>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text align-self-start" id=""
+                            style="width:130px; max-height:100px; min-height: 100px;">Address</span>
+                        <textarea name="personal_detail_address"  cols="36"
+                            class="form-control" id="message">{{ personal_detail.address }}</textarea>
+                    </div>
+                    <p id="personal_detail_addressError" style="color: red; visibility: hidden;" class="text-start"></p>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="" style="width:130px" id="date_of_birth">Date of Birth</span>
+                        <input type="date" name="personal_detail_date_of_birth" value="{{ date_of_birth }}"
+                            class="form-control">
+                    </div>
+                    <p id="personal_detail_dateOfBirthError" style="color: red; visibility: hidden;" class="text-start"></p>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="" style="width:130px" id="country">Country</span>
+                        <input type="text" name="personal_detail_country" value="{{ personal_detail_form.country.value}}"
+                            class="form-control">
+                    </div>
+                    <p id="personal_detail_countryError" style="color: red; visibility: hidden;" class="text-start"></p>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="" style="width:130px" id="zipcode">Zip-Code</span>
+                        <input type="text" name="personal_detail_zipcode" value="{{ personal_detail_form.zipcode.value}}"
+                            class="form-control">
+                    </div>
+                    <p id="personal_detail_zipcodeError" style="color: red; visibility: hidden;" class="text-start"></p>
+                    {% if redirect_field_value %}
+                    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                    {% endif %}
+                    <input type="submit" class="btn button" value="Update" >
+                    <input type="reset" value="Reset Form" class="btn button1">
                 </form>
             </div>
 
         </div>
     </div>
 </div>
-
 
 {% endblock %}
