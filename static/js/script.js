@@ -143,3 +143,8 @@ function validateUpdateForm() {
 
     return isValid;
 }
+
+
+function validateAppointmentForm(){
+    print("from the validate appointment function")
+}

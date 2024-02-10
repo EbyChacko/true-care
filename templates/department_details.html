@@ -38,7 +38,8 @@
                                                 <h5>{{ doctor.designation }}</h5>
                                                 <h5>{{ doctor.education }}</h5>
                                                 <p>{{ doctor.speciality }}</p>
-                                                <a href="#" class="btn button">Book an Appointment</a>
+                                                <a href="{% if user.is_authenticated %}{% url 'appointment' %}{% else %}{% url 'login_or_signup' %}{% endif %}"
+                                                    class="btn button">Book an Appointment</a>
                                             </div>
                                         </div>
                                     </div>

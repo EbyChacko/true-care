@@ -70,9 +70,17 @@
 
           </ul>
           {% if user.is_authenticated %}
-          <a class="me-4 mb-3 text-uppercase nav-item nav-link" style="color:blueviolet"
-            href="{% url 'update_profile' %}" role="button" type="submit"><i class="fas fa-user"></i> {{ user }}
-          </a>
+          <div class="dropdown">
+            <button class="btn button text-uppercase me-4 mb-3 dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fas fa-user"></i> {{ user }}
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item" href="{% url 'update_profile' %}">View Profile</a></li>
+              <li><a class="dropdown-item" href="{% url 'update_profile' %}">Update Profile</a></li>
+              <hr class="dotted">
+              <li><a class="dropdown-item" href="#">My Appointments</a></li>
+            </ul>
+          </div>
           <a class=" me-4 mb-3 nav-item nav-link" href="{% url 'account_logout' %}" role="button" type="submit">Log
             out</a>
           {% else %}
@@ -86,9 +94,18 @@
     </nav>
   </header>
 
+  {% if user.is_authenticated %}
 
+  
+  {% else %}
 
-  {% block content %} {% endblock %}
+  
+  {% endif %}
+
+  {% block content %} 
+  
+  
+  {% endblock %}
   <!-- Footer -->
   <footer class=" bg-black text-white py-5 text-center">
     <div class="container">

@@ -2,6 +2,8 @@
 
 {% block head_title %}Edit Details{% endblock %}
 
+{% load i18n %}
+
 {% block content %}
 
 <div class="container">
@@ -10,7 +12,7 @@
             <div class="text_centre">
                 <h1><i class="fa-solid fa-id-card"></i></h1>
                 <h3 class="pb-3">Update Your Profile </h3>
-                <form class="login bg-white text-start rounded-5 p-5" method="POST" action="" enctype="multipart/form-data" >
+                <form class="bg-white text-start rounded-5 p-5" method="POST" action="" enctype="multipart/form-data" >
                     {% csrf_token %}
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="" style="width:130px">Name</span>
@@ -40,18 +42,19 @@
                     </div>
                     <p id="genderError" style="color: red; visibility: hidden;" class="text-start"></p>
                     <div class="input-group mb-3">
+                        <span class="input-group-text" id="" style="width:130px" id="date_of_birth">Date of Birth</span>
+                        <input type="date" name="date_of_birth" value="{{ date_of_birth }}"
+                            class="form-control">
+                    </div>
+                    <p id="dateOfBirthError" style="color: red; visibility: hidden;" class="text-start"></p>
+                    <div class="input-group mb-3">
                         <span class="input-group-text align-self-start" id=""
                             style="width:130px; max-height:100px; min-height: 100px;">Address</span>
                         <textarea name="address"  cols="36"
                             class="form-control" id="message">{{ personal_detail.address }}</textarea>
                     </div>
                     <p id="addressError" style="color: red; visibility: hidden;" class="text-start"></p>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text" id="" style="width:130px" id="date_of_birth">Date of Birth</span>
-                        <input type="date" name="date_of_birth" value="{{ date_of_birth }}"
-                            class="form-control">
-                    </div>
-                    <p id="dateOfBirthError" style="color: red; visibility: hidden;" class="text-start"></p>
+                    
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="" style="width:130px" id="country">Country</span>
                         <input type="text" name="country" value="{{ personal_detail_form.country.value}}"
@@ -64,9 +67,11 @@
                             class="form-control">
                     </div>
                     <p id="zipcodeError" style="color: red; visibility: hidden;" class="text-start"></p>
+
                     {% if redirect_field_value %}
-                    <input type="hidden" name="next" value="{% url 'update_profile' %}" />
+                    <input type="hidden" name="next" value="{% url 'message_confirmation' %}" />
                     {% endif %}
+                    
                     <input type="submit" class="btn button" value="Update" onclick="validateUpdateForm()">
                     <input type="reset" value="Reset Form" class="btn button1">
                 </form>

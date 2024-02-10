@@ -11,7 +11,7 @@ class Department(models.Model):
     slug = models.SlugField(max_length=200, unique=True)
 
     class Meta:
-        ordering:['department_name']
+        ordering = ['department_name']
 
     def __str__(self):
         return self.department_name
@@ -28,7 +28,7 @@ class PersonalDetail(models.Model):
     picture = models.ImageField(upload_to='patients', null=True, )
 
     class Meta:
-        ordering:['name']
+        ordering = ['name']
 
     def __str__(self):
         return self.name
@@ -44,7 +44,7 @@ class Doctor(models.Model):
     picture = models.ImageField(upload_to='doctors')
     
     class Meta:
-        ordering:['self.personal_details']
+        ordering = ['personal_details']
 
     def __str__(self):
          return f"Doctor: {self.personal_details}, {self.speciality}, {self.department}"
@@ -57,7 +57,7 @@ class Patient(models.Model):
     date_of_birth = models.DateField(null=True)
 
     class Meta:
-        ordering:['self.personal_details']
+        ordering = ['personal_details']
 
     def __str__(self):
          return f"Patient: {self.personal_details}"
@@ -73,7 +73,7 @@ class booking(models.Model):
     date_booked = models.DateField(auto_now_add=True)
     approved = models.BooleanField(default=False)
     class Meta:
-        ordering:['self.date.booked']
+        ordering = ['date_booked']
 
     def __str__(self):
          return f"{self.id}: Booking by {self.patient_id} at {self.department} department for {self.doctor}"

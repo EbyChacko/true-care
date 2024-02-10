@@ -11,22 +11,26 @@ class CustomerMessageForm(forms.ModelForm):
 class PersonalDetailForm(forms.ModelForm):
     class Meta:
         model = PersonalDetail
-        fields = ['name', 'gender', 'address', 'zipcode', 'country', 'mobile', 'email', 'picture']
+        fields = ['name', 'gender', 'address', 'zipcode', 'country', 'mobile', 'email']
 
+
+class DateInput(forms.DateInput):
+    input_type ='date'
 
 class PatientForm(forms.ModelForm):
     class Meta:
         model = Patient
         fields = ['date_of_birth']
 
+        widgets = {
+                'date_of_birth' : DateInput
+            }
 
-class DateInput(forms.DateInput):
-    input_type ='date'
 
 class BookingForm(forms.ModelForm):
     class Meta:
         model = booking
-        fields = '__all__'
+        fields = ['department', 'doctor','booking_date']
 
         widgets = {
             'booking_date' : DateInput
