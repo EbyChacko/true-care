@@ -75,7 +75,7 @@
               <i class="fas fa-user"></i> {{ user }}
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-              <li><a class="dropdown-item" href="{% url 'update_profile' %}">View Profile</a></li>
+              <li><a class="dropdown-item" href="{% url 'profile' %}">View Profile</a></li>
               <li><a class="dropdown-item" href="{% url 'update_profile' %}">Update Profile</a></li>
               <hr class="dotted">
               <li><a class="dropdown-item" href="#">My Appointments</a></li>
@@ -93,14 +93,6 @@
       </div>
     </nav>
   </header>
-
-  {% if user.is_authenticated %}
-
-  
-  {% else %}
-
-  
-  {% endif %}
 
   {% block content %} 
   

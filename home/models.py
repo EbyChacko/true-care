@@ -47,7 +47,7 @@ class Doctor(models.Model):
         ordering = ['personal_details']
 
     def __str__(self):
-         return f"Doctor: {self.personal_details}, {self.speciality}, {self.department}"
+         return f"{self.personal_details}"
 
 
 #model for the patients details

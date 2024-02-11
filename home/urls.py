@@ -15,4 +15,7 @@ urlpatterns = [
     path('message_confirmation/', views.MessageConfirmation, name='message_confirmation'),
     path('update_profile/', views.profile_view, name='update_profile'),
     path('login_or_signup/', views.login_or_signup, name='login_or_signup'),
+    path('profile/', views.profile, name='profile'),
+    path('appointment_details/<int:id>/', views.appointment_details, name='appointment_details'),
+    path('delete_appointment/<int:id>/', views.delete_appointment, name='delete_appointment'),
 ]

@@ -1,8 +1,11 @@
 from django.shortcuts import render, get_object_or_404,redirect
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+from django.utils import timezone
+from django.views.decorators.http import require_POST
 from django.views import generic, View
-from django.http import HttpResponse
-from django.urls import reverse_lazy
+from django.http import HttpResponseRedirect
+from django.urls import reverse_lazy, reverse
 from .models import Department, Patient, Doctor, PersonalDetail, booking
 from .forms import CustomerMessageForm,  PersonalDetailForm, PatientForm, BookingForm
 # Create your views here.
@@ -55,7 +58,7 @@ def appointment(request):
             booking.save()
             request.user.email = personal_detail_form.cleaned_data['email']
             request.user.save()
-            return redirect('message_confirmation')
+            return redirect('profile')
     else:
         booking_form = BookingForm()
         personal_detail_form = PersonalDetailForm(instance=personal_detail)
@@ -108,6 +111,7 @@ def profile_view(request):
         if personal_detail_form.is_valid() and patient_form.is_valid():
             personal_detail_form.save()
             patient_form.save()
+            request.user.username = personal_detail_form.cleaned_data['name']
             request.user.email = personal_detail_form.cleaned_data['email']
             request.user.save()
             return redirect('message_confirmation')
@@ -126,3 +130,49 @@ def profile_view(request):
 
 def login_or_signup(request):
     return render(request,'login_or_signup.html')
+
+
+def profile(request):
+    user = request.user
+    now = timezone.now()
+    personal_detail = request.user.patient.personal_details
+    patient = request.user.patient
+    appointments = booking.objects.filter(patient_id__user=user).order_by('booking_date')
+    return render(request,'profile.html',{
+        'personal_detail': personal_detail,
+        'patient': patient,
+        'appointments': appointments,
+        'now' : now,
+        })
+
+def appointment_details(request, id):
+    appointment = get_object_or_404(booking, id=id)
+    now = timezone.now()
+    personal_detail = request.user.patient.personal_details
+    patient = request.user.patient
+    return render(request,'appointment_details.html',{
+        'personal_detail': personal_detail,
+        'patient': patient,
+        'appointment': appointment,
+        'now' : now,
+        })
+
+# to show the department details in the department_details.html
+def department_details(request, slug):
+    department = get_object_or_404(Department, slug=slug)
+    doctors = Doctor.objects.filter(department=department)
+    dict_dept_details = {
+        'department': department,
+        'doctors': doctors,
+    }
+    return render(request, 'department_details.html', dict_dept_details)
+
+def delete_appointment(request, id):
+    try:
+        appointment = booking.objects.get(pk=id)
+        appointment.delete()
+        messages.success(request, 'Appointment deleted successfully.')
+    except booking.DoesNotExist:
+        messages.error(request, 'Appointment not found.')
+    
+    return HttpResponseRedirect(reverse('profile'))

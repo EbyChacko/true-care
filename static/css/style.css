@@ -18,7 +18,7 @@ body {
 /* Change to the desired hover color */
 .navbar a:hover {
     color: #ee41ee;
-    
+
 }
 
 a:hover {
@@ -26,22 +26,22 @@ a:hover {
 }
 
 .text-purple {
-    color: #ee41ee !important; 
+    color: #ee41ee !important;
 }
 
-header a:hover{
-    color: #ee41ee !important; 
+header a:hover {
+    color: #ee41ee !important;
 }
 
 #login {
-    color: white;  
-  }
+    color: white;
+}
 
-  #login :hover{
-    color: #ee41ee 
-  }
+#login :hover {
+    color: #ee41ee
+}
 
-  
+
 .true_care_logo {
     max-width: 250px;
 }
@@ -86,6 +86,28 @@ header a:hover{
     word-break: break-word;
 }
 
+.button2{
+    border-radius: 99px;
+    background-color: #5c2005;
+    color:#FFFFFF;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    min-width: 100px;
+    border: 0;
+}
+
+.button3{
+    border-radius: 99px;
+    background-color: #016925;
+    color:#FFFFFF;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    min-width: 100px;
+    border: 0;
+}
+
 /* Secondary button hover properties */
 .button1:hover {
     /* border: solid 1px rgb(60, 7, 174); */
@@ -98,7 +120,15 @@ header a:hover{
     /* border: solid 1px rgb(60, 7, 174); */
     box-shadow: #c7c7c7 0 10px 5px -5px;
     color: #ee41ee;
+}
 
+
+.button2:hover {
+    color: #e10202;
+}
+
+.button3:hover {
+    color: #00a996;
 }
 
 .actived {
@@ -178,7 +208,33 @@ footer h5 {
     box-shadow: #c7c7c7 0 10px 5px -5px;
 }
 
-.message_container{
+.message_container {
     min-height: 350px;
     margin-bottom: 300px;
+}
+
+/* profile page styles */
+
+.button_bg {
+    background-color: rgb(31, 31, 31);
+    border: 1px solid rgb(16, 16, 16);
+    padding: 11px;
+}
+
+.button_bg:hover {
+    background-color: rgb(18, 18, 18);
+}
+
+.appointment_div {
+    background-color: rgb(30, 30, 30);
+    /* border: 1px solid rgb(16, 16, 16); */
+    min-height: 50px;
+    border-radius: 20px;
+    padding: 11px;
+    margin:10px 0;
+}
+
+.appointment_div:hover {
+    cursor: pointer;
+    background-color: rgb(21, 21, 21);
 }

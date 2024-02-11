@@ -148,3 +148,7 @@ function validateUpdateForm() {
 function validateAppointmentForm(){
     print("from the validate appointment function")
 }
+
+setTimeout(function() {
+    $('#alertMessage').alert('close');
+}, 5000);

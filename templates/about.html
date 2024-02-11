@@ -149,7 +149,8 @@
                     </div>
                 </div>
                 <div class="col-12 text-centre p-4">
-                    <button class="btn button" href="#">Click Here to make an appointment</button>
+                    <button class="btn button" href="{% if user.is_authenticated %}{% url 'appointment' %}{% else %}{% url 'login_or_signup' %}{% endif %}">
+                        Click Here to make an appointment</button>
                 </div>
             </div>
         </div>
