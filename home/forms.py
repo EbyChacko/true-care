@@ -37,3 +37,7 @@ class BookingForm(forms.ModelForm):
         }
 
 
+class UploadPictureForm(forms.ModelForm):
+    class Meta:
+        model = PersonalDetail
+        fields = ['picture']

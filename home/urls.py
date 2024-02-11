@@ -1,7 +1,7 @@
 
 from django.urls import path, include
 from . import views
-from .views import contact
+from .views import contact, upload_picture
 
 urlpatterns = [
     path('', views.index, name='home'),
@@ -18,4 +18,5 @@ urlpatterns = [
     path('profile/', views.profile, name='profile'),
     path('appointment_details/<int:id>/', views.appointment_details, name='appointment_details'),
     path('delete_appointment/<int:id>/', views.delete_appointment, name='delete_appointment'),
+    path('upload_picture/', upload_picture, name='upload_picture'),
 ]

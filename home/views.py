@@ -7,7 +7,7 @@ from django.views import generic, View
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy, reverse
 from .models import Department, Patient, Doctor, PersonalDetail, booking
-from .forms import CustomerMessageForm,  PersonalDetailForm, PatientForm, BookingForm
+from .forms import CustomerMessageForm,  PersonalDetailForm, PatientForm, BookingForm, UploadPictureForm
 # Create your views here.
 def index(request):
     return render(request,'index.html')
@@ -176,3 +176,21 @@ def delete_appointment(request, id):
         messages.error(request, 'Appointment not found.')
     
     return HttpResponseRedirect(reverse('profile'))
+
+from .forms import UploadPictureForm
+
+def upload_picture(request):
+    personal_detail = request.user.patient.personal_details
+    upload_picture_form = UploadPictureForm(instance=personal_detail)  # Initialize form outside the if-else block
+    if request.method == 'POST':
+        upload_picture_form = UploadPictureForm(request.POST, request.FILES, instance=personal_detail)
+        if upload_picture_form.is_valid():
+            upload_picture_form.save()
+            return redirect('profile')
+
+    return render(request, 'upload_picture.html', {
+        'personal_detail': personal_detail,
+        'upload_picture_form': upload_picture_form,
+    })
+
+

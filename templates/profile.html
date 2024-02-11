@@ -11,12 +11,12 @@
         <div class="col-sm-12 col-md-3 col-xl-2 bg-dark text-white bg-gradient p-3" style="min-height: 600px;">
             <div class="row d-flex justify-content-center align-items-center">
                 {% if personal_detail.picture %}
-                <a href="" class="profile_button text-reset text-decoration-none">
+                <a href="#" class="profile_button text-reset text-decoration-none">
                     <img src="{{ personal_detail.picture.url }}" alt="profile picture" class="rounded-circle border border-dark border-5 " style="width:150px; height: 150px;">
                 </a>
                 {% else %}
                 <div class="col-12 bg-secondary rounded-circle text-center d-flex justify-content-center align-items-center" style="width:150px; height: 150px;">
-                    <a href="" class="profile_button text-reset text-decoration-none">
+                    <a href="{% url 'upload_picture' %}" class="profile_button text-reset text-decoration-none">
                         <h4><i class="fa-solid fa-circle-plus"></i></h4>
                         <p>Add Photo</p>
                     </a>
