@@ -201,12 +201,21 @@ def upload_picture(request):
     if request.method == 'POST':
         upload_picture_form = UploadPictureForm(request.POST, request.FILES, instance=personal_detail)
         if upload_picture_form.is_valid():
-            upload_picture_form.save()
-            return redirect('profile')
+            picture = request.FILES.get('picture') 
+            if picture:  
+                if picture.size > 10485760:  # Maximum size in bytes (10 MB)
+                    error_message = "File size too large. Maximum is 10 MB."
+                else:
+                    upload_picture_form.save()
+                    return redirect('profile')
+            else:
+                error_message = "Please select an image file."
     else:
         upload_picture_form = UploadPictureForm(instance=personal_detail)
+        error_message = None
         
     return render(request, 'upload_picture.html', {
         'upload_picture_form': upload_picture_form,
-        'personal_detail' :personal_detail,
+        'personal_detail': personal_detail,
+        'error_message': error_message 
     })

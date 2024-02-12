@@ -149,47 +149,23 @@ function validateAppointmentForm(){
     print("from the validate appointment function")
 }
 
-setTimeout(function() {
-    $('#alertMessage').alert('close');
-}, 5000);
-
-
 document.getElementById('photo-input').addEventListener('change', function(event) {
     var input = event.target;
+    picture_error = document.getElementById('pictureError');
+    picture_error.style.visibility = 'hidden';
     if (input.files && input.files[0]) {
-        var reader = new FileReader();
-        reader.onload = function(e) {
-            document.getElementById('profile-image').src = e.target.result;
-        };
-        reader.readAsDataURL(input.files[0]);
+        if (input.files[0].size <= 10485760) {  // Maximum size in bytes (10 MB)
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById('profile-image').src = e.target.result;
+            };
+            reader.readAsDataURL(input.files[0]);
+        } else {
+            // Reset the input field to prevent uploading large files
+            input.value = '';
+            alert('File size too large. Maximum is 10 MB.');
+        }
     }
 });
 
 
-// Function to show the specified appointment section and hide others
-function showAppointments(sectionId) {
-    document.getElementById('all_appointments').style.display = 'none';
-    document.getElementById('attended_appointments').style.display = 'none';
-    document.getElementById('upcoming_appointments').style.display = 'none';
-
-    // Show the specified appointment section
-    document.getElementById(sectionId).style.display = 'block';
-}
-
-document.addEventListener('DOMContentLoaded', function () {
-    // Show all appointments by default
-    showAppointments('all_appointments');
-
-    // Add event listeners for each button
-    document.getElementById('all_appointments_link').addEventListener('click', function () {
-        showAppointments('all_appointments');
-    });
-
-    document.getElementById('attended_appointments_link').addEventListener('click', function () {
-        showAppointments('attended_appointments');
-    });
-
-    document.getElementById('upcoming_appointments_link').addEventListener('click', function () {
-        showAppointments('upcoming_appointments');
-    });
-});
