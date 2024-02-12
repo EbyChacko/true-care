@@ -11,16 +11,14 @@
         <div class="col-sm-12 col-md-3 col-xl-2 bg-dark text-white bg-gradient p-3" style="min-height: 600px;">
             <div class="row d-flex justify-content-center align-items-center">
                 {% if personal_detail.picture %}
-                <a href="#" class="profile_button text-reset text-decoration-none">
-                    <img src="{{ personal_detail.picture.url }}" alt="profile picture" class="rounded-circle border border-dark border-5 " style="width:150px; height: 150px;">
+                <a href="{% url 'update_picture' %}" class="profile_button text-reset text-decoration-none">
+                    <img src="{{ personal_detail.picture.url }}" alt="profile picture" class="rounded-circle border border-dark" style="width: 150px; height: 150px; object-fit: cover;">
                 </a>
                 {% else %}
-                <div class="col-12 bg-secondary rounded-circle text-center d-flex justify-content-center align-items-center" style="width:150px; height: 150px;">
-                    <a href="{{ url 'upload_picture' }}" class="profile_button text-reset text-decoration-none">
-                        <h4><i class="fa-solid fa-circle-plus"></i></h4>
-                        <p>Add Photo</p>
-                    </a>
-                </div>
+                <a href="{% url 'update_picture' %}" class="profile_button text-reset text-decoration-none">
+                    <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1707688057/60111_ulq1yz.jpg" 
+                    alt="profile picture" class="rounded-circle border border-dark" style="width: 150px; height: 150px; object-fit: cover;">
+                </a>
                 {% endif %}
                 <div class="col-12 text-center py-3">
                     <h5 class="text-uppercase">{{ user }}</h5>
@@ -43,38 +41,50 @@
                 </div>
             </div>
         </div>
-        
+
 
         <div class="col-sm-12 col-md-9 col-xl-10 text-centre align-items-center pb-3 bg-dark "
             style="min-height: 600px;">
             <div class="row">
-                <div id="appointments" class="col-12 text-white py-5 ">
-                    <h4 class="text-uppercase pb=5"><strong>My Appointments</strong></h4>
+                <div id="appointments" class="col-md-8 text-white py-5 mx-auto">
+                    <h4 class="text-uppercase pb=5"><strong>Profile Picture</strong></h4>
                     <hr>
+                    <div class='text-start'>
+                        <a class="text-reset text-decoration-none text-start ps-5 pt-5" href="{% url 'profile' %}">
+                            <i class="fa-solid fa-circle-arrow-left"></i> Go Back to Profile</a>
+                    </div>
                     <div class="row pt-3 px-3">
-                        <form class="bg-white text-start rounded-5 p-5" method="POST" action="" enctype="multipart/form-data">
-                            {% csrf_token %}
-                            
-                            <div class="input-group mb-3">
-                                <span class="input-group-text" id="" style="width:130px" id="date_of_birth">Photo</span>
-                                <input type="img" name="picture" value="" class="form-control">
-                            </div>
-                            {% if form.picture.errors %}
-                            <ul>
-                                {% for error in form.picture.errors %}
-                                <li>{{ error }}</li>
-                                {% endfor %}
-                            </ul>
+                        {% if personal_detail.picture %}
+                            <a href="#" id="profile-link" class="profile_button text-reset text-decoration-none">
+                                <img id="profile-image" src="{{ personal_detail.picture.url }}" alt="profile picture"
+                                    class="rounded-circle border border-5 border-secondary"
+                                    style="width: 200px; height: 200px; object-fit: cover;">
+                            </a>
+                            {% else %}
+                            <a href="#" id="profile-link" class="profile_button text-reset text-decoration-none">
+                                <img id="profile-image" src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1707688057/60111_ulq1yz.jpg" alt="profile picture"
+                                    class="rounded-circle border border-5 border-secondary"
+                                    style="width: 200px; height: 200px; object-fit: cover;">
+                            </a>
                             {% endif %}
-                            
-                            <p id="booking_dateError" style="color: red; visibility: hidden;" class="text-start"></p>
-        
+                        <form class=" text-white text-centre border border-secondary rounded-5 p-5" method="POST" action=""
+                            enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <h5 class="py-3">Upload your Photo</h5>
+                            <div class="row d-flex justify-content-center align-items-center">
+                                <div class="col-md-12 col-lg-10 col-xl-8 mb-3">
+                                    <input type="file" name="picture" accept="image/*" class="form-control"
+                                        value="{{ personal_detail.picture }}" id="photo-input">
+                                </div>
+                            </div>
+                            <p id="pictureError" style="color: red; visibility: hidden;" class="text-start"></p>
+
                             {% if redirect_field_value %}
                             <input type="hidden" name="next" value="{% url 'message_confirmation' %}" />
                             {% endif %}
-        
-                            <input type="submit" class="btn button" value="Submit">
-                            <input type="reset" value="Reset Form" class="btn button1">
+
+                            <input type="submit" class="btn button3" value="Update">
+                            <input type="reset" value="Remove" class="btn button2">
                         </form>
                     </div>
                 </div>

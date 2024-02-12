@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404,redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.utils import timezone
+from django.db.models import Q
 from django.views.decorators.http import require_POST
 from django.views import generic, View
 from django.http import HttpResponseRedirect
@@ -38,6 +39,7 @@ def department_details(request, slug):
     return render(request, 'department_details.html', dict_dept_details)
 
 
+# to create appointments
 @login_required
 def appointment(request):
     personal_detail = request.user.patient.personal_details if hasattr(request.user, 'patient') else None
@@ -101,6 +103,7 @@ def MessageConfirmation(request):
     return render(request, 'informations.html')
 
 
+# to update the personal details
 @login_required
 def profile_view(request):
     personal_detail = request.user.patient.personal_details
@@ -128,28 +131,40 @@ def profile_view(request):
     })
 
 
+# to show guide page to the login or signup page
 def login_or_signup(request):
     return render(request,'login_or_signup.html')
 
 
+# profile page
 def profile(request):
     user = request.user
     now = timezone.now()
     personal_detail = request.user.patient.personal_details
     patient = request.user.patient
     appointments = booking.objects.filter(patient_id__user=user).order_by('booking_date')
+    attended_appointments = booking.objects.filter(patient_id__user=user, attended=True).order_by('booking_date')
+    upcoming_appointments = booking.objects.filter(
+    Q(patient_id__user=user) & (Q(attended=False) | Q(attended__isnull=True))
+).order_by('booking_date')
     return render(request,'profile.html',{
         'personal_detail': personal_detail,
         'patient': patient,
         'appointments': appointments,
+        'attended_appointments': attended_appointments,
+        'upcoming_appointments':upcoming_appointments,
         'now' : now,
         })
 
+
+# to show the appointment details in a new page
 def appointment_details(request, id):
     appointment = get_object_or_404(booking, id=id)
     now = timezone.now()
     personal_detail = request.user.patient.personal_details
     patient = request.user.patient
+    print(personal_detail.picture)
+    print(personal_detail.name)
     return render(request,'appointment_details.html',{
         'personal_detail': personal_detail,
         'patient': patient,
@@ -167,6 +182,8 @@ def department_details(request, slug):
     }
     return render(request, 'department_details.html', dict_dept_details)
 
+
+# to delete appointments
 def delete_appointment(request, id):
     try:
         appointment = booking.objects.get(pk=id)
@@ -177,20 +194,19 @@ def delete_appointment(request, id):
     
     return HttpResponseRedirect(reverse('profile'))
 
-from .forms import UploadPictureForm
 
+# to upload and update the profile picture
 def upload_picture(request):
     personal_detail = request.user.patient.personal_details
-    upload_picture_form = UploadPictureForm(instance=personal_detail)  # Initialize form outside the if-else block
     if request.method == 'POST':
         upload_picture_form = UploadPictureForm(request.POST, request.FILES, instance=personal_detail)
         if upload_picture_form.is_valid():
             upload_picture_form.save()
             return redirect('profile')
-
+    else:
+        upload_picture_form = UploadPictureForm(instance=personal_detail)
+        
     return render(request, 'upload_picture.html', {
-        'personal_detail': personal_detail,
         'upload_picture_form': upload_picture_form,
+        'personal_detail' :personal_detail,
     })
-
-

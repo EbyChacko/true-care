@@ -72,6 +72,7 @@ class booking(models.Model):
     booking_date = models.DateField()
     date_booked = models.DateField(auto_now_add=True)
     approved = models.BooleanField(default=False)
+    attended = models.BooleanField(default=False, null=True)
     class Meta:
         ordering = ['date_booked']
 
@@ -90,3 +91,6 @@ class CustomerMessage(models.Model):
     def __str__(self):
         return self.name
     
+
+
+

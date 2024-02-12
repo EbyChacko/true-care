@@ -88,24 +88,26 @@ header a:hover {
 
 .button2{
     border-radius: 99px;
-    background-color: #5c2005;
+    background-color: #059cc2;
     color:#FFFFFF;
     cursor: pointer;
     user-select: none;
     -webkit-user-select: none;
     min-width: 100px;
     border: 0;
+    margin: 5px;
 }
 
 .button3{
     border-radius: 99px;
-    background-color: #016925;
+    background-color: #720ac7;
     color:#FFFFFF;
     cursor: pointer;
     user-select: none;
     -webkit-user-select: none;
     min-width: 100px;
     border: 0;
+    margin: 5px;
 }
 
 /* Secondary button hover properties */
@@ -124,11 +126,11 @@ header a:hover {
 
 
 .button2:hover {
-    color: #e10202;
+    color: #0a99cd;
 }
 
 .button3:hover {
-    color: #00a996;
+    color: #d600ea;
 }
 
 .actived {
