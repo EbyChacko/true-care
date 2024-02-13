@@ -8,58 +8,83 @@
 
 <div class="container-fluid bg-body-secondery">
     <div class="row">
-        <div class="col-sm-12 col-md-3 col-xl-2 bg-dark text-white bg-gradient p-3" style="min-height: 600px;">
+        <div class="col-sm-12 col-md-3 col-xl-2 bg-dark text-white bg-gradient p-3" id="sidebar">
             <div class="row d-flex justify-content-center align-items-center">
                 {% if personal_detail.picture %}
                 <a href="{% url 'update_picture' %}" class="profile_button text-reset text-decoration-none">
-                    <img src="{{ personal_detail.picture.url }}" alt="profile picture" class="rounded-circle border border-dark" style="width: 150px; height: 150px; object-fit: cover;">
+                    <img src="{{ personal_detail.picture.url }}" alt="profile picture"
+                        class="rounded-circle border border-dark"
+                        style="width: 150px; height: 150px; object-fit: cover;">
                 </a>
                 {% else %}
                 <a href="{% url 'update_picture' %}" class="profile_button text-reset text-decoration-none">
-                    <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1707688057/60111_ulq1yz.jpg" 
-                    alt="profile picture" class="rounded-circle border border-dark" style="width: 150px; height: 150px; object-fit: cover;">
+                    <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1707688057/60111_ulq1yz.jpg"
+                        alt="profile picture" class="rounded-circle border border-dark"
+                        style="width: 150px; height: 150px; object-fit: cover;">
                 </a>
                 {% endif %}
                 <div class="col-12 text-center py-3">
                     <h5 class="text-uppercase">{{ user }}</h5>
-                    <h6 class="text-warning">User ID: {{ user.id }}</h6>
+                    <h6 class="text-warning">User ID: TCHID{{ user.id }}</h6>
                 </div>
                 <hr class="col-12 dotted">
-                <div class="col-12 text-center pt-3">
-                    <a href="#personal Details"  class="profile_button text-reset text-decoration-none">
-                        <div class="col-12 button_bg text-center" style="height:50px;">
-                            <p class="text-white">Personal Details</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-12 text-center">
-                    <a id="all_appointments_link" class="profile_button text-reset text-decoration-none">
-                        <div class="col-12 button_bg text-center" style="height:50px;">
+                
+                <div class="col-12 col-sm-3 col-md-12 text-center pt-3">
+                    <a href="#all_appointments" id="all_appointments_link" class="profile_button text-reset text-decoration-none">
+                        <div class="col-12 button_bg text-center" style="min-height:50px;">
                             <p class="text-white">All Appointments</p>
                         </div>
                     </a>
                 </div>
-                <div class="col-12 text-center">
-                    <a id="attended_appointments_link" class="profile_button text-reset text-decoration-none">
-                        <div class="col-12 button_bg text-center" style="height:50px;">
+                <div class="col-12 col-sm-3 col-md-12 text-center">
+                    <a href="#attended_appointments" id="attended_appointments_link" class="profile_button text-reset text-decoration-none">
+                        <div class="col-12 button_bg text-center" style="min-height:50px;">
                             <p class="text-white">Attended Appointments</p>
                         </div>
                     </a>
                 </div>
-                <div class="col-12 text-center">
-                    <a id="upcoming_appointments_link" class="profile_button text-reset text-decoration-none">
-                        <div class="col-12 button_bg text-center" style="height:50px;">
+                <div class="col-12 col-sm-3 col-md-12 text-center">
+                    <a href="#upcoming_appointments" id="upcoming_appointments_link" class="profile_button text-reset text-decoration-none">
+                        <div class="col-12 button_bg text-center" style="min-height:50px;">
                             <p class="text-white">Upcoming Appointments</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-12 col-sm-3 col-md-12 text-center">
+                    <a href="#personal_Details" id="personal_Details_link" class="profile_button text-reset text-decoration-none">
+                        <div class="col-12 button_bg text-center" style="min-height:50px;">
+                            <p class="text-white">Personal Details</p>
                         </div>
                     </a>
                 </div>
             </div>
         </div>
-        
 
-        <div class="col-sm-12 col-md-9 col-xl-10 text-centre align-items-center pb-3 bg-dark "
+
+        <div class="col-sm-12 col-md-9 col-xl-10 text-centre align-items-center pb-3 bg-dark" id="main-content"
             style="min-height: 600px;">
             <div class="row">
+                <div id="personal_Details" class="col-12  text-white py-5">
+                    <h4 class="text-uppercase text- start pb=5"><strong>Personal Details</strong></h4>
+                    <hr>
+                    <div
+                        class="row pt-3 px-3 text-start d-flex justify-content-center align-items-center text-uppercase ">
+                        <div class="col-sm-8 col-lg-6 col-xl-4 border border-secondary rounded-5 p-5">
+                            <p> Name : <strong>{{ personal_detail.name }}</strong></p>
+                            <p> Mobile : {{ personal_detail.mobile }}</p>
+                            <p> Email : {{ personal_detail.email }}</p>
+                            <p> Address : {{ personal_detail.address }}</p>
+                            <p> Zip-code : {{ personal_detail.zipcode }}</p>
+                            <p> Date Of Birth : {{ patient.date_of_birth }}</p>
+                            <p> Gender : {{ personal_detail.gender }}</p>
+                            <a href="{% url 'update_profile' %}"
+                                class="text-reset text-decoration-none px-2">
+                                <h5 type="submit" class="btn button3" value="">Edit</h5>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
                 <div id="all_appointments" class="col-12 text-white py-5 ">
                     <h4 class="text-uppercase pb=5"><strong>My Appointments</strong></h4>
                     <hr>
@@ -138,7 +163,8 @@
                         </div>
                         {% endfor %}
                         {% else %}
-                        <h4 class="pt-5 pb-2">Sorry !!!</h4><p>You have no attended appointments to show.</p>
+                        <h4 class="pt-5 pb-2">Sorry !!!</h4>
+                        <p>You have no attended appointments to show.</p>
                         {% endif %}
                     </div>
                 </div>
@@ -177,7 +203,7 @@
                                             <button type="button" class="btn button2" disabled>Delete</button>
                                             {% endif %}
                                         </div>
-                                        
+
                                     </div>
                                 </div>
                             </a>
@@ -185,7 +211,8 @@
                         {% endif %}
                         {% endfor %}
                         {% else %}
-                        <h4 class="pt-5 pb-2">Sorry !!!</h4><p>You have no upcoming appointments.</p>
+                        <h4 class="pt-5 pb-2">Sorry !!!</h4>
+                        <p>You have no upcoming appointments.</p>
                         <div>
                             <a class="btn button3" href="{% url 'appointment' %}">
                                 Click Here to make an appointment</a>
@@ -193,59 +220,6 @@
                         {% endif %}
                     </div>
                 </div>
-
-                <div id="upcoming_appointments" class="col-12 text-white py-5 ">
-                    <h4 class="text-uppercase pb=5"><strong>Personal Details</strong></h4>
-                    <hr>
-                    <div class="row pt-3 px-3">
-                        {% if upcoming_appointments %}
-                        {% for upcoming_appointment in upcoming_appointments %}
-                        {% if upcoming_appointment.booking_date >= now.date %}
-                        <div class="col-sm-12 col-md-6 col-xl-4 text-center">
-                            <a href="{% url 'appointment_details' id=upcoming_appointment.id %}"
-                                class="profile_button text-reset text-decoration-none">
-                                <div class="appointment_div text-start p-3">
-                                    <div class="row py-3">
-                                        <h5 class=" text-warning">Date: {{ upcoming_appointment.booking_date }}</h5>
-                                        <h6 class=" text-white">Department : {{ upcoming_appointment.department }}</h6>
-                                        <h6 class=" text-white">Doctor : Dr. {{ upcoming_appointment.doctor }}</h6>
-                                        <h6 class=" text-white">Status : {% if upcoming_appointment.approved %}Approved
-                                            {% else%}Not Approved{% endif %}</h6>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-12 d-flex justify-content-center pt-2">
-                                            <a href="{% url 'appointment_details' id=upcoming_appointment.id %}"
-                                                class="text-reset text-decoration-none px-2">
-                                                <h5 type="submit" class="btn button3" value="">Details</h5>
-                                            </a>
-                                            {% if upcoming_appointment.booking_date > now.date %}
-                                            <a href="{% url 'delete_appointment' id=upcoming_appointment.id %}"
-                                                onclick="return confirm('Are you sure you want to delete this appointment?');"
-                                                class="text-reset text-decoration-none px-2">
-                                                <h5 class="btn button2">Delete</h5>
-                                            </a>
-                                            {% else %}
-                                            <button type="button" class="btn button2" disabled>Delete</button>
-                                            {% endif %}
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        {% endif %}
-                        {% endfor %}
-                        {% else %}
-                        <h4 class="pt-5 pb-2">Sorry !!!</h4><p>You have no upcoming appointments.</p>
-                        <div>
-                            <a class="btn button3" href="{% url 'appointment' %}">
-                                Click Here to make an appointment</a>
-                        </div>
-                        {% endif %}
-                    </div>
-                </div>
-
-
             </div>
         </div>
     </div>
@@ -253,34 +227,40 @@
 
 <script>
     // Function to show the specified appointment section and hide others
-    function showAppointments(sectionId) {
-        // Hide all appointment sections
-        document.getElementById('all_appointments').style.display = 'none';
-        document.getElementById('attended_appointments').style.display = 'none';
-        document.getElementById('upcoming_appointments').style.display = 'none';
+function showContent(sectionId) {
+    // Hide all content sections
+    document.getElementById('personal_Details').style.display = 'none';
+    document.getElementById('all_appointments').style.display = 'none';
+    document.getElementById('attended_appointments').style.display = 'none';
+    document.getElementById('upcoming_appointments').style.display = 'none';
 
-        // Show the specified appointment section
-        document.getElementById(sectionId).style.display = 'block';
-    }
+    // Show the specified content section
+    document.getElementById(sectionId).style.display = 'block';
+}
 
-    // Event listener for clicking on the links to switch appointment sections
-    document.addEventListener('DOMContentLoaded', function () {
-        // Show all appointments by default
-        showAppointments('all_appointments');
+// Event listener for clicking on the links to switch content sections
+document.addEventListener('DOMContentLoaded', function () {
+    // Show personal details by default
+    showContent('all_appointments');
 
-        // Add event listeners for each button
-        document.getElementById('all_appointments_link').addEventListener('click', function () {
-            showAppointments('all_appointments');
-        });
-
-        document.getElementById('attended_appointments_link').addEventListener('click', function () {
-            showAppointments('attended_appointments');
-        });
-
-        document.getElementById('upcoming_appointments_link').addEventListener('click', function () {
-            showAppointments('upcoming_appointments');
-        });
+    // Add event listeners for each button
+    document.getElementById('personal_Details_link').addEventListener('click', function () {
+        showContent('personal_Details');
     });
+
+    document.getElementById('all_appointments_link').addEventListener('click', function () {
+        showContent('all_appointments');
+    });
+
+    document.getElementById('attended_appointments_link').addEventListener('click', function () {
+        showContent('attended_appointments');
+    });
+
+    document.getElementById('upcoming_appointments_link').addEventListener('click', function () {
+        showContent('upcoming_appointments');
+    });
+});
+
 </script>
 
 {% endblock %}

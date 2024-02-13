@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block title %} Appointment Form {% endblock %}
+
+{% load i18n %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row ">
+        <div class="col-sm-12 p-3 my-3 d-flex align-items-center justify-content-center">
+            <div class="text_centre">
+                <h1><i class="fa-regular fa-file-lines"></i></h1>
+                <h3 class="pb-2">Appointment Form </h3>
+                <form class="bg-white text-start rounded-5 p-5" method="POST" action="" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="pb-2 pt-4">
+                        <h5>Appointment Details</h5>
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="" style="width:130px">Department</span>
+                        <select name="department" value="booking_form.department.value" class="form-control"
+                            id="department" required>
+                            <option value="">Select Department...</option>
+                            {% for department in departments %}
+                            <option value="{{ department.pk }}">{{ department.department_name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    {% if form.department.errors %}
+                    <ul>
+                        {% for error in form.field_name.errors %}
+                        <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                    <p id="departmentError" style="color: red; visibility: hidden;" class="text-start"></p>
+
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="" style="width:130px">Doctor</span>
+                        <select name="doctor" value="booking_form.doctor.value" class="form-control" required>
+                            <option value="">Select Doctor...</option>
+                            {% for doctor in doctors %}
+                            <option value="{{ doctor.pk }}">{{ doctor.personal_details.name }} 
+                                ({{ doctor.department.department_name }})</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    {% if form.doctor.errors %}
+                    <ul>
+                        {% for error in form.field_name.errors %}
+                        <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                    <p id="doctorError" style="color: red; visibility: hidden;" class="text-start"></p>
+
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="" style="width:130px" required>Date</span>
+                        <input type="date" name="booking_date" value="{{ booking_form.booking_date.value }}"
+                            class="form-control">
+                    </div>
+                    {% if form.booking_date.errors %}
+                    <ul>
+                        {% for error in form.field_name.errors %}
+                        <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                    <p id="booking_dateError" style="color: red; visibility: hidden;" class="text-start"></p>
+
+                    {% if redirect_field_value %}
+                    <input type="hidden" name="next" value="{% url 'message_confirmation' %}" />
+                    {% endif %}
+
+                    <input type="submit" class="btn button" value="Submit">
+                    <input type="reset" value="Reset Form" class="btn button1">
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

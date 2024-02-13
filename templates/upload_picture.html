@@ -8,45 +8,7 @@
 
 <div class="container-fluid bg-body-secondery">
     <div class="row">
-        <div class="col-sm-12 col-md-3 col-xl-2 bg-dark text-white bg-gradient p-3" style="min-height: 600px;">
-            <div class="row d-flex justify-content-center align-items-center">
-                {% if personal_detail.picture %}
-                <a href="{% url 'update_picture' %}" class="profile_button text-reset text-decoration-none">
-                    <img src="{{ personal_detail.picture.url }}" alt="profile picture"
-                        class="rounded-circle border border-dark"
-                        style="width: 150px; height: 150px; object-fit: cover;">
-                </a>
-                {% else %}
-                <a href="{% url 'update_picture' %}" class="profile_button text-reset text-decoration-none">
-                    <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1707688057/60111_ulq1yz.jpg"
-                        alt="profile picture" class="rounded-circle border border-dark"
-                        style="width: 150px; height: 150px; object-fit: cover;">
-                </a>
-                {% endif %}
-                <div class="col-12 text-center py-3">
-                    <h5 class="text-uppercase">{{ user }}</h5>
-                    <h6 class="text-warning">User ID: {{ user.id }}</h6>
-                </div>
-                <hr class="col-12 dotted">
-                <div class="col-12 text-center pt-3">
-                    <a href="#personal Details" class="profile_button text-reset text-decoration-none">
-                        <div class="col-12 button_bg text-center" style="height:50px;">
-                            <p class="text-white">Personal Details</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-12 text-center">
-                    <a href="#appointments" class="profile_button text-reset text-decoration-none">
-                        <div class="col-12 button_bg text-center" style="height:50px;">
-                            <p class="text-white">Appointments</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="col-sm-12 col-md-9 col-xl-10 text-centre align-items-center pb-3 bg-dark "
+        <div class="col-sm-12 text-centre align-items-center pb-3 bg-dark "
             style="min-height: 600px;">
             <div class="row">
                 <div id="appointments" class="col-md-8 text-white py-5 mx-auto">

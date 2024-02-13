@@ -80,6 +80,44 @@ def appointment(request):
         'date_of_birth': patient.date_of_birth.strftime('%Y-%m-%d') if patient and patient.date_of_birth else '',
     })
 
+
+# to update appointments
+@login_required
+def update_appointment(request, id):
+    # Retrieve the appointment object
+    appointment = get_object_or_404(booking, pk=id)
+
+    personal_detail = request.user.patient.personal_details
+    patient = request.user.patient
+
+    if request.method == 'POST':
+        booking_form = BookingForm(request.POST, instance=appointment)
+
+        if booking_form.is_valid():
+            # Save the updated appointment details
+            appointment = booking_form.save(commit=False)
+            appointment.patient_id = patient
+            appointment.personal_detail = personal_detail
+            appointment.date_booked = timezone.now()  # Update the date_booked
+            appointment.approved = False  # Set approved to False
+            appointment.save()
+            return redirect('profile')
+    else:
+        booking_form = BookingForm(instance=appointment)
+
+    departments = Department.objects.all()
+    doctors = Doctor.objects.all()
+
+    return render(request, 'update_appointment.html', {
+        'booking_form': booking_form,
+        'departments': departments,
+        'doctors': doctors,
+        'personal_detail': personal_detail,
+        'patient': patient,
+    })
+
+
+
 # to show the doctors detaisl in the doctors.html page
 def doctors(request):
     dict_doctor={
@@ -117,7 +155,7 @@ def profile_view(request):
             request.user.username = personal_detail_form.cleaned_data['name']
             request.user.email = personal_detail_form.cleaned_data['email']
             request.user.save()
-            return redirect('message_confirmation')
+            return redirect('profile')
     else:
         personal_detail_form = PersonalDetailForm(instance=personal_detail)
         patient_form = PatientForm(instance=patient)
