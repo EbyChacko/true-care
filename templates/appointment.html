@@ -22,12 +22,8 @@
                         <input type="text" name="name" value="{{ personal_detail_form.name.value}}" class="form-control"
                             id="name">
                     </div>
-                    {% if form.name.errors %}
-                    <ul>
-                        {% for error in form.field_name.errors %}
-                        <li>{{ error }}</li>
-                        {% endfor %}
-                    </ul>
+                    {% if error.name %}
+                    <p style="color: red;">{{ errors.name }}</p>
                     {% endif %}
                     <p id="nameError" style="color: red; visibility: hidden;" class="text-start"></p>
                     <div class="input-group mb-3">
@@ -186,7 +182,7 @@
                     <input type="hidden" name="next" value="{% url 'message_confirmation' %}" />
                     {% endif %}
 
-                    <input type="submit" class="btn button" value="Submit">
+                    <input type="submit" class="btn button" value="Submit" onclick="return validateForm()">
                     <input type="reset" value="Reset Form" class="btn button1">
                 </form>
             </div>
