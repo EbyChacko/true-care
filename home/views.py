@@ -5,7 +5,7 @@ from django.utils import timezone
 from django.db.models import Q
 from django.views.decorators.http import require_POST
 from django.views import generic, View
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.urls import reverse_lazy, reverse
 from .models import Department, Patient, Doctor, PersonalDetail, booking
 from .forms import CustomerMessageForm,  PersonalDetailForm, PatientForm, BookingForm, UploadPictureForm
@@ -257,3 +257,12 @@ def upload_picture(request):
         'personal_detail': personal_detail,
         'error_message': error_message 
     })
+
+
+def get_doctors(request):
+    department_id = request.GET.get('department_id')
+    doctors = Doctor.objects.filter(department_id=department_id)
+    options = '<option value="">Select Doctor...</option>'
+    for doctor in doctors:
+        options += f'<option value="{doctor.pk}">{doctor.personal_details.name} ({doctor.department.department_name})</option>'
+    return JsonResponse(options, safe=False)

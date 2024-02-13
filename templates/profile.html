@@ -11,13 +11,13 @@
         <div class="col-sm-12 col-md-3 col-xl-2 bg-dark text-white bg-gradient p-3" id="sidebar">
             <div class="row d-flex justify-content-center align-items-center">
                 {% if personal_detail.picture %}
-                <a href="{% url 'update_picture' %}" class="profile_button text-reset text-decoration-none">
+                <a href="{% url 'update_picture' %}" class="text-reset text-decoration-none">
                     <img src="{{ personal_detail.picture.url }}" alt="profile picture"
                         class="rounded-circle border border-dark"
                         style="width: 150px; height: 150px; object-fit: cover;">
                 </a>
                 {% else %}
-                <a href="{% url 'update_picture' %}" class="profile_button text-reset text-decoration-none">
+                <a href="{% url 'update_picture' %}" class="text-reset text-decoration-none">
                     <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1707688057/60111_ulq1yz.jpg"
                         alt="profile picture" class="rounded-circle border border-dark"
                         style="width: 150px; height: 150px; object-fit: cover;">
@@ -25,33 +25,33 @@
                 {% endif %}
                 <div class="col-12 text-center py-3">
                     <h5 class="text-uppercase">{{ user }}</h5>
-                    <h6 class="text-warning">User ID: TCHID{{ user.id }}</h6>
+                    <h6 class="text-warning">User ID: {{ user.id }}</h6>
                 </div>
                 <hr class="col-12 dotted">
                 
                 <div class="col-12 col-sm-3 col-md-12 text-center pt-3">
-                    <a href="#all_appointments" id="all_appointments_link" class="profile_button text-reset text-decoration-none">
+                    <a href="#all_appointments" id="all_appointments_link" class="profile_button d-flex justify-content-center align-items-center text-reset text-decoration-none">
                         <div class="col-12 button_bg text-center" style="min-height:50px;">
                             <p class="text-white">All Appointments</p>
                         </div>
                     </a>
                 </div>
                 <div class="col-12 col-sm-3 col-md-12 text-center">
-                    <a href="#attended_appointments" id="attended_appointments_link" class="profile_button text-reset text-decoration-none">
+                    <a href="#attended_appointments" id="attended_appointments_link" class="profile_button d-flex justify-content-center align-items-center text-reset text-decoration-none">
                         <div class="col-12 button_bg text-center" style="min-height:50px;">
                             <p class="text-white">Attended Appointments</p>
                         </div>
                     </a>
                 </div>
                 <div class="col-12 col-sm-3 col-md-12 text-center">
-                    <a href="#upcoming_appointments" id="upcoming_appointments_link" class="profile_button text-reset text-decoration-none">
+                    <a href="#upcoming_appointments" id="upcoming_appointments_link" class="profile_button d-flex justify-content-center align-items-center text-reset text-decoration-none">
                         <div class="col-12 button_bg text-center" style="min-height:50px;">
                             <p class="text-white">Upcoming Appointments</p>
                         </div>
                     </a>
                 </div>
                 <div class="col-12 col-sm-3 col-md-12 text-center">
-                    <a href="#personal_Details" id="personal_Details_link" class="profile_button text-reset text-decoration-none">
+                    <a href="#personal_Details" id="personal_Details_link" class="profile_button d-flex justify-content-center align-items-center text-reset text-decoration-none">
                         <div class="col-12 button_bg text-center" style="min-height:50px;">
                             <p class="text-white">Personal Details</p>
                         </div>
@@ -70,6 +70,9 @@
                     <div
                         class="row pt-3 px-3 text-start d-flex justify-content-center align-items-center text-uppercase ">
                         <div class="col-sm-8 col-lg-6 col-xl-4 border border-secondary rounded-5 p-5">
+                            <div class="row">
+
+                            </div>
                             <p> Name : <strong>{{ personal_detail.name }}</strong></p>
                             <p> Mobile : {{ personal_detail.mobile }}</p>
                             <p> Email : {{ personal_detail.email }}</p>
@@ -93,7 +96,7 @@
                         {% for appointment in appointments %}
                         <div class="col-sm-12 col-md-6 col-xl-4 text-center">
                             <a href="{% url 'appointment_details' id=appointment.id %}"
-                                class="profile_button text-reset text-decoration-none">
+                                class=" text-reset text-decoration-none">
                                 <div class="appointment_div text-start p-3">
                                     <div class="row py-3">
                                         <h5 class=" text-warning">Date: {{ appointment.booking_date }}</h5>
@@ -141,7 +144,7 @@
                         {% for attended_appointment in attended_appointments %}
                         <div class="col-sm-12 col-md-6 col-xl-4 text-center">
                             <a href="{% url 'appointment_details' id=attended_appointment.id %}"
-                                class="profile_button text-reset text-decoration-none">
+                                class="text-reset text-decoration-none">
                                 <div class="appointment_div text-start p-3">
                                     <div class="row py-3">
                                         <h5 class=" text-warning">Date: {{ attended_appointment.booking_date }}</h5>
@@ -178,7 +181,7 @@
                         {% if upcoming_appointment.booking_date >= now.date %}
                         <div class="col-sm-12 col-md-6 col-xl-4 text-center">
                             <a href="{% url 'appointment_details' id=upcoming_appointment.id %}"
-                                class="profile_button text-reset text-decoration-none">
+                                class="text-reset text-decoration-none">
                                 <div class="appointment_div text-start p-3">
                                     <div class="row py-3">
                                         <h5 class=" text-warning">Date: {{ upcoming_appointment.booking_date }}</h5>

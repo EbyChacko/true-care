@@ -169,3 +169,20 @@ document.getElementById('photo-input').addEventListener('change', function(event
 });
 
 
+$(document).ready(function() {
+    $('#departments').change(function() {
+        var departmentId = $(this).val();
+        if (departmentId) {
+            $.ajax({
+                type: 'GET',
+                url: '/get_doctors/',  // URL to fetch doctors for the selected department
+                data: {'department_id': departmentId},
+                success: function(data) {
+                    $('#doctor').html(data);
+                }
+            });
+        } else {
+            $('#doctor').html('<option value="">Select Doctor...</option>');
+        }
+    });
+});
