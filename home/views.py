@@ -10,7 +10,17 @@ from django.urls import reverse_lazy, reverse
 from .models import Department, Patient, Doctor, PersonalDetail, booking
 from .forms import CustomerMessageForm,  PersonalDetailForm, PatientForm, BookingForm, UploadPictureForm
 # Create your views here.
+
+def base_view(request):
+    if request.user.is_authenticated:
+        personal_detail = request.user.patient.personal_details
+    else:
+        personal_detail = None
+    return render(request, 'base.html', 
+                  {'personal_detail': personal_detail})
+
 def index(request):
+
     return render(request,'index.html')
 
 def about(request):
@@ -270,3 +280,22 @@ def get_doctors(request):
     for doctor in doctors:
         options += f'<option value="{doctor.pk}">{doctor.personal_details.name} ({doctor.department.department_name})</option>'
     return JsonResponse(options, safe=False)
+
+def doctor_profile(request):
+    user = request.user
+    now = timezone.now()
+    personal_detail = request.user.patient.personal_details
+    patient = request.user.patient
+    appointments = booking.objects.filter(patient_id__user=user).order_by('booking_date')
+    attended_appointments = booking.objects.filter(patient_id__user=user, attended=True).order_by('booking_date')
+    upcoming_appointments = booking.objects.filter(
+    Q(patient_id__user=user) & (Q(attended=False) | Q(attended__isnull=True))
+).order_by('booking_date')
+    return render(request,'doctor_profile.html',{
+        'personal_detail': personal_detail,
+        'patient': patient,
+        'appointments': appointments,
+        'attended_appointments': attended_appointments,
+        'upcoming_appointments':upcoming_appointments,
+        'now' : now,
+        })

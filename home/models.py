@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 # Create your models here.
 
 # department model
@@ -51,6 +53,20 @@ class Doctor(models.Model):
 
     def __str__(self):
          return f"{self.personal_details}"
+
+@receiver(post_save, sender=PersonalDetail)
+def create_or_update_doctor(sender, instance, created, **kwargs):
+    if created or instance.is_doctor:
+        department = Department.objects.first()
+        doctor, _ = Doctor.objects.get_or_create(personal_details=instance, defaults={'department': department})
+        doctor.designation = ''
+        doctor.education = ''
+        doctor.speciality = ''
+        doctor.picture = ''
+        doctor.doctor_Number = ''
+        doctor.save()
+
+
 
 
 #model for the patients details
