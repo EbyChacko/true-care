@@ -77,11 +77,14 @@
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
               <li><a class="dropdown-item" href="{% url 'profile' %}">View Profile</a></li>
               <li><a class="dropdown-item" href="{% url 'update_profile' %}">Update Profile</a></li>
-              <hr class="dotted">
-              <li><a class="dropdown-item" href="{% url 'profile' %}">My Appointments</a></li>
               {% if personal_detail.is_doctor %}
               <hr class="dotted">
-              <li><a class="dropdown-item" href="{% url 'doctor_profile' %}">Doctors Page</a></li>
+              <li><a class="dropdown-item" href="{% url 'doctor_profile' %}">Doctors Profile</a></li>
+              <li><a class="dropdown-item" href="{% url 'add_doctor_details' %}">Doctor's Details</a></li>
+              {% elif personal_detail.is_reception %}
+              <hr class="dotted">
+              <li><a class="dropdown-item" href="{% url 'doctor_profile' %}">Reception Profile</a></li>
+              {% endif %}
             </ul>
           </div>
           <a class=" me-4 mb-3 nav-item nav-link" href="{% url 'account_logout' %}" role="button" type="submit">Log

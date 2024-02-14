@@ -8,7 +8,7 @@ from django.views import generic, View
 from django.http import HttpResponseRedirect, JsonResponse
 from django.urls import reverse_lazy, reverse
 from .models import Department, Patient, Doctor, PersonalDetail, booking
-from .forms import CustomerMessageForm,  PersonalDetailForm, PatientForm, BookingForm, UploadPictureForm
+from .forms import CustomerMessageForm,  PersonalDetailForm, PatientForm, BookingForm, UploadPictureForm, DoctorForm
 # Create your views here.
 
 def base_view(request):
@@ -281,6 +281,7 @@ def get_doctors(request):
         options += f'<option value="{doctor.pk}">{doctor.personal_details.name} ({doctor.department.department_name})</option>'
     return JsonResponse(options, safe=False)
 
+
 def doctor_profile(request):
     user = request.user
     now = timezone.now()
@@ -299,3 +300,23 @@ def doctor_profile(request):
         'upcoming_appointments':upcoming_appointments,
         'now' : now,
         })
+
+
+def add_doctor_details(request):
+    personal_detail = request.user.patient.personal_details
+    doctor = personal_detail.doctor
+    if request.method == 'POST':
+        doctor_form = DoctorForm(request.POST, request.FILES, instance=doctor)
+        if doctor_form.is_valid():
+            doctor_form.save()
+            return redirect('doctor_profile')
+    else:
+        doctor_form = DoctorForm(instance=doctor)
+    departments = Department.objects.all()
+    doctor = personal_detail.doctor
+    return render(request, 'add_doctor_details.html', {
+        'personal_detail': personal_detail,
+        'doctor_form': doctor_form,
+        'departments': departments,
+        'doctor':doctor,
+    })

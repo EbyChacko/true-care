@@ -1,5 +1,5 @@
 from django import forms
-from .models import CustomerMessage, Patient, PersonalDetail,  booking
+from .models import CustomerMessage, Patient, PersonalDetail,  booking, Doctor
 
 #form fo the customer message in the contact.html
 class CustomerMessageForm(forms.ModelForm):
@@ -41,3 +41,10 @@ class UploadPictureForm(forms.ModelForm):
     class Meta:
         model = PersonalDetail
         fields = ['picture']
+
+
+class DoctorForm(forms.ModelForm):
+    class Meta:
+        model = Doctor
+        fields = ['designation','doctor_Number', 'education', 'speciality', 'department']
+
