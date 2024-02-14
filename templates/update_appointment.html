@@ -19,12 +19,12 @@
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="" style="width:130px">Department</span>
-                        <select name="department" id="departments" value="booking_form.department.value" class="form-control"
+                        <select name="department" id="departments" value="appointment.department.value" class="form-control"
                             id="department" required>
                             <option value="">Select Department...</option>
                             {% for department in departments %}
-                            <option value="{{ department.pk }}">{{ department.department_name }}</option>
-                            {% endfor %}
+                            <option value="{{ department.pk }}" {% if department.pk == appointment.department.pk %} selected {% endif %}>
+                                {{ department.department_name }}</option>{% endfor %}
                         </select>
                     </div>
                     {% if form.department.errors %}
@@ -38,11 +38,11 @@
 
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="" style="width:130px">Doctor</span>
-                        <select name="doctor" id="doctor" value="booking_form.doctor.value" class="form-control" required>
+                        <select name="doctor" id="doctor" value="{{ doctor.name.value }}" class="form-control" required>
                             <option value="">Select Doctor...</option>
                             {% for doctor in doctors %}
-                            <option value="{{ doctor.pk }}">{{ doctor.personal_details.name }} 
-                                ({{ doctor.department.department_name }})</option>
+                            <option value="{{ doctor.pk }}" {% if doctor.pk == appointment.doctor.pk %} selected {% endif %}>
+                                {{ doctor.personal_details.name }} ({{ doctor.department.department_name }})</option>
                             {% endfor %}
                         </select>
                     </div>
@@ -57,7 +57,7 @@
 
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="" style="width:130px" required>Date</span>
-                        <input type="date" name="booking_date" value="{{ booking_form.booking_date.value }}"
+                        <input type="date" name="booking_date" value="{{ booking_date }}"
                             class="form-control">
                     </div>
                     {% if form.booking_date.errors %}

@@ -8,7 +8,6 @@ def create_patient(sender,instance, created, **kwargs):
     if not PersonalDetail.objects.filter(email=instance.email).exists():
         personal_details = PersonalDetail.objects.create(name=instance.username, email=instance.email)
         Patient.objects.create(user=instance, personal_details=personal_details, date_of_birth=None)
-        print('user created')
 post_save.connect(create_patient,sender=User)
 
 

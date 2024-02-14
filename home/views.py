@@ -110,10 +110,14 @@ def update_appointment(request, id):
 
     return render(request, 'update_appointment.html', {
         'booking_form': booking_form,
+        'appointment' : appointment,
         'departments': departments,
         'doctors': doctors,
         'personal_detail': personal_detail,
         'patient': patient,
+        'department': appointment.department.pk,
+        'doctor': appointment.doctor.pk,
+        'booking_date': appointment.booking_date.strftime('%Y-%m-%d') if appointment.booking_date else '',
     })
 
 

@@ -26,8 +26,6 @@ class PersonalDetail(models.Model):
     mobile = models.CharField(max_length=15)
     email = models.EmailField()
     picture = models.ImageField(upload_to='patients', null=True, )
-    is_doctor = models.BooleanField(default=False, null=True)
-    is_rreception = models.BooleanField(default=False, null=True)
 
     class Meta:
         ordering = ['name']
