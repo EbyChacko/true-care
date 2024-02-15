@@ -30,12 +30,15 @@
                                     <div class=" col-sm-12 py-3 dotted">
                                         <div class="row p-3">
                                             <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 col-xxl-3 text-center">
-                                                {% if doctor.picture %}
-                                                <img src="{{ doctor.picture.url }}" class="doctor_photo img-fluid"
-                                                    alt="{{doctor.personal_details.name}}'s Photo">
+                                                {% if doctor.personal_details.picture %}
+                                                <img src="{{ doctor.personal_details.picture.url }}" class="doctor_photo"
+                                                    alt="{{doctor.personal_details.name}}'s Photo" style="width: 220px; height: 260px; object-fit: cover;">
+                                                {% elif doctor.picture %}
+                                                <img src="{{ doctor.picture.url }}" class="doctor_photo "
+                                                    alt="{{doctor.personal_details.name}}'s Photo" style="width: 220px; height: 260px; object-fit: cover;">
                                                 {% else %}
                                                 <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1707938913/doctor_photo-default_plh6db.webp" 
-                                                class="doctor_photo img-fluid" alt="Doctor default Photo">
+                                                class="doctor_photo" alt="Doctor default Photo" style="width: 220px; height: 260px; object-fit: cover;">
                                                 {% endif %}
                                             </div>
                                             <div class="col-sm-12  col-md-6 col-lg-8 col-xl-8 col-xxl-9 pt-4 ">

@@ -75,16 +75,17 @@
               <i class="fas fa-user"></i> {{ user }}
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              {% if personal_detail.is_doctor %}
+              <li><a class="dropdown-item" href="{% url 'doctor_profile' %}">Doctors Profile</a></li>
+              <li><a class="dropdown-item" href="{% url 'add_doctor_details' %}">Professional Details</a></li>
+              <hr class="dotted">
+              {% elif personal_detail.is_reception %}
+              <li><a class="dropdown-item" href="{% url 'doctor_profile' %}">Reception Profile</a></li>
+              <hr class="dotted">
+              {% endif %}
               <li><a class="dropdown-item" href="{% url 'profile' %}">View Profile</a></li>
               <li><a class="dropdown-item" href="{% url 'update_profile' %}">Update Profile</a></li>
-              {% if personal_detail.is_doctor %}
-              <hr class="dotted">
-              <li><a class="dropdown-item" href="{% url 'doctor_profile' %}">Doctors Profile</a></li>
-              <li><a class="dropdown-item" href="{% url 'add_doctor_details' %}">Doctor's Details</a></li>
-              {% elif personal_detail.is_reception %}
-              <hr class="dotted">
-              <li><a class="dropdown-item" href="{% url 'doctor_profile' %}">Reception Profile</a></li>
-              {% endif %}
+              <li><a class="dropdown-item" href="{% url 'patient_appointments' %}">My Appointments</a></li>
             </ul>
           </div>
           <a class=" me-4 mb-3 nav-item nav-link" href="{% url 'account_logout' %}" role="button" type="submit">Log

@@ -59,12 +59,21 @@ def create_or_update_doctor(sender, instance, created, **kwargs):
     if created or instance.is_doctor:
         department = Department.objects.first()
         doctor, _ = Doctor.objects.get_or_create(personal_details=instance, defaults={'department': department})
-        doctor.designation = ''
-        doctor.education = ''
-        doctor.speciality = ''
-        doctor.picture = ''
-        doctor.doctor_Number = ''
+        
+        # Check if the doctor instance already exists and update fields only if they are empty
+        if not doctor.designation:
+            doctor.designation = ''
+        if not doctor.education:
+            doctor.education = ''
+        if not doctor.speciality:
+            doctor.speciality = ''
+        if not doctor.picture:
+            doctor.picture = ''
+        if not doctor.doctor_Number:
+            doctor.doctor_Number = ''
+        
         doctor.save()
+
 
 
 

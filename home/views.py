@@ -194,12 +194,27 @@ def profile(request):
     now = timezone.now()
     personal_detail = request.user.patient.personal_details
     patient = request.user.patient
+    doctor = personal_detail.doctor
+    return render(request,'profile.html',{
+        'personal_detail': personal_detail,
+        'patient': patient,
+        'doctor': doctor,
+        'now' : now,
+        })
+
+
+# profile page
+def patient_appointments(request):
+    user = request.user
+    now = timezone.now()
+    personal_detail = request.user.patient.personal_details
+    patient = request.user.patient
     appointments = booking.objects.filter(patient_id__user=user).order_by('booking_date')
     attended_appointments = booking.objects.filter(patient_id__user=user, attended=True).order_by('booking_date')
     upcoming_appointments = booking.objects.filter(
     Q(patient_id__user=user) & (Q(attended=False) | Q(attended__isnull=True))
 ).order_by('booking_date')
-    return render(request,'profile.html',{
+    return render(request,'patient_appointments.html',{
         'personal_detail': personal_detail,
         'patient': patient,
         'appointments': appointments,
@@ -309,7 +324,7 @@ def add_doctor_details(request):
         doctor_form = DoctorForm(request.POST, request.FILES, instance=doctor)
         if doctor_form.is_valid():
             doctor_form.save()
-            return redirect('doctor_profile')
+            return redirect('profile')
     else:
         doctor_form = DoctorForm(instance=doctor)
     departments = Department.objects.all()

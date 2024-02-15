@@ -11,11 +11,11 @@
         <div class="col-sm-12 p-3 my-3 d-flex align-items-center justify-content-center">
             <div class="text_centre">
                 <h1><i class="fa-regular fa-file-lines"></i></h1>
-                <h3 class="pb-2">Details of the Doctor </h3>
+                <h3 class="pb-4">Professional Details of the Doctor </h3>
                 <form class="bg-white text-start rounded-5 p-5" method="POST" action="" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class="pb-2 pt-4">
-                        <h5>Doctor's Details</h5>
+                        <h5 class="text-uppercase text-center">Dr. {{user}}'s Details</h5>
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="" style="width:130px" required>Designation</span>
