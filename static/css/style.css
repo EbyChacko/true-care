@@ -203,15 +203,6 @@ footer h5 {
     text-decoration: none;
 }
 
-/* .doctor_photo {
-    width: 100px;
-    height:280px;
-    border-radius: 30px;
-    object-fit: cover;
-    border: 1px solid rgb(97, 97, 97);
-    box-shadow: #c7c7c7 0 10px 5px -5px;
-} */
-
 .message_container {
     min-height: 350px;
     margin-bottom: 300px;
@@ -240,5 +231,21 @@ footer h5 {
 
 .appointment_div:hover {
     cursor: pointer;
-    background-color: rgb(21, 21, 21);
+    background: rgb(21, 21, 21);
+}
+
+.doctor_appointment_div {
+    background-color: rgb(30, 30, 30);
+    min-height: 50px;
+    padding: 11px;
+    margin:4px 0;
+}
+
+.doctor_appointment_div:hover {
+    cursor: pointer;
+    background: rgb(21, 21, 21);
+}
+
+.inner_nav{
+    background-color: #222222;
 }

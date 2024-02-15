@@ -75,9 +75,6 @@ def create_or_update_doctor(sender, instance, created, **kwargs):
         doctor.save()
 
 
-
-
-
 #model for the patients details
 class Patient(models.Model):
     user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
@@ -88,7 +85,7 @@ class Patient(models.Model):
         ordering = ['personal_details']
 
     def __str__(self):
-         return f"Patient: {self.personal_details}"
+         return f"{self.personal_details}"
     
 
 

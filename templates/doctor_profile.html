@@ -8,66 +8,65 @@
 
 <div class="container-fluid bg-body-secondery">
     <div class="row">
-        <div class="col-sm-12 col-md-3 col-xl-2 bg-dark text-white bg-gradient p-3" id="sidebar">
-            <div class="row d-flex justify-content-center align-items-center">
-                {% if personal_detail.picture %}
-                <a href="{% url 'update_picture' %}" class="text-reset text-decoration-none">
-                    <img src="{{ personal_detail.picture.url }}" alt="profile picture"
-                        class="rounded-circle border border-5 border-secondary"
-                        style="width: 150px; height: 150px; object-fit: cover;">
-                </a>
-                {% else %}
-                <a href="{% url 'update_picture' %}" class="text-reset text-decoration-none">
-                    <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1707688057/60111_ulq1yz.jpg"
-                        alt="profile picture" class="rounded-circle border border-5 border-secondary"
-                        style="width: 150px; height: 150px; object-fit: cover;">
-                </a>
-                {% endif %}
-                <div class="col-12 text-center py-3">
-                    <h5 class="text-uppercase">{{ user }}</h5>
-                    <h6 class="text-warning">User ID: {{ user.id }}</h6>
-                </div>
-                <hr class="col-12 dotted">
-                
-                <div class="col-12 col-sm-3 col-md-12 text-center pt-3">
-                    <a href="#all_appointments" id="all_appointments_link" class="profile_button d-flex justify-content-center align-items-center text-reset text-decoration-none">
-                        <div class="col-12 button_bg text-center" style="min-height:50px;">
-                            <p class="text-white">All Appointments</p>
-                        </div>
+        <div class="col-sm-12 bg-black text-white bg-gradient p-3" id="top_bar">
+            <div class="row">
+                <div class="col-4 col-sm-3 col-xl-2">
+                    {% if personal_detail.picture %}
+                    <a href="{% url 'update_picture' %}" class="text-reset text-decoration-none">
+                        <img src="{{ personal_detail.picture.url }}" alt="profile picture"
+                            class="rounded-circle border border-5 border-secondary"
+                            style="width: 110px; height: 110px; object-fit: cover;">
                     </a>
-                </div>
-                <div class="col-12 col-sm-3 col-md-12 text-center">
-                    <a href="#attended_appointments" id="attended_appointments_link" class="profile_button d-flex justify-content-center align-items-center text-reset text-decoration-none">
-                        <div class="col-12 button_bg text-center" style="min-height:50px;">
-                            <p class="text-white">Attended Appointments</p>
-                        </div>
+                    {% else %}
+                    <a href="{% url 'update_picture' %}" class="text-reset text-decoration-none">
+                        <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1707688057/60111_ulq1yz.jpg"
+                            alt="profile picture" class="rounded-circle border border-5 border-secondary"
+                            style="width: 110px; height: 110px; object-fit: cover;">
                     </a>
+                    {% endif %}
                 </div>
-                <div class="col-12 col-sm-3 col-md-12 text-center">
-                    <a href="#upcoming_appointments" id="upcoming_appointments_link" class="profile_button d-flex justify-content-center align-items-center text-reset text-decoration-none">
-                        <div class="col-12 button_bg text-center" style="min-height:50px;">
-                            <p class="text-white">Upcoming Appointments</p>
-                        </div>
-                    </a>
+                <div class=" col-6 col-sm-6 col-md-7 col-xl-3 text-start py-3">
+                    <h5 class="text-uppercase text-warning">Dr. {{ user }}</h5>
+                    <h6 class="">{{ doctor.department }} Department </h6>
+                    <p>{{ doctor.designation }}</p>
                 </div>
-                <div class="col-12 col-sm-3 col-md-12 text-center">
-                    <a href="#personal_Details" id="personal_Details_link" class="profile_button d-flex justify-content-center align-items-center text-reset text-decoration-none">
-                        <div class="col-12 button_bg text-center" style="min-height:50px;">
-                            <p class="text-white">Personal Details</p>
-                        </div>
-                    </a>
-                </div>
+
             </div>
         </div>
+        <div class="col-12 bg-dark pe-5 d-flex border-bottom justify-content-center align-items-center">
+            <nav class="bg-transparent m-3">
+                <div class="container ">
+                    <div class="d-flex justify-content-center">
+                        <ul class="list-inline">
+                            <li class="list-inline-item px-2  border-end">
+                                <a class="text-decoration-none text-white" href="#"> Today's Appointments</a>
+                            </li>
+                            <li class="list-inline-item px-2 border-end">
+                                <a class="text-decoration-none text-white" href="#">2</a>
+                            </li>
+                            <li class="list-inline-item px-2 border-end">
+                                <a class="text-decoration-none text-white" href="#">3</a>
+                            </li>
+                            <li class="list-inline-item px-2 border-end">
+                                <a class="text-decoration-none text-white" href="#">4</a>
+                            </li>
+                            <li class="list-inline-item ">
+                                <a class="text-decoration-none text-white" href="#">5</a>
+                            </li>
+                        </ul>
 
+                    </div>
+                </div>
+            </nav>
+        </div>
 
-        <div class="col-sm-12 col-md-9 col-xl-10 text-centre align-items-center pb-3 bg-dark" id="main-content"
-            style="min-height: 600px;">
+        <div class="col-sm-12 text-centre align-items-center pb-3 bg-dark" id="main-content" style="min-height: 600px;">
             <div class="row">
                 <div id="personal_Details" class="col-12  text-white py-5">
                     <h4 class="text-uppercase text- start pb=5"><strong>Personal Details</strong></h4>
                     <hr>
-                    <div class="row pt-3 px-3 text-start d-flex justify-content-center align-items-center  text-uppercase">
+                    <div
+                        class="row pt-3 px-3 text-start d-flex justify-content-center align-items-center  text-uppercase">
                         <div class="col-sm-8 col-lg-6 col-xl-4 border border-secondary rounded-5 p-5">
                             <div class="row">
 
@@ -79,8 +78,7 @@
                             <p> Zip-code : {{ personal_detail.zipcode }}</p>
                             <p> Date Of Birth : {{ patient.date_of_birth }}</p>
                             <p> Gender : {{ personal_detail.gender }}</p>
-                            <a href="{% url 'update_profile' %}"
-                                class="text-reset text-decoration-none px-2">
+                            <a href="{% url 'update_profile' %}" class="text-reset text-decoration-none px-2">
                                 <h5 type="submit" class="btn button3" value="">Update</h5>
                             </a>
                         </div>
@@ -88,45 +86,38 @@
                 </div>
 
                 <div id="all_appointments" class="col-12 text-white py-5 ">
-                    <h4 class="text-uppercase pb=5"><strong>My Appointments</strong></h4>
+                    <h4 class="text-uppercase pb=5"><strong>Today's Appointments</strong></h4>
                     <hr>
                     <div class="row pt-3 px-3">
-                        {% if appointments %}
-                        {% for appointment in appointments %}
-                        <div class="col-sm-12 col-md-6 col-xl-4 text-center">
+                        {% if today_appointments %}
+                        {% for appointment in today_appointments %}
+                        <div class="col-sm-12 text-center">
                             <a href="{% url 'appointment_details' id=appointment.id %}"
                                 class=" text-reset text-decoration-none">
-                                <div class="appointment_div text-start p-3">
-                                    <div class="row py-3">
-                                        <h5 class=" text-warning">Date: {{ appointment.booking_date }}</h5>
-                                        <h6 class=" text-white">Department : {{ appointment.department }}</h6>
-                                        <h6 class=" text-white">Doctor : Dr. {{ appointment.doctor }}</h6>
-                                        <h6 class=" text-white">Status : {% if appointment.approved %}Approved
-                                            {% else%}Not Approved{% endif %}</h6>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-12 d-flex justify-content-center pt-2">
-                                            <a href="{% url 'appointment_details' id=appointment.id %}"
-                                                class="text-reset text-decoration-none px-2">
-                                                <h5 type="submit" class="btn button3" value="">Details</h5>
-                                            </a>
-                                            {% if appointment.booking_date > now.date %}
-                                            <a href="{% url 'delete_appointment' id=appointment.id %}"
-                                                onclick="return confirm('Are you sure you want to delete this appointment?');"
-                                                class="text-reset text-decoration-none px-2">
-                                                <h5 class="btn button2">Delete</h5>
-                                            </a>
-                                            {% else %}
-                                            <button type="button" class="btn button2" disabled>Delete</button>
+                                <div class="doctor_appointment_div text-start ps-4 p-2">
+                                    <div class="row py-2">
+                                        <div class="col-sm-4 border-start border-end border-opacity-50 ps-4">
+                                            <h5 class="text-uppercase text-warning">{{ appointment.patient_id }}</h5>
+                                        </div>
+                                        <div class="col-sm-4 border-start border-end border-opacity-50 ps-4">
+                                            <h6 class=" text-white">Patient ID : {{ appointment.patient_id.id }}</h6>
+                                        </div>
+                                        <div class="col-sm-4 border-start border-end border-opacity-50 ps-4">
+                                            {% if appointment.attended %}
+                                            <h6 class=" text-success">Attended</h6>
+                                            {% else%}
+                                                <h6 class="text-danger">Not Attended</h6>
                                             {% endif %}
                                         </div>
                                     </div>
                                 </div>
                             </a>
+                            
                         </div>
                         {% endfor %}
                         {% else %}
-                        <h4 class="pt-5 pb-2">You have no scheduled appointments. Book now!</h4>
+                        <h5 class="pt-5 pb-2">Hello Dr.{{user}}, </h5>
+                        <h4 class="pb-2">You have no scheduled appointments today 😃 Take a Break</h4>
                         <div>
                             <a class="btn button3" href="{% url 'appointment' %}">
                                 Click Here to make an appointment</a>
@@ -229,39 +220,39 @@
 
 <script>
     // Function to show the specified appointment section and hide others
-function showContent(sectionId) {
-    // Hide all content sections
-    document.getElementById('personal_Details').style.display = 'none';
-    document.getElementById('all_appointments').style.display = 'none';
-    document.getElementById('attended_appointments').style.display = 'none';
-    document.getElementById('upcoming_appointments').style.display = 'none';
+    function showContent(sectionId) {
+        // Hide all content sections
+        document.getElementById('personal_Details').style.display = 'none';
+        document.getElementById('all_appointments').style.display = 'none';
+        document.getElementById('attended_appointments').style.display = 'none';
+        document.getElementById('upcoming_appointments').style.display = 'none';
 
-    // Show the specified content section
-    document.getElementById(sectionId).style.display = 'block';
-}
+        // Show the specified content section
+        document.getElementById(sectionId).style.display = 'block';
+    }
 
-// Event listener for clicking on the links to switch content sections
-document.addEventListener('DOMContentLoaded', function () {
-    // Show personal details by default
-    showContent('all_appointments');
-
-    // Add event listeners for each button
-    document.getElementById('personal_Details_link').addEventListener('click', function () {
-        showContent('personal_Details');
-    });
-
-    document.getElementById('all_appointments_link').addEventListener('click', function () {
+    // Event listener for clicking on the links to switch content sections
+    document.addEventListener('DOMContentLoaded', function () {
+        // Show personal details by default
         showContent('all_appointments');
-    });
 
-    document.getElementById('attended_appointments_link').addEventListener('click', function () {
-        showContent('attended_appointments');
-    });
+        // Add event listeners for each button
+        document.getElementById('personal_Details_link').addEventListener('click', function () {
+            showContent('personal_Details');
+        });
 
-    document.getElementById('upcoming_appointments_link').addEventListener('click', function () {
-        showContent('upcoming_appointments');
+        document.getElementById('all_appointments_link').addEventListener('click', function () {
+            showContent('all_appointments');
+        });
+
+        document.getElementById('attended_appointments_link').addEventListener('click', function () {
+            showContent('attended_appointments');
+        });
+
+        document.getElementById('upcoming_appointments_link').addEventListener('click', function () {
+            showContent('upcoming_appointments');
+        });
     });
-});
 
 </script>
 

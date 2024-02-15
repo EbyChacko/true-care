@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.utils import timezone
 from django.db.models import Q
+from datetime import date
 from django.views.decorators.http import require_POST
 from django.views import generic, View
 from django.http import HttpResponseRedirect, JsonResponse
@@ -230,8 +231,6 @@ def appointment_details(request, id):
     now = timezone.now()
     personal_detail = request.user.patient.personal_details
     patient = request.user.patient
-    print(personal_detail.picture)
-    print(personal_detail.name)
     return render(request,'appointment_details.html',{
         'personal_detail': personal_detail,
         'patient': patient,
@@ -299,22 +298,26 @@ def get_doctors(request):
 
 def doctor_profile(request):
     user = request.user
-    now = timezone.now()
+    now = date.today()
     personal_detail = request.user.patient.personal_details
     patient = request.user.patient
-    appointments = booking.objects.filter(patient_id__user=user).order_by('booking_date')
-    attended_appointments = booking.objects.filter(patient_id__user=user, attended=True).order_by('booking_date')
-    upcoming_appointments = booking.objects.filter(
-    Q(patient_id__user=user) & (Q(attended=False) | Q(attended__isnull=True))
-).order_by('booking_date')
-    return render(request,'doctor_profile.html',{
+    doctor = personal_detail.doctor
+    all_appointments = booking.objects.filter(doctor__personal_details=personal_detail).order_by('booking_date')
+    today_appointments = all_appointments.filter(booking_date=now)
+    pending_appointments_today = today_appointments.filter(approved=False)
+    upcoming_appointments = all_appointments.filter(booking_date__gt=now)
+    attended_appointments = all_appointments.filter(attended=True)
+    return render(request, 'doctor_profile.html', {
         'personal_detail': personal_detail,
         'patient': patient,
-        'appointments': appointments,
+        'doctor':doctor,
+        'all_appointments': all_appointments,
+        'today_appointments': today_appointments,
+        'pending_appointments_today': pending_appointments_today,
+        'upcoming_appointments': upcoming_appointments,
         'attended_appointments': attended_appointments,
-        'upcoming_appointments':upcoming_appointments,
-        'now' : now,
-        })
+        'now': now,
+    })
 
 
 def add_doctor_details(request):
