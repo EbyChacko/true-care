@@ -303,8 +303,7 @@ def doctor_profile(request):
     patient = request.user.patient
     doctor = personal_detail.doctor
     all_appointments = booking.objects.filter(doctor__personal_details=personal_detail).order_by('booking_date')
-    today_appointments = all_appointments.filter(booking_date=now)
-    pending_appointments_today = today_appointments.filter(approved=False)
+    today_appointments = all_appointments.filter(booking_date=now, approved=True)
     upcoming_appointments = all_appointments.filter(booking_date__gt=now)
     attended_appointments = all_appointments.filter(attended=True)
     return render(request, 'doctor_profile.html', {
@@ -313,7 +312,6 @@ def doctor_profile(request):
         'doctor':doctor,
         'all_appointments': all_appointments,
         'today_appointments': today_appointments,
-        'pending_appointments_today': pending_appointments_today,
         'upcoming_appointments': upcoming_appointments,
         'attended_appointments': attended_appointments,
         'now': now,
@@ -338,3 +336,16 @@ def add_doctor_details(request):
         'departments': departments,
         'doctor':doctor,
     })
+
+
+def doctor_appointment_details(request, id):
+    appointment = get_object_or_404(booking, id=id)
+    now = timezone.now()
+    personal_detail = appointment.patient_id.personal_details
+    patient = appointment.patient_id
+    return render(request,'doctor_appointment_detail.html',{
+        'personal_detail': personal_detail,
+        'patient': patient,
+        'appointment': appointment,
+        'now' : now,
+        })

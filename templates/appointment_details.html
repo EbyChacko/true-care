@@ -16,7 +16,7 @@
                     <h4 class="text-uppercase "><strong>Appointment Details</strong></h4>
                     <hr class="dotted">
                     <div class='text-start'>
-                        <a class="text-reset text-decoration-none text-start ps-5 pt-5" href="{% url 'profile' %}">
+                        <a class="text-reset text-decoration-none text-start ps-5 pt-5" href="{% url 'patient_appointments' %}">
                             <i class="fa-solid fa-circle-arrow-left"></i> Go Back</a>
                     </div>
                     <div class="col-sm-8 mx-auto text-start py-5">
@@ -25,7 +25,7 @@
                         <h6>Department : {{ appointment.department }}</h6>
                         <p>Doctor : Dr. {{ appointment.doctor }}</p><br>
 
-                        <p>Dear {{ user }},</p>
+                        <p>Dear {{ appointment.patient_id }},</p>
 
                         <p>You have an appointment scheduled with Dr. {{ appointment.doctor }} on
                             {{ appointment.booking_date }} at the {{ appointment.department }} Department.</p>

@@ -38,19 +38,19 @@
                 <div class="container ">
                     <div class="d-flex justify-content-center">
                         <ul class="list-inline">
-                            <li class="list-inline-item px-2  border-end">
+                            <li class="list-inline-item p-3  border-end">
                                 <a class="text-decoration-none text-white" href="#"> Today's Appointments</a>
                             </li>
-                            <li class="list-inline-item px-2 border-end">
+                            <li class="list-inline-item p-3 border-end">
                                 <a class="text-decoration-none text-white" href="#">2</a>
                             </li>
-                            <li class="list-inline-item px-2 border-end">
+                            <li class="list-inline-item p-3 border-end">
                                 <a class="text-decoration-none text-white" href="#">3</a>
                             </li>
-                            <li class="list-inline-item px-2 border-end">
+                            <li class="list-inline-item p-3 border-end">
                                 <a class="text-decoration-none text-white" href="#">4</a>
                             </li>
-                            <li class="list-inline-item ">
+                            <li class="list-inline-item p-3">
                                 <a class="text-decoration-none text-white" href="#">5</a>
                             </li>
                         </ul>
@@ -62,38 +62,14 @@
 
         <div class="col-sm-12 text-centre align-items-center pb-3 bg-dark" id="main-content" style="min-height: 600px;">
             <div class="row">
-                <div id="personal_Details" class="col-12  text-white py-5">
-                    <h4 class="text-uppercase text- start pb=5"><strong>Personal Details</strong></h4>
-                    <hr>
-                    <div
-                        class="row pt-3 px-3 text-start d-flex justify-content-center align-items-center  text-uppercase">
-                        <div class="col-sm-8 col-lg-6 col-xl-4 border border-secondary rounded-5 p-5">
-                            <div class="row">
-
-                            </div>
-                            <p> Name : <strong>{{ personal_detail.name }}</strong></p>
-                            <p> Mobile : {{ personal_detail.mobile }}</p>
-                            <p> Email : {{ personal_detail.email }}</p>
-                            <p> Address : {{ personal_detail.address }}</p>
-                            <p> Zip-code : {{ personal_detail.zipcode }}</p>
-                            <p> Date Of Birth : {{ patient.date_of_birth }}</p>
-                            <p> Gender : {{ personal_detail.gender }}</p>
-                            <a href="{% url 'update_profile' %}" class="text-reset text-decoration-none px-2">
-                                <h5 type="submit" class="btn button3" value="">Update</h5>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
                 <div id="all_appointments" class="col-12 text-white py-5 ">
                     <h4 class="text-uppercase pb=5"><strong>Today's Appointments</strong></h4>
                     <hr>
                     <div class="row pt-3 px-3">
-                        {% if today_appointments %}
-                        {% for appointment in today_appointments %}
+                        {% if all_appointments %}
+                        {% for appointment in all_appointments %}
                         <div class="col-sm-12 text-center">
-                            <a href="{% url 'appointment_details' id=appointment.id %}"
-                                class=" text-reset text-decoration-none">
+                            <a href="{% url 'doctor_appointment_details' appointment.id %}" class=" text-reset text-decoration-none">
                                 <div class="doctor_appointment_div text-start ps-4 p-2">
                                     <div class="row py-2">
                                         <div class="col-sm-4 border-start border-end border-opacity-50 ps-4">
@@ -105,18 +81,17 @@
                                         <div class="col-sm-4 border-start border-end border-opacity-50 ps-4">
                                             {% if appointment.attended %}
                                             <h6 class=" text-success">Attended</h6>
-                                            {% else%}
-                                                <h6 class="text-danger">Not Attended</h6>
+                                            {% else %}
+                                            <h6 class="text-danger">Not Attended</h6>
                                             {% endif %}
                                         </div>
                                     </div>
                                 </div>
                             </a>
-                            
                         </div>
                         {% endfor %}
                         {% else %}
-                        <h5 class="pt-5 pb-2">Hello Dr.{{user}}, </h5>
+                        <h5 class="pt-5 pb-2">Hello Dr.{{ user }}, </h5>
                         <h4 class="pb-2">You have no scheduled appointments today 😃 Take a Break</h4>
                         <div>
                             <a class="btn button3" href="{% url 'appointment' %}">
@@ -125,8 +100,9 @@
                         {% endif %}
                     </div>
                 </div>
+                
 
-                <div id="attended_appointments" class="col-12 text-white py-5 ">
+                <!-- <div id="attended_appointments" class="col-12 text-white py-5 ">
                     <h4 class="text-uppercase pb=5"><strong>Attended Appointments</strong></h4>
                     <hr>
                     <div class="row pt-3 px-3">
@@ -212,7 +188,7 @@
                         </div>
                         {% endif %}
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
