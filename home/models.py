@@ -117,5 +117,32 @@ class CustomerMessage(models.Model):
         return self.name
     
 
+# model for the doctor diagnosis details
+class DoctorDiagnosis(models.Model):
+    booking = models.ForeignKey(booking, on_delete=models.CASCADE)
+    height = models.CharField()
+    weight =models.CharField()
+    bp = models.CharField()
+    pulse = models.CharField()
+    saturation = models.CharField()
+    temperature = models.CharField()
+    allergy = models.TextField()
+    medical_history = models.TextField()
+    medications = models.TextField()
+    present_complaints = models.TextField()
+    physical_examination = models.TextField(null=True)
+    diagnosis = models.TextField()
+
+    def __str__(self):
+        return f"{self.booking.patient_id}'s Diagnosis by {self.booking.doctor} on {self.booking.booking_date}"
 
 
+# model for prescription
+class Prescription(models.Model):
+    booking = models.ForeignKey(booking, on_delete=models.CASCADE)
+    drug_name = models.CharField()
+    dose = models.CharField()
+    frequency = models.CharField()
+    route = models.CharField()
+    quantity = models.CharField()
+    comment = models.TextField(null=True)

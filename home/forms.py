@@ -1,5 +1,5 @@
 from django import forms
-from .models import CustomerMessage, Patient, PersonalDetail,  booking, Doctor
+from .models import CustomerMessage, Patient, PersonalDetail,  booking, Doctor, DoctorDiagnosis, Prescription
 
 #form fo the customer message in the contact.html
 class CustomerMessageForm(forms.ModelForm):
@@ -48,3 +48,14 @@ class DoctorForm(forms.ModelForm):
         model = Doctor
         fields = ['designation','doctor_Number', 'education', 'speciality', 'department']
 
+
+class DiagnosisForm(forms.ModelForm):
+    class Meta:
+        model = DoctorDiagnosis
+        fields = ['weight', 'bp', 'pulse', 'saturation', 'temperature', 'allergy', 'medical_history', 'medications', 'present_complaints', 'physical_examination', 'diagnosis' ]
+
+
+class PrescriptionForm(forms.ModelForm):
+    class Meta:
+        model = Prescription
+        fields = ['drug_name', 'dose', 'frequency', 'route', 'quantity', 'comment']

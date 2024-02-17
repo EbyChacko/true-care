@@ -8,8 +8,8 @@ from django.views.decorators.http import require_POST
 from django.views import generic, View
 from django.http import HttpResponseRedirect, JsonResponse
 from django.urls import reverse_lazy, reverse
-from .models import Department, Patient, Doctor, PersonalDetail, booking
-from .forms import CustomerMessageForm,  PersonalDetailForm, PatientForm, BookingForm, UploadPictureForm, DoctorForm
+from .models import Department, Patient, Doctor, PersonalDetail, booking, DoctorDiagnosis
+from .forms import CustomerMessageForm,  PersonalDetailForm, PatientForm, BookingForm, UploadPictureForm, DoctorForm, DiagnosisForm, PrescriptionForm
 # Create your views here.
 
 def base_view(request):
@@ -343,9 +343,19 @@ def doctor_appointment_details(request, id):
     now = timezone.now()
     personal_detail = appointment.patient_id.personal_details
     patient = appointment.patient_id
-    return render(request,'doctor_appointment_detail.html',{
+    if request.method == 'POST':
+        diagnosis_form = DiagnosisForm(request.POST)
+        if diagnosis_form.is_valid():
+            doctor_diagnosis = diagnosis_form.save(commit=False)
+            doctor_diagnosis.booking = appointment
+            doctor_diagnosis.save()
+            return redirect('doctor_appointment_details', id=id)
+    else:
+        diagnosis_form = DiagnosisForm()
+    return render(request, 'doctor_appointment_detail.html', {
         'personal_detail': personal_detail,
         'patient': patient,
         'appointment': appointment,
-        'now' : now,
-        })
+        'now': now,
+        'diagnosis_form': diagnosis_form,
+    })
