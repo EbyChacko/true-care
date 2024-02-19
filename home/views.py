@@ -8,8 +8,8 @@ from django.views.decorators.http import require_POST
 from django.views import generic, View
 from django.http import HttpResponseRedirect, JsonResponse
 from django.urls import reverse_lazy, reverse
-from .models import Department, Patient, Doctor, PersonalDetail, booking, DoctorDiagnosis, Prescription
-from .forms import CustomerMessageForm,  PersonalDetailForm, PatientForm, BookingForm, UploadPictureForm, DoctorForm, DiagnosisForm, PrescriptionForm
+from .models import Department, Patient, Doctor, PersonalDetail, booking, DoctorDiagnosis, Prescription, MedicalReport, ReportNames
+from .forms import CustomerMessageForm,  PersonalDetailForm, PatientForm, BookingForm, UploadPictureForm, DoctorForm, DiagnosisForm, PrescriptionForm, MedicalReportForm
 # Create your views here.
 
 def base_view(request):
@@ -380,6 +380,7 @@ def doctor_appointment_details(request, id):
     if request.method == 'POST':
         diagnosis_form = DiagnosisForm(request.POST, instance=diagnosis_instance)
         prescription_form = PrescriptionForm(request.POST)
+        medical_report_form = MedicalReportForm(request.POST, request.FILES)
 
         if diagnosis_form.is_valid():
             diagnosis_instance = diagnosis_form.save(commit=False)
@@ -394,11 +395,20 @@ def doctor_appointment_details(request, id):
             prescription.booking = appointment
             prescription.save()
             return redirect('doctor_appointment_details', id=id)
+        
+        if medical_report_form.is_valid():
+            medicai_report = medical_report_form.save(commit=False)
+            medicai_report.booking = appointment
+            medicai_report.save()
+            return redirect('doctor_appointment_details', id=id)
     else:
         diagnosis_form = DiagnosisForm(initial=initial_diagnosis_data)
         prescription_form = PrescriptionForm()
+        medical_report_form = MedicalReportForm()
 
     prescriptions = Prescription.objects.filter(booking=appointment)
+    medical_reports = MedicalReport.objects.filter(booking=appointment)
+    report_names = ReportNames.objects.all()
 
     return render(request, 'doctor_appointment_detail.html', {
         'personal_detail': personal_detail,
@@ -407,10 +417,20 @@ def doctor_appointment_details(request, id):
         'now': now,
         'diagnosis_form': diagnosis_form,
         'prescriptions': prescriptions,
+        'medical_reports': medical_reports,
+        'report_names': report_names,
     })
+
 
 def delete_prescription(request, prescription_id):
     prescription = get_object_or_404(Prescription, pk=prescription_id)
     appointment_id = prescription.booking.id
     prescription.delete()
+    return redirect('doctor_appointment_details', id=appointment_id)
+
+
+def delete_medical_report(request, medical_report_id):
+    medical_report = get_object_or_404(MedicalReport, pk=medical_report_id)
+    appointment_id = medical_report.booking.id
+    medical_report.delete()
     return redirect('doctor_appointment_details', id=appointment_id)

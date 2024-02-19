@@ -146,16 +146,19 @@ class Prescription(models.Model):
     route = models.CharField()
     quantity = models.CharField()
     comment = models.TextField(null=True)
+    def __str__(self):
+        return f"{self.booking}, {self.drug_name}"
 
-
-# model for class names
+# model for Report names
 class ReportNames(models.Model):
     report_name = models.CharField()
-    
-
+    def __str__(self):
+        return self.report_name
 
 # model for medical reports
 class MedicalReport(models.Model):
     booking = models.ForeignKey(booking, on_delete=models.CASCADE)
-    report_name = models.CharField()
-    report = models.ImageField(upload_to='medical_reports',)
+    report_name = models.ForeignKey(ReportNames, on_delete=models.CASCADE)
+    report = models.FileField(upload_to='medical_reports', blank=True)
+    def __str__(self):
+        return f"{self.booking}, {self.report_name}"

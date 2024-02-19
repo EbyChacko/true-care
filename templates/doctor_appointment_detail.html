@@ -145,27 +145,29 @@
                                 <h3 class="card-title">Prescriptions</h3>
                                 <hr>
                                 <!-- <div class="row"> -->
-                                    <div class="col-12">
-                                        {% for prescription in prescriptions %}
-                                        <div class="row bg-dark text-center text-white p-2 m-2 mx-auto">
-                                            <div class="row d-flex mx-auto align-items-center justify-content-center pt-2">
-                                                <div class="col-12 p-2 border"><h5>{{ prescription.drug_name }}</h5></div>
-                                                <div class="col-4 p-2 border">{{ prescription.dose }}</div>
-                                                <div class="col-4 p-2 border">{{ prescription.frequency }}</div>
-                                                <div class="col-4 p-2 border">{{ prescription.route }}</div>
-                                                <div class="col-6 p-2 border">{{ prescription.quantity }}</div>
-                                                <div class="col-6 p-2 border">{{ prescription.comment }}</div>
-                                                <div class="col-4 p-2">
-                                                    <form action="{% url 'delete_prescription' prescription.id %}"
-                                                        method="post">
-                                                        {% csrf_token %}
-                                                        <button type="submit" class="button3">Delete</button>
-                                                    </form>
-                                                </div>
+                                <div class="col-12">
+                                    {% for prescription in prescriptions %}
+                                    <div class="row bg-dark text-center text-white p-2 m-2 mx-auto">
+                                        <div class="row d-flex mx-auto align-items-center justify-content-center pt-2">
+                                            <div class="col-12 p-2 border">
+                                                <h5>{{ prescription.drug_name }}</h5>
+                                            </div>
+                                            <div class="col-4 p-2 border">{{ prescription.dose }}</div>
+                                            <div class="col-4 p-2 border">{{ prescription.frequency }}</div>
+                                            <div class="col-4 p-2 border">{{ prescription.route }}</div>
+                                            <div class="col-6 p-2 border">{{ prescription.quantity }}</div>
+                                            <div class="col-6 p-2 border">{{ prescription.comment }}</div>
+                                            <div class="col-4 p-2">
+                                                <form action="{% url 'delete_prescription' prescription.id %}"
+                                                    method="post">
+                                                    {% csrf_token %}
+                                                    <button type="submit" class="button3">Delete</button>
+                                                </form>
                                             </div>
                                         </div>
-                                        {% endfor %}
                                     </div>
+                                    {% endfor %}
+                                </div>
                                 <!-- </div> -->
                                 <form class="bg-white text-start py-5" method="POST" action=""
                                     enctype="multipart/form-data">
@@ -213,7 +215,7 @@
                                     {% endif %}
                                     <input type="submit" class="btn button" value="Add Medicine">
                                 </form>
-                                
+
                             </div>
                         </div>
                         <div class="card my-3 ">
@@ -222,21 +224,20 @@
                                 <hr>
                                 <!-- <div class="row"> -->
                                     <div class="col-12">
-                                        {% for report in reports %}
-                                        <div class="row bg-dark text-center text-white p-2 m-2 mx-auto">
-                                            <div class="row d-flex mx-auto align-items-center justify-content-center pt-2">
-                                                <div class="col-12 p-2 border"><h5>{{ prescription.drug_name }}</h5></div>
-                                                <div class="col-4 p-2 border">{{ prescription.dose }}</div>
-                                                <div class="col-4 p-2 border">{{ prescription.frequency }}</div>
-                                                <div class="col-4 p-2 border">{{ prescription.route }}</div>
-                                                <div class="col-6 p-2 border">{{ prescription.quantity }}</div>
-                                                <div class="col-6 p-2 border">{{ prescription.comment }}</div>
-                                                <div class="col-4 p-2">
-                                                    <form action="{% url 'delete_prescription' prescription.id %}"
-                                                        method="post">
+                                        {% for report in medical_reports %}
+                                        <div class="row bg-dark text-center text-white p-1 m-2 mx-auto">
+                                            <div class="row d-flex mx-auto text-start align-items-center justify-content-start pt-2">
+                                                <div class="col-4 col-md-6 col-lg-4 col-xl-6 p-2">
+                                                    <h5>{{ report.report_name }}</h5>
+                                                </div>
+                                                <div class="col-4 col-md-3 col-lg-4 col-xl-3 p-2">
+                                                    <form action="{% url 'delete_medical_report' report.id %}" method="post">
                                                         {% csrf_token %}
-                                                        <button type="submit" class="button3">Delete</button>
+                                                        <button type="submit" class="btn button3">Delete</button>
                                                     </form>
+                                                </div>
+                                                <div class="col-4 col-md-3 col-lg-4 col-xl-3 p-2">
+                                                    <a href="#" class="btn button2" onclick="viewReport('{{ report.report.url }}')">View</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -247,59 +248,42 @@
                                     enctype="multipart/form-data">
                                     {% csrf_token %}
                                     <div class="input-group mb-3">
-                                        <span class="input-group-text" id="" style="width:130px">Drug Name</span>
-                                        <input type="text" name="drug_name" value="" class="form-control"
-                                            id="drug_name">
+                                        <span class="input-group-text" style="width:130px">Report</span>
+                                        <select name="report_name" id="report_name" value="" class="form-control"
+                                            required>
+                                            <option value="">Select Report Name...</option>
+                                            {% for report_name in report_names %}
+                                            <option value="{{ report_name.pk }}">{{ report_name.report_name }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <input type="file" id="report" name="report" accept="image/*,.pdf" />
                                     </div>
                                     <p id="drug_nameError" style="color: red; visibility: hidden;" class="text-start">
                                     </p>
-                                    <div class="input-group mb-3">
-                                        <span class="input-group-text" id="" style="width:130px">Dose</span>
-                                        <input type="text" name="dose" value="" class="form-control" id="dose">
-                                    </div>
-                                    <p id="doseError" style="color: red; visibility: hidden;" class="text-start">
-                                    </p>
-                                    <div class="input-group mb-3">
-                                        <span class="input-group-text" id="" style="width:130px">Frequency</span>
-                                        <input type="text" name="frequency" value="" class="form-control"
-                                            id="frequency">
-                                    </div>
-                                    <p id="frequencyError" style="color: red; visibility: hidden;" class="text-start">
-                                    </p>
-                                    <div class="input-group mb-3">
-                                        <span class="input-group-text" id="" style="width:130px">Route</span>
-                                        <input type="text" name="route" value="" class="form-control" id="route">
-                                    </div>
-                                    <p id="routeError" style="color: red; visibility: hidden;" class="text-start">
-                                    </p>
-                                    <div class="input-group mb-3">
-                                        <span class="input-group-text" id="" style="width:130px">Duration</span>
-                                        <input type="text" name="quantity" value="" class="form-control" id="quantity">
-                                    </div>
-                                    <p id="quantityError" style="color: red; visibility: hidden;" class="text-start">
-                                    </p>
-                                    <div class="input-group mb-3">
-                                        <span class="input-group-text" id="" style="width:130px">Comments</span>
-                                        <textarea name="comment" cols="50" rows="3" class="form-control"
-                                            id="comment"></textarea>
-                                    </div>
-
                                     {% if redirect_field_value %}
                                     <input type="hidden" name="prescription_submit" value="1" />
                                     {% endif %}
-                                    <input type="submit" class="btn button" value="Add Medicine">
+                                    <input type="submit" class="btn button" value="Add report">
                                 </form>
-                                
+
                             </div>
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
         </div>
     </div>
 </div>
 
+<script>
 
+function viewReport(reportUrl) {
+    var newWindow = window.open(reportUrl, '_blank');
+    newWindow.focus();
+}
+</script>
 
 {% endblock %}

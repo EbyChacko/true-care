@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Department, Patient, Doctor, PersonalDetail, booking, CustomerMessage, DoctorDiagnosis, Prescription
+from .models import Department, Patient, Doctor, PersonalDetail, booking, CustomerMessage, DoctorDiagnosis, Prescription, ReportNames, MedicalReport
 from django_summernote.admin import SummernoteModelAdmin
 
 
@@ -73,3 +73,15 @@ class prescriptionAdmin(admin.ModelAdmin):
     list_display = ('booking','drug_name','dose','frequency', 'route', 'quantity')
     search_fields = ('booking','drug_name')
 
+# register the Report Names in the admin pannel
+@admin.register(ReportNames)
+class reportNamesAdmin(admin.ModelAdmin):
+    list_display = ('report_name',)
+    search_fields = ('report_name',)
+
+
+# register the Report Names in the admin pannel
+@admin.register(MedicalReport)
+class medicalReportAdmin(admin.ModelAdmin):
+    list_display = ('booking', 'report_name', 'report')
+    search_fields = ('booking', 'report_name', 'report')

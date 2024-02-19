@@ -1,5 +1,5 @@
 from django import forms
-from .models import CustomerMessage, Patient, PersonalDetail,  booking, Doctor, DoctorDiagnosis, Prescription
+from .models import CustomerMessage, Patient, PersonalDetail,  booking, Doctor, DoctorDiagnosis, Prescription, MedicalReport
 
 #form fo the customer message in the contact.html
 class CustomerMessageForm(forms.ModelForm):
@@ -59,3 +59,12 @@ class PrescriptionForm(forms.ModelForm):
     class Meta:
         model = Prescription
         fields = ['drug_name', 'dose', 'frequency', 'route', 'quantity', 'comment',]
+
+
+class MedicalReportForm(forms.ModelForm):
+    class Meta:
+        model = MedicalReport
+        fields = ['report_name', 'report']
+        widgets = {
+            'report': forms.FileInput(attrs={'accept': '.pdf,.jpg,.jpeg'}),
+        }

@@ -27,4 +27,5 @@ urlpatterns = [
     path('patient_appointments/', views.patient_appointments, name='patient_appointments'),
     path('doctor_appointment_details/<int:id>/', views.doctor_appointment_details, name='doctor_appointment_details'),
     path('delete_prescription/<int:prescription_id>/', views.delete_prescription, name='delete_prescription'),
+    path('delete_medical_report/<int:medical_report_id>/', views.delete_medical_report, name='delete_medical_report'),
 ]
