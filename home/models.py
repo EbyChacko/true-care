@@ -146,3 +146,16 @@ class Prescription(models.Model):
     route = models.CharField()
     quantity = models.CharField()
     comment = models.TextField(null=True)
+
+
+# model for class names
+class ReportNames(models.Model):
+    report_name = models.CharField()
+    
+
+
+# model for medical reports
+class MedicalReport(models.Model):
+    booking = models.ForeignKey(booking, on_delete=models.CASCADE)
+    report_name = models.CharField()
+    report = models.ImageField(upload_to='medical_reports',)

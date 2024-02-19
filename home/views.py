@@ -8,7 +8,7 @@ from django.views.decorators.http import require_POST
 from django.views import generic, View
 from django.http import HttpResponseRedirect, JsonResponse
 from django.urls import reverse_lazy, reverse
-from .models import Department, Patient, Doctor, PersonalDetail, booking, DoctorDiagnosis
+from .models import Department, Patient, Doctor, PersonalDetail, booking, DoctorDiagnosis, Prescription
 from .forms import CustomerMessageForm,  PersonalDetailForm, PatientForm, BookingForm, UploadPictureForm, DoctorForm, DiagnosisForm, PrescriptionForm
 # Create your views here.
 
@@ -343,19 +343,74 @@ def doctor_appointment_details(request, id):
     now = timezone.now()
     personal_detail = appointment.patient_id.personal_details
     patient = appointment.patient_id
+
+    try:
+        diagnosis_instance = DoctorDiagnosis.objects.get(booking=appointment)
+        initial_diagnosis_data = {
+            'present_complaints': diagnosis_instance.present_complaints,
+            'height': diagnosis_instance.height,
+            'weight': diagnosis_instance.weight,
+            'bp': diagnosis_instance.bp,
+            'pulse': diagnosis_instance.pulse,
+            'allergy': diagnosis_instance.allergy,
+            'saturation': diagnosis_instance.saturation,
+            'temperature': diagnosis_instance.temperature,
+            'medical_history': diagnosis_instance.medical_history,
+            'medications': diagnosis_instance.medications,
+            'physical_examination': diagnosis_instance.physical_examination,
+            'diagnosis': diagnosis_instance.diagnosis,
+        }
+    except DoctorDiagnosis.DoesNotExist:
+        diagnosis_instance = DoctorDiagnosis.objects.create(booking=appointment)
+        initial_diagnosis_data = {
+            'present_complaints': '',
+            'height': '',
+            'weight': '',
+            'bp': '',
+            'pulse': '',
+            'allergy': '',
+            'saturation': '',
+            'temperature': '',
+            'medical_history': '',
+            'medications': '',
+            'physical_examination': '',
+            'diagnosis': '',
+        }
+
     if request.method == 'POST':
-        diagnosis_form = DiagnosisForm(request.POST)
+        diagnosis_form = DiagnosisForm(request.POST, instance=diagnosis_instance)
+        prescription_form = PrescriptionForm(request.POST)
+
         if diagnosis_form.is_valid():
-            doctor_diagnosis = diagnosis_form.save(commit=False)
-            doctor_diagnosis.booking = appointment
-            doctor_diagnosis.save()
+            diagnosis_instance = diagnosis_form.save(commit=False)
+            diagnosis_instance.booking = appointment
+            diagnosis_instance.save()
+            appointment.attended = True
+            appointment.save()
+            return redirect('doctor_appointment_details', id=id)
+
+        if prescription_form.is_valid():
+            prescription = prescription_form.save(commit=False)
+            prescription.booking = appointment
+            prescription.save()
             return redirect('doctor_appointment_details', id=id)
     else:
-        diagnosis_form = DiagnosisForm()
+        diagnosis_form = DiagnosisForm(initial=initial_diagnosis_data)
+        prescription_form = PrescriptionForm()
+
+    prescriptions = Prescription.objects.filter(booking=appointment)
+
     return render(request, 'doctor_appointment_detail.html', {
         'personal_detail': personal_detail,
         'patient': patient,
         'appointment': appointment,
         'now': now,
         'diagnosis_form': diagnosis_form,
+        'prescriptions': prescriptions,
     })
+
+def delete_prescription(request, prescription_id):
+    prescription = get_object_or_404(Prescription, pk=prescription_id)
+    appointment_id = prescription.booking.id
+    prescription.delete()
+    return redirect('doctor_appointment_details', id=appointment_id)

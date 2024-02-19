@@ -52,10 +52,10 @@ class DoctorForm(forms.ModelForm):
 class DiagnosisForm(forms.ModelForm):
     class Meta:
         model = DoctorDiagnosis
-        fields = ['weight', 'bp', 'pulse', 'saturation', 'temperature', 'allergy', 'medical_history', 'medications', 'present_complaints', 'physical_examination', 'diagnosis' ]
+        fields = ['height', 'weight', 'bp', 'pulse', 'saturation', 'temperature', 'allergy', 'medical_history', 'medications', 'present_complaints', 'physical_examination', 'diagnosis' ]
 
 
 class PrescriptionForm(forms.ModelForm):
     class Meta:
         model = Prescription
-        fields = ['drug_name', 'dose', 'frequency', 'route', 'quantity', 'comment']
+        fields = ['drug_name', 'dose', 'frequency', 'route', 'quantity', 'comment',]

@@ -249,3 +249,12 @@ footer h5 {
 .inner_nav{
     background-color: #222222;
 }
+
+.table-container {
+    overflow-x: auto;
+}
+
+.table {
+    width: 100%;
+  }
+  

@@ -6,13 +6,12 @@
 
 {% block content %}
 
-<div class="container-fluid bg-body-secondery">
+<div class="container-fluid">
     <div class="row">
-
-        <div class="col-sm-12 text-center align-items-center pb-3 bg-dark mx-auto" style="min-height: 600px;">
+        <div class="col-sm-12 text-center d-flex align-items-center justify-content-center pb-3 bg-dark">
             <div class="row">
-                <div class="col-12 text-white bg-black  py-5 ">
-                    <div class='text-start '>
+                <div class="col-12 text-white bg-black py-5">
+                    <div class='text-start'>
                         <a class="text-reset text-decoration-none text-start" href="{% url 'doctor_profile' %}">
                             <i class="fa-solid fa-circle-arrow-left"></i> Go Back</a>
                     </div>
@@ -32,103 +31,275 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-12 col-lg-6 p-3 my-3 d-flex align-items-center justify-content-center">
-                        <div class="text_centre">
-                            <form class="bg-white text-start rounded-5 p-5" method="POST" action=""
-                                enctype="multipart/form-data">
-                                {% csrf_token %}
-                                <h5>Present Complaints </h5>
-                                <div class="input-group mb-3">
-                                    <textarea name="present_complaints" cols="60" rows="6" class="form-control"
-                                        id="complaints"></textarea>
-                                </div>
-                                <p id="complaintsError" style="color: red; visibility: hidden;" class="text-start"></p>
+                <div class="row mx-auto py-4">
+                    <div class="col-lg-6 my-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <h3 class="card-title text-center">Diagnosis Form</h3>
                                 <hr>
-                                <h5>Essentials </h5>
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text" id="" style="width:130px">Hight</span>
-                                    <input type="text" name="height" value=""
-                                        class="form-control" id="name">
-                                </div>
-                                <p id="heightError" style="color: red; visibility: hidden;" class="text-start"></p>
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text" id="" style="width:130px">Weight</span>
-                                    <input type="text" name="weight" value=""
-                                        class="form-control" id="name">
-                                </div>
-                                <p id="weightError" style="color: red; visibility: hidden;" class="text-start"></p>
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text" id="" style="width:130px">Allergies</span>
-                                    <textarea name="allergy" cols="50" rows="3" class="form-control"
-                                        id="allergy"></textarea>
-                                </div>
-                                <p id="allergyError" style="color: red; visibility: hidden;" class="text-start"></p>
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text" id="" style="width:130px">Med-History</span>
-                                    <textarea name="medical_history" cols="50" rows="3" class="form-control"
-                                        id="medical_history"></textarea>
-                                </div>
-                                <p id="medical_historyError" style="color: red; visibility: hidden;" class="text-start"></p>
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text" id="" style="width:130px">Medications</span>
-                                    <textarea name="medications" cols="50" rows="3" class="form-control"
-                                    id="medications"></textarea>
-                                </div>
-                                <p id="medicationsError" style="color: red; visibility: hidden;" class="text-start"></p>
-                                <h5>Vital Signs </h5>
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text" id="" style="width:130px">BP</span>
-                                    <input type="text" name="bp" value=""
-                                        class="form-control" id="bp">
-                                </div>
-                                <p id="bpError" style="color: red; visibility: hidden;" class="text-start"></p>
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text" id="" style="width:130px">Pulse</span>
-                                    <input type="text" name="pulse" value=""
-                                        class="form-control" id="pulse">
-                                </div>
-                                <p id="pulseError" style="color: red; visibility: hidden;" class="text-start"></p>
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text" id="" style="width:130px">Saturation</span>
-                                    <input type="text" name="saturation" value=""
-                                        class="form-control" id="saturation">
-                                </div>
-                                <p id="saturationError" style="color: red; visibility: hidden;" class="text-start"></p>
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text" id="" style="width:130px">Temperature</span>
-                                    <input type="text" name="temperature" value=""
-                                        class="form-control" id="temperature">
-                                </div>
-                                <p id="temperatureError" style="color: red; visibility: hidden;" class="text-start"></p>
-                                <hr>
-                                <h5>Physical Examination </h5>
-                                <div class="input-group mb-3">
-                                    <textarea name="physical_examination" cols="60" rows="6" class="form-control"
-                                        id="physical_examination"></textarea>
-                                </div>
-                                <p id="physical_examinationError" style="color: red; visibility: hidden;" class="text-start"></p>
-                                <hr>
-                                <h5>Diagnosis </h5>
-                                <div class="input-group mb-3">
-                                    <textarea name="diagnosis" cols="60" rows="6" class="form-control"
-                                        id="diagnosis"></textarea>
-                                </div>
-                                <p id="diagnosisError" style="color: red; visibility: hidden;" class="text-start"></p>
-                                {% if redirect_field_value %}
-                                <input type="hidden" name="next" value="{% url 'message_confirmation' %}" />
-                                {% endif %}
-
-                                <input type="submit" class="btn button" value="Save">
-                            </form>
+                                <form class="bg-white text-start w-100 py-5" method="POST" action=""
+                                    enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <h5>Present Complaints </h5>
+                                    <div class="input-group mb-3">
+                                        <textarea name="present_complaints" cols="60" rows="6" class="form-control"
+                                            id="complaints">{{ diagnosis_form.present_complaints.value }}</textarea>
+                                    </div>
+                                    <p id="complaintsError" style="color: red; visibility: hidden;" class="text-start">
+                                    </p>
+                                    <hr>
+                                    <h5>Essentials </h5>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="" style="width:130px">Hight</span>
+                                        <input type="text" name="height" value="{{ diagnosis_form.height.value }}"
+                                            class="form-control" id="height">
+                                    </div>
+                                    <p id="heightError" style="color: red; visibility: hidden;" class="text-start">
+                                    </p>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="" style="width:130px">Weight</span>
+                                        <input type="text" name="weight" value="{{ diagnosis_form.weight.value }}"
+                                            class="form-control" id="weight">
+                                    </div>
+                                    <p id="weightError" style="color: red; visibility: hidden;" class="text-start">
+                                    </p>
+                                    <h6>Allergies</h6>
+                                    <div class="input-group mb-3">
+                                        <textarea name="allergy" cols="50" rows="3" class="form-control"
+                                            id="allergy">{{ diagnosis_form.allergy.value }}</textarea>
+                                    </div>
+                                    <p id="allergyError" style="color: red; visibility: hidden;" class="text-start">
+                                    </p>
+                                    <h6>Med-History</h6>
+                                    <div class="input-group mb-3">
+                                        <textarea name="medical_history" cols="50" rows="3" class="form-control"
+                                            id="medical_history">{{ diagnosis_form.medical_history.value }}</textarea>
+                                    </div>
+                                    <p id="medical_historyError" style="color: red; visibility: hidden;"
+                                        class="text-start">
+                                    </p>
+                                    <h6>Medications</h6>
+                                    <div class="input-group mb-3">
+                                        <textarea name="medications" cols="50" rows="3" class="form-control"
+                                            id="medications">{{ diagnosis_form.medications.value }}</textarea>
+                                    </div>
+                                    <p id="medicationsError" style="color: red; visibility: hidden;" class="text-start">
+                                    </p>
+                                    <h5>Vital Signs </h5>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="" style="width:130px">BP</span>
+                                        <input type="text" name="bp" value="{{ diagnosis_form.bp.value }}"
+                                            class="form-control" id="bp">
+                                    </div>
+                                    <p id="bpError" style="color: red; visibility: hidden;" class="text-start"></p>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="" style="width:130px">Pulse</span>
+                                        <input type="text" name="pulse" value="{{ diagnosis_form.pulse.value }}"
+                                            class="form-control" id="pulse">
+                                    </div>
+                                    <p id="pulseError" style="color: red; visibility: hidden;" class="text-start">
+                                    </p>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="" style="width:130px">Saturation</span>
+                                        <input type="text" name="saturation"
+                                            value="{{ diagnosis_form.saturation.value }}" class="form-control"
+                                            id="saturation">
+                                    </div>
+                                    <p id="saturationError" style="color: red; visibility: hidden;" class="text-start">
+                                    </p>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="" style="width:130px">Temperature</span>
+                                        <input type="text" name="temperature"
+                                            value="{{ diagnosis_form.temperature.value }}" class="form-control"
+                                            id="temperature">
+                                    </div>
+                                    <p id="temperatureError" style="color: red; visibility: hidden;" class="text-start">
+                                    </p>
+                                    <hr>
+                                    <h5>Physical Examination </h5>
+                                    <div class="input-group mb-3">
+                                        <textarea name="physical_examination" cols="60" rows="6" class="form-control"
+                                            id="physical_examination">{{ diagnosis_form.physical_examination.value }}</textarea>
+                                    </div>
+                                    <p id="physical_examinationError" style="color: red; visibility: hidden;"
+                                        class="text-start"></p>
+                                    <hr>
+                                    <h5>Diagnosis </h5>
+                                    <div class="input-group mb-3">
+                                        <textarea name="diagnosis" cols="60" rows="6" class="form-control"
+                                            id="diagnosis">{{ diagnosis_form.diagnosis.value }}</textarea>
+                                    </div>
+                                    <p id="diagnosisError" style="color: red; visibility: hidden;" class="text-start">
+                                    </p>
+                                    {% if redirect_field_value %}
+                                    <input type="hidden" name="diagnosis_submit" value="1" />
+                                    {% endif %}
+                                    <input type="submit" class="btn button" value="Save">
+                                </form>
+                            </div>
                         </div>
-
                     </div>
+                    <div class="col-lg-6 my-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <h3 class="card-title">Prescriptions</h3>
+                                <hr>
+                                <!-- <div class="row"> -->
+                                    <div class="col-12">
+                                        {% for prescription in prescriptions %}
+                                        <div class="row bg-dark text-center text-white p-2 m-2 mx-auto">
+                                            <div class="row d-flex mx-auto align-items-center justify-content-center pt-2">
+                                                <div class="col-12 p-2 border"><h5>{{ prescription.drug_name }}</h5></div>
+                                                <div class="col-4 p-2 border">{{ prescription.dose }}</div>
+                                                <div class="col-4 p-2 border">{{ prescription.frequency }}</div>
+                                                <div class="col-4 p-2 border">{{ prescription.route }}</div>
+                                                <div class="col-6 p-2 border">{{ prescription.quantity }}</div>
+                                                <div class="col-6 p-2 border">{{ prescription.comment }}</div>
+                                                <div class="col-4 p-2">
+                                                    <form action="{% url 'delete_prescription' prescription.id %}"
+                                                        method="post">
+                                                        {% csrf_token %}
+                                                        <button type="submit" class="button3">Delete</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                <!-- </div> -->
+                                <form class="bg-white text-start py-5" method="POST" action=""
+                                    enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="" style="width:130px">Drug Name</span>
+                                        <input type="text" name="drug_name" value="" class="form-control"
+                                            id="drug_name">
+                                    </div>
+                                    <p id="drug_nameError" style="color: red; visibility: hidden;" class="text-start">
+                                    </p>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="" style="width:130px">Dose</span>
+                                        <input type="text" name="dose" value="" class="form-control" id="dose">
+                                    </div>
+                                    <p id="doseError" style="color: red; visibility: hidden;" class="text-start">
+                                    </p>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="" style="width:130px">Frequency</span>
+                                        <input type="text" name="frequency" value="" class="form-control"
+                                            id="frequency">
+                                    </div>
+                                    <p id="frequencyError" style="color: red; visibility: hidden;" class="text-start">
+                                    </p>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="" style="width:130px">Route</span>
+                                        <input type="text" name="route" value="" class="form-control" id="route">
+                                    </div>
+                                    <p id="routeError" style="color: red; visibility: hidden;" class="text-start">
+                                    </p>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="" style="width:130px">Duration</span>
+                                        <input type="text" name="quantity" value="" class="form-control" id="quantity">
+                                    </div>
+                                    <p id="quantityError" style="color: red; visibility: hidden;" class="text-start">
+                                    </p>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="" style="width:130px">Comments</span>
+                                        <textarea name="comment" cols="50" rows="3" class="form-control"
+                                            id="comment"></textarea>
+                                    </div>
+
+                                    {% if redirect_field_value %}
+                                    <input type="hidden" name="prescription_submit" value="1" />
+                                    {% endif %}
+                                    <input type="submit" class="btn button" value="Add Medicine">
+                                </form>
+                                
+                            </div>
+                        </div>
+                        <div class="card my-3 ">
+                            <div class="card-body">
+                                <h3 class="card-title">Medical Reports</h3>
+                                <hr>
+                                <!-- <div class="row"> -->
+                                    <div class="col-12">
+                                        {% for report in reports %}
+                                        <div class="row bg-dark text-center text-white p-2 m-2 mx-auto">
+                                            <div class="row d-flex mx-auto align-items-center justify-content-center pt-2">
+                                                <div class="col-12 p-2 border"><h5>{{ prescription.drug_name }}</h5></div>
+                                                <div class="col-4 p-2 border">{{ prescription.dose }}</div>
+                                                <div class="col-4 p-2 border">{{ prescription.frequency }}</div>
+                                                <div class="col-4 p-2 border">{{ prescription.route }}</div>
+                                                <div class="col-6 p-2 border">{{ prescription.quantity }}</div>
+                                                <div class="col-6 p-2 border">{{ prescription.comment }}</div>
+                                                <div class="col-4 p-2">
+                                                    <form action="{% url 'delete_prescription' prescription.id %}"
+                                                        method="post">
+                                                        {% csrf_token %}
+                                                        <button type="submit" class="button3">Delete</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                <!-- </div> -->
+                                <form class="bg-white text-start py-5" method="POST" action=""
+                                    enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="" style="width:130px">Drug Name</span>
+                                        <input type="text" name="drug_name" value="" class="form-control"
+                                            id="drug_name">
+                                    </div>
+                                    <p id="drug_nameError" style="color: red; visibility: hidden;" class="text-start">
+                                    </p>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="" style="width:130px">Dose</span>
+                                        <input type="text" name="dose" value="" class="form-control" id="dose">
+                                    </div>
+                                    <p id="doseError" style="color: red; visibility: hidden;" class="text-start">
+                                    </p>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="" style="width:130px">Frequency</span>
+                                        <input type="text" name="frequency" value="" class="form-control"
+                                            id="frequency">
+                                    </div>
+                                    <p id="frequencyError" style="color: red; visibility: hidden;" class="text-start">
+                                    </p>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="" style="width:130px">Route</span>
+                                        <input type="text" name="route" value="" class="form-control" id="route">
+                                    </div>
+                                    <p id="routeError" style="color: red; visibility: hidden;" class="text-start">
+                                    </p>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="" style="width:130px">Duration</span>
+                                        <input type="text" name="quantity" value="" class="form-control" id="quantity">
+                                    </div>
+                                    <p id="quantityError" style="color: red; visibility: hidden;" class="text-start">
+                                    </p>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="" style="width:130px">Comments</span>
+                                        <textarea name="comment" cols="50" rows="3" class="form-control"
+                                            id="comment"></textarea>
+                                    </div>
+
+                                    {% if redirect_field_value %}
+                                    <input type="hidden" name="prescription_submit" value="1" />
+                                    {% endif %}
+                                    <input type="submit" class="btn button" value="Add Medicine">
+                                </form>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 
 
 {% endblock %}
