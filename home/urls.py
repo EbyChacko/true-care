@@ -28,4 +28,7 @@ urlpatterns = [
     path('doctor_appointment_details/<int:id>/', views.doctor_appointment_details, name='doctor_appointment_details'),
     path('delete_prescription/<int:prescription_id>/', views.delete_prescription, name='delete_prescription'),
     path('delete_medical_report/<int:medical_report_id>/', views.delete_medical_report, name='delete_medical_report'),
+    path('approve_appointment/<int:appointment_id>/', views.approve_appointment, name='approve_appointment'),
+    path('disapprove_appointment/<int:appointment_id>/', views.disapprove_appointment, name='disapprove_appointment'),
+    path('generate_prescription_pdf/<int:id>/', views.generate_prescription_pdf, name='generate_prescription_pdf'),
 ]

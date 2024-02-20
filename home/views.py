@@ -10,7 +10,12 @@ from django.http import HttpResponseRedirect, JsonResponse
 from django.urls import reverse_lazy, reverse
 from .models import Department, Patient, Doctor, PersonalDetail, booking, DoctorDiagnosis, Prescription, MedicalReport, ReportNames
 from .forms import CustomerMessageForm,  PersonalDetailForm, PatientForm, BookingForm, UploadPictureForm, DoctorForm, DiagnosisForm, PrescriptionForm, MedicalReportForm
-# Create your views here.
+
+from django.http import HttpResponse
+from reportlab.lib.pagesizes import letter
+from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, Image
+from reportlab.lib.styles import getSampleStyleSheet
+from django.conf import settings
 
 def base_view(request):
     if request.user.is_authenticated:
@@ -42,7 +47,7 @@ def departments(request):
 # to show the department details in the department_details.html
 def department_details(request, slug):
     department = get_object_or_404(Department, slug=slug)
-    doctors = Doctor.objects.filter(department=department)
+    doctors = Doctor.objects.filter(personal_detail__is_doctor=True, department=department)
     dict_dept_details = {
         'department': department,
         'doctors': doctors,
@@ -71,7 +76,7 @@ def appointment(request):
             booking.save()
             request.user.email = personal_detail_form.cleaned_data['email']
             request.user.save()
-            return redirect('profile')
+            return redirect('patient_appointments')
     else:
         booking_form = BookingForm()
         personal_detail_form = PersonalDetailForm(instance=personal_detail)
@@ -112,7 +117,7 @@ def update_appointment(request, id):
             appointment.date_booked = timezone.now()  # Update the date_booked
             appointment.approved = False  # Set approved to False
             appointment.save()
-            return redirect('profile')
+            return redirect('patient_appointments')
     else:
         booking_form = BookingForm(instance=appointment)
 
@@ -231,9 +236,13 @@ def appointment_details(request, id):
     now = timezone.now()
     personal_detail = request.user.patient.personal_details
     patient = request.user.patient
+    prescriptions = Prescription.objects.filter(booking=appointment)
+    medical_reports = MedicalReport.objects.filter(booking=appointment)
     return render(request,'appointment_details.html',{
         'personal_detail': personal_detail,
         'patient': patient,
+        'prescriptions': prescriptions,
+        'medical_reports': medical_reports,
         'appointment': appointment,
         'now' : now,
         })
@@ -305,6 +314,7 @@ def doctor_profile(request):
     all_appointments = booking.objects.filter(doctor__personal_details=personal_detail).order_by('booking_date')
     today_appointments = all_appointments.filter(booking_date=now, approved=True)
     upcoming_appointments = all_appointments.filter(booking_date__gt=now)
+    pending_approval = all_appointments.filter(booking_date__gt=now, approved=False)
     attended_appointments = all_appointments.filter(attended=True)
     return render(request, 'doctor_profile.html', {
         'personal_detail': personal_detail,
@@ -314,8 +324,22 @@ def doctor_profile(request):
         'today_appointments': today_appointments,
         'upcoming_appointments': upcoming_appointments,
         'attended_appointments': attended_appointments,
+        'pending_approval': pending_approval,
         'now': now,
     })
+    
+
+def approve_appointment(request, appointment_id):
+    appointment = booking.objects.get(pk=appointment_id)
+    appointment.approved = True
+    appointment.save()
+    return redirect('doctor_profile')
+
+def disapprove_appointment(request, appointment_id):
+    appointment = booking.objects.get(pk=appointment_id)
+    appointment.approved = False
+    appointment.save()
+    return redirect('doctor_profile')
 
 
 def add_doctor_details(request):
@@ -434,3 +458,65 @@ def delete_medical_report(request, medical_report_id):
     appointment_id = medical_report.booking.id
     medical_report.delete()
     return redirect('doctor_appointment_details', id=appointment_id)
+
+
+def generate_prescription_pdf(request, id):
+
+    appointment = get_object_or_404(booking, id=id)
+    prescriptions = Prescription.objects.filter(booking=appointment)
+    
+    doctor = appointment.doctor
+    doctor_name = doctor.personal_details.name
+
+    pdf_filename = 'Prescription.pdf'
+    pdf = SimpleDocTemplate(pdf_filename, pagesize=letter)
+
+    data = [
+        ["Drug", "Dose", "Frequency", "Route", "Quantity", "Comment"]
+    ]
+
+    for prescription in prescriptions:
+        data.append([
+            prescription.drug_name,
+            prescription.dose,
+            prescription.frequency,
+            prescription.route,
+            prescription.quantity,
+            prescription.comment,
+        ])
+
+    table = Table(data)
+
+    style = TableStyle([('BACKGROUND', (0, 0), (-1, 0), 'lightgrey'),
+                        ('TEXTCOLOR', (0, 0), (-1, 0), 'black'),
+                        ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
+                        ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+                        ('BOTTOMPADDING', (0, 0), (-1, 0), 12),
+                        ('BACKGROUND', (0, 1), (-1, -1), 'white'),
+                        ('GRID', (0, 0), (-1, -1), 1, 'black')
+                        ])
+
+    table.setStyle(style)
+
+    elements = []
+    elements.append(Paragraph("True Care Hospital", getSampleStyleSheet()['Heading1']))
+    elements.append(Paragraph("Prescription", getSampleStyleSheet()['Heading2']))
+    elements.append(Paragraph("", getSampleStyleSheet()['Heading2']))
+    elements.append(Paragraph("", getSampleStyleSheet()['Heading2']))
+
+    elements.append(table)
+    elements.append(Paragraph("", getSampleStyleSheet()['Heading2']))
+    elements.append(Paragraph("", getSampleStyleSheet()['Heading2']))
+    elements.append(Paragraph("", getSampleStyleSheet()['Heading2']))
+    elements.append(Paragraph(f"Doctor Name: Dr.{doctor_name}", getSampleStyleSheet()['Normal']))
+    elements.append(Paragraph("", getSampleStyleSheet()['Heading2']))
+    elements.append(Paragraph(f"Date : {appointment.booking_date}", getSampleStyleSheet()['Normal']))
+    elements.append(Paragraph("", getSampleStyleSheet()['Heading2']))
+    elements.append(Paragraph("Signature / Seal: ________________________", getSampleStyleSheet()['Normal']))
+
+    pdf.build(elements)
+
+    with open(pdf_filename, 'rb') as pdf_file:
+        response = HttpResponse(pdf_file.read(), content_type='application/pdf')
+        response['Content-Disposition'] = f'attachment; filename="{pdf_filename}"'
+        return response

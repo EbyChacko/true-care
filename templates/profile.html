@@ -55,8 +55,10 @@
                 <div id="personal_Details" class="col-12  text-white py-5">
                     <h4 class="text-uppercase pb=5"><strong>{{user}}'s Profile</strong></h4>
                     <hr>
-                    <div class="row pt-3 px-3 text-start d-flex justify-content-center align-items-stretch text-uppercase">
-                        <div class="col-sm-8 col-lg-6 col-xl-4 border border-secondary rounded-5 m-2 p-5 d-flex flex-column">
+                    <div
+                        class="row pt-3 px-3 text-start d-flex justify-content-center align-items-stretch text-uppercase">
+                        <div
+                            class="col-sm-8 col-lg-6 col-xl-4 border border-secondary rounded-5 m-2 p-5 d-flex flex-column">
                             <div class="row">
                                 <h6 class="text-uppercase text-center pb-2"><strong>Personal Details</strong></h6>
                                 <hr>
@@ -67,13 +69,22 @@
                             <p> Address : {{ personal_detail.address }}</p>
                             <p> Zip-code : {{ personal_detail.zipcode }}</p>
                             <p> Date Of Birth : {{ patient.date_of_birth }}</p>
-                            <p> Gender : {{ personal_detail.gender }}</p>
+                            <p> Gender : {% if personal_detail.gender == 'M' %}
+                                Male
+                                {% elif personal_detail.gender == 'F' %}
+                                Female
+                                {% elif personal_detail.gender == 'O' %}
+                                Other
+                                {% else %}
+                                Unknown
+                                {% endif %}</p>
                             <a href="{% url 'update_profile' %}" class="text-reset text-decoration-none px-2">
                                 <h5 type="submit" class="btn button3" value="">Update</h5>
                             </a>
                         </div>
                         {% if personal_detail.is_doctor %}
-                        <div class="col-sm-8 col-lg-6 col-xl-4 border border-secondary rounded-5 m-2 p-5 d-flex flex-column">
+                        <div
+                            class="col-sm-8 col-lg-6 col-xl-4 border border-secondary rounded-5 m-2 p-5 d-flex flex-column">
                             <div class="row">
                                 <h6 class="text-uppercase text-center pb-2"><strong>Professional Details</strong></h6>
                                 <hr>
@@ -89,7 +100,7 @@
                         </div>
                         {% endif %}
                     </div>
-                    
+
                 </div>
             </div>
         </div>
