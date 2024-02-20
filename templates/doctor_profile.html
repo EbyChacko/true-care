@@ -209,13 +209,13 @@
                                 class="text-reset text-decoration-none">
                                 <div class="doctor_appointment_div text-start ps-4 p-2">
                                     <div class="row py-2">
-                                        <div class="col-md-6 border-start border-end border-opacity-50 ps-4">
+                                        <div class="col-md-4 border-start border-end border-opacity-50 ps-4">
                                             <h5 class="text-uppercase text-warning">{{ appointment.patient_id }}</h5>
                                         </div>
-                                        <div class="col-md-3 border-start border-end border-opacity-50 ps-4">
+                                        <div class="col-md-2 col-lg-4 border-start border-end border-opacity-50 ps-4">
                                             <h6 class="text-white">ID : {{ appointment.patient_id.id }}</h6>
                                         </div>
-                                        <div class="col-md-3 border-start border-end border-opacity-50 ps-4">
+                                        <div class="col-6 col-md-3 col-lg-2 border-start border-opacity-50 ps-4">
                                             {% if appointment.approved and appointment.attended %}
                                             <button type="submit" class="btn button2 disabled">Disapprove</button>
                                             {% elif appointment.approved and not appointment.attended %}
@@ -229,6 +229,12 @@
                                                 <button type="submit" class="btn button3">Approve</button>
                                             </form>
                                             {% endif %}
+                                        </div>
+                                        <div class="col-6 col-md-3 col-lg-2 border-end border-opacity-50 ps-4">
+                                            <form action="{% url 'update_appointment' id=appointment.id %}" method="post">
+                                                {% csrf_token %}
+                                                <button type="submit" class="btn button2">Change</button>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>

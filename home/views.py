@@ -4,8 +4,6 @@ from django.contrib import messages
 from django.utils import timezone
 from django.db.models import Q
 from datetime import date
-from django.views.decorators.http import require_POST
-from django.views import generic, View
 from django.http import HttpResponseRedirect, JsonResponse
 from django.urls import reverse_lazy, reverse
 from .models import Department, Patient, Doctor, PersonalDetail, booking, DoctorDiagnosis, Prescription, MedicalReport, ReportNames
@@ -15,7 +13,6 @@ from django.http import HttpResponse
 from reportlab.lib.pagesizes import letter
 from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, Image
 from reportlab.lib.styles import getSampleStyleSheet
-from django.conf import settings
 
 def base_view(request):
     if request.user.is_authenticated:
@@ -26,20 +23,24 @@ def base_view(request):
                   {'personal_detail': personal_detail})
 
 def index(request):
-
-    return render(request,'index.html')
+    personal_detail = request.user.patient.personal_details
+    return render(request,'index.html',
+                  {'personal_detail': personal_detail}
+                  )
 
 def about(request):
-    return render(request,'about.html')
-
-def contact(request):
-    return render(request,'contact.html')
+    personal_detail = request.user.patient.personal_details
+    return render(request,'about.html',
+                  {'personal_detail': personal_detail}
+                  )
 
 
 # to show the department details in the departments.html
 def departments(request):
+    personal_detail = request.user.patient.personal_details
     dict_dept={
-        'dept':Department.objects.all()
+        'dept':Department.objects.all(),
+        'personal_detail': personal_detail
     }
     return render(request,'departments.html', dict_dept)
 
@@ -148,14 +149,18 @@ def doctors(request):
 
 # to perform the contact.html and its form validation
 def contact(request):
+    personal_detail = request.user.patient.personal_details
     if request.method == 'POST':
         form = CustomerMessageForm(request.POST)
         if form.is_valid():
-            form.save() 
-            return redirect('message_confirmation')  
+            form.save()
+            return redirect('message_confirmation')
     else:
         form = CustomerMessageForm()
-    return render(request, 'contact.html', {'form': form})
+    return render(request, 'contact.html', {
+        'form': form,
+        'personal_detail': personal_detail,
+        })
 
 def MessageConfirmation(request):
     return render(request, 'informations.html')

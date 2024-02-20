@@ -11,11 +11,33 @@
             <div class="text_centre">
                 <h1><i class="fa-solid fa-user-plus"></i></h1>
                 <h3 class="pb-3">{% trans "Sign Up" %}</h3>
-
                 <form class="signup bg-white text-start rounded-5 p-5" id="signup_form" method="post"
                     action="{% url 'account_signup' %}">
                     {% csrf_token %}
-                    {{ form.as_p }}
+                    <!-- {{ form.as_p }} -->
+
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="username-label" style="width:170px">User Name</span>
+                        <input type="text" name="username" value="" class="form-control" id="user_name"
+                            aria-labelledby="username-label">
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="email-label" style="width:170px">Email</span>
+                        <input type="text" name="email" value="" class="form-control" id="email"
+                            aria-labelledby="email-label">
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="password-label" style="width:170px">Password</span>
+                        <input type="password" name="password1" value="" class="form-control" id="password"
+                            aria-labelledby="password-label">
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="password-confirm-label" style="width:170px">Confirm
+                            Password</span>
+                        <input type="password" name="password2" value="" class="form-control" id="password_confirm"
+                            aria-labelledby="password-confirm-label">
+                    </div>
+
                     {% if redirect_field_value %}
                     <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
                     {% endif %}
@@ -24,6 +46,7 @@
                     <p>{% blocktrans %}Do you already have an account? Then please <a class="link"
                             href="{{ login_url }}">Login</a> instead.{% endblocktrans %}</p>
                 </form>
+
             </div>
 
         </div>
