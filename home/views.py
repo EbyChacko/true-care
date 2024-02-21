@@ -103,7 +103,7 @@ def appointment(request):
         patient_form = PatientForm(instance=patient)
 
     departments = Department.objects.all()
-    doctors = Doctor.objects.all()
+    doctors = Doctor.objects.filter(personal_details__is_doctor=True)
 
     return render(request, 'appointment.html', {
         'booking_form': booking_form,
@@ -142,7 +142,7 @@ def update_appointment(request, id):
         booking_form = BookingForm(instance=appointment)
 
     departments = Department.objects.all()
-    doctors = Doctor.objects.all()
+    doctors = Doctor.objects.filter(personal_details__is_doctor=True)
 
     return render(request, 'update_appointment.html', {
         'booking_form': booking_form,
@@ -161,7 +161,7 @@ def update_appointment(request, id):
 # to show the doctors detaisl in the doctors.html page
 def doctors(request):
     dict_doctor={
-        'doctor': Doctor.objects.all()
+        'doctor': Doctor.objects.filter(personal_details__is_doctor=True)
     }
     return render(request,'doctors.html', dict_doctor)
 
@@ -282,7 +282,7 @@ def appointment_details(request, id):
 # to show the department details in the department_details.html
 def department_details(request, slug):
     department = get_object_or_404(Department, slug=slug)
-    doctors = Doctor.objects.filter(department=department)
+    doctors = Doctor.objects.filter(department=department, personal_details__is_doctor=True)
     dict_dept_details = {
         'department': department,
         'doctors': doctors,
@@ -330,7 +330,7 @@ def upload_picture(request):
 
 def get_doctors(request):
     department_id = request.GET.get('department_id')
-    doctors = Doctor.objects.filter(department_id=department_id)
+    doctors = Doctor.objects.filter(department_id=department_id, personal_details__is_doctor=True)
     options = '<option value="">Select Doctor...</option>'
     for doctor in doctors:
         options += f'<option value="{doctor.pk}">{doctor.personal_details.name} ({doctor.department.department_name})</option>'
