@@ -67,13 +67,19 @@ def departments(request):
 # to show the department details in the department_details.html
 def department_details(request, slug):
     department = get_object_or_404(Department, slug=slug)
-    doctors = Doctor.objects.filter(personal_detail__is_doctor=True, department=department)
+    doctors = Doctor.objects.filter(department=department, personal_details__is_doctor=True)
+    personal_detail = None
+    if not isinstance(request.user, AnonymousUser):
+        try:
+            personal_detail = request.user.patient.personal_details
+        except AttributeError:
+            pass
     dict_dept_details = {
+        'personal_detail': personal_detail,
         'department': department,
         'doctors': doctors,
     }
     return render(request, 'department_details.html', dict_dept_details)
-
 
 # to create appointments
 @login_required
@@ -278,16 +284,6 @@ def appointment_details(request, id):
         'appointment': appointment,
         'now' : now,
         })
-
-# to show the department details in the department_details.html
-def department_details(request, slug):
-    department = get_object_or_404(Department, slug=slug)
-    doctors = Doctor.objects.filter(department=department, personal_details__is_doctor=True)
-    dict_dept_details = {
-        'department': department,
-        'doctors': doctors,
-    }
-    return render(request, 'department_details.html', dict_dept_details)
 
 
 # to delete appointments
