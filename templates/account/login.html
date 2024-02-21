@@ -15,15 +15,22 @@
                 <h3 class="pb-3" >{% trans "Log In" %}</h3>
                 <form class="login bg-white text-start rounded-5 p-5" method="POST" action="{% url 'account_login' %}">
                     {% csrf_token %}
-                    {{ form.as_p }}
-                    {% if redirect_field_value %}
-                    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-                    {% endif %}
-                    <button class="btn button right" type="submit">{% trans "Log In" %}</button>
+                    
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="username-label" style="width:170px">User Name</span>
+                        <input type="text" name="login" value="" class="form-control" id="username" aria-labelledby="username-label">
+                    </div>
+                    
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="password-confirm-label" style="width:170px">Password</span>
+                        <input type="password" name="password" value="" class="form-control" id="password" aria-labelledby="password-label">
+                    </div>
+                
+                    <input type="hidden" name="next" value="{{ next }}" />
+                    
+                    <button class="btn button right" type="submit">Log In</button>
                     <hr>
-                    <p>{% blocktrans %}If you have not created an account yet, <br>then <a class="link"
-                        href="{{ signup_url }}">sign up</a>
-                    first.{% endblocktrans %}</p>
+                    <p>If you have not created an account yet, then <a class="link" href="{{ signup_url }}">sign up</a> first.</p>
                 </form>
             </div>
 

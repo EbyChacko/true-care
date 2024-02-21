@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404,redirect
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import AnonymousUser
 from django.contrib import messages
 from django.utils import timezone
 from django.db.models import Q
@@ -19,30 +20,48 @@ def base_view(request):
         personal_detail = request.user.patient.personal_details
     else:
         personal_detail = None
-    return render(request, 'base.html', 
+    return render(request, 'base.html',
                   {'personal_detail': personal_detail})
 
-def index(request):
-    personal_detail = request.user.patient.personal_details
-    return render(request,'index.html',
-                  {'personal_detail': personal_detail}
-                  )
 
+# to show the index.html
+def index(request):
+    personal_detail = None
+    try:
+        if not isinstance(request.user, AnonymousUser):
+            personal_detail = request.user.patient.personal_details
+    except AttributeError:
+        pass
+    return render(request, 'index.html', {'personal_detail': personal_detail})
+
+
+# to show the about.html
 def about(request):
-    personal_detail = request.user.patient.personal_details
-    return render(request,'about.html',
-                  {'personal_detail': personal_detail}
-                  )
+    personal_detail = None
+    
+    try:
+        if not isinstance(request.user, AnonymousUser):
+            personal_detail = request.user.patient.personal_details
+    except AttributeError:
+        pass
+    return render(request, 'about.html', {'personal_detail': personal_detail})
 
 
 # to show the department details in the departments.html
 def departments(request):
-    personal_detail = request.user.patient.personal_details
-    dict_dept={
-        'dept':Department.objects.all(),
+    personal_detail = None
+    
+    try:
+        if not isinstance(request.user, AnonymousUser):
+            personal_detail = request.user.patient.personal_details
+    except AttributeError:
+        pass
+    dict_dept = {
+        'dept': Department.objects.all(),
         'personal_detail': personal_detail
     }
-    return render(request,'departments.html', dict_dept)
+    
+    return render(request, 'departments.html', dict_dept)
 
 
 # to show the department details in the department_details.html
@@ -149,19 +168,27 @@ def doctors(request):
 
 # to perform the contact.html and its form validation
 def contact(request):
-    personal_detail = request.user.patient.personal_details
+    personal_detail = None
+    form = CustomerMessageForm()
+    
+    try:
+        if not isinstance(request.user, AnonymousUser):
+            personal_detail = request.user.patient.personal_details
+    except AttributeError:
+        pass
     if request.method == 'POST':
         form = CustomerMessageForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('message_confirmation')
-    else:
-        form = CustomerMessageForm()
+    
     return render(request, 'contact.html', {
         'form': form,
         'personal_detail': personal_detail,
-        })
+    })
 
+
+# to show the confirmation message
 def MessageConfirmation(request):
     return render(request, 'informations.html')
 
