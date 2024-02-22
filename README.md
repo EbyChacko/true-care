@@ -157,7 +157,6 @@ ___
 - Carausel Images
 - Key features and service details
 
-
 #### Department Page
 
 - Show all the department with brief discription
@@ -178,9 +177,62 @@ ___
 - If the user has previously updated their personal details, they will automatically populate in the Appointment form. Otherwise, the user need to update it atleast with the appoinment creation.
 - when the appoinment is submitted the page is navigated to the page that show all appointments of the user.
 
-
-
 #### Profile Page
 
-- This page is splitted into main two parts: Appointment
+- This page is splitted into main two parts: Appointments and the personal details
+- in appointments ther are 4 deferent navigations to view the All Appointments, Attended Appointments, Upcoming appointments and to the pesonal details.
+- in the personal details section, there is update option to the personal details.
+- in the appoinment section, the user can update or delete the appointments if wanted.
+- the user can click on the view button on the appointment to navigate to the details of the curresponding appointment.
+- If the user is a doctor, there will be additionally Professional details along with the personal details.
+
+#### Appointment Details
+
+- In this page the user can view the details of the appointment.
+- If the appointment is already happened then the user can view the prescription, medical reports that are uploaded by the doctor.
+- The user can download the prescription and the medical reports.
+
+#### Doctor Profile
+
+- When the page is loading the doctor can view all the Appoinments that need to attended by the doctor today
+- also there are deferent navigations to All appointments, Upcoming appointments Pending Approval and attended Appointments.
+- from this page the doctor can manippulate the appointments, or approve the it
+- When the doctor select an appointment it will navigate to the details of the appointment
+
+#### Doctor Appointment details
+
+- In this page doctor can view the personal details of the patient.
+- Doctor can add details of the diagnisis, prescription and the medical reports if any.
+- When the doctor add any prescription or medical report, it will show instanly in the same page.
+- This prescription and the medical report can view or downloaded by the patient.
+
+___
+
+### Skeleton
+**Wireframes**<br>
+The wireframes for desktop were created with Photoshop tool.
+
+<details>
+  <summary>Wire Frames</summary>
+  <h4>Base.html</h4>
+  <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708609035/samples/true_care/Readme/base_i2kjxb.png"><br>
+  <h4>Home Page</h4>
+  <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708609071/samples/true_care/Readme/page-Index_r7xiem.webp"><br>
+    <h4>About Us</h4>
+  <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708609069/samples/true_care/Readme/page-about_nlduvz.webp"><br>
+  <h4>Departments</h4>
+  <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708609070/samples/true_care/Readme/page-department_vqbty7.webp"><br>
+  <h4>Department Details</h4>
+  <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708609068/samples/true_care/Readme/page-department_details_pgcquu.webp"><br>
+  <h4>Contact Us</h4>
+  <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708609069/samples/true_care/Readme/page-contact_plmyfj.webp"><br>
+  <h4>Appointments</h4>
+  <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708609069/samples/true_care/Readme/page-appointment_up2rk7.webp"><br>
+  <h4>Patient Profile</h4>
+  <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708609071/samples/true_care/Readme/page-profile_x52eud.webp"><br>
+  <h4>Doctor Profile</h4>
+  <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708609070/samples/true_care/Readme/page-profile_doctor_qkftpr.webp"><br>
+  <h4>Doctor Appointment Details</h4>
+  <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708609070/samples/true_care/Readme/page-diagnosis_page_hytbfs.webp"><br>
+</details>
 
