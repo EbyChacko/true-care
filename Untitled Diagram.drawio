@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2024-02-22T17:42:07.235Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36" etag="9uSouxuqTsW3WBv6QCdn" version="23.1.5" type="github">
+<mxfile host="app.diagrams.net" modified="2024-02-22T17:54:50.399Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36" etag="8Zpd_8x8hKOBq_8hX_Sh" version="23.1.5" type="github">
   <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
     <mxGraphModel dx="1026" dy="1820" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -285,7 +285,7 @@
             <mxPoint x="385" y="1470" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="ApN2YI6DK6Mzw7adcPMo-102" value="Authorised User&lt;br&gt;(Doctor)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+        <mxCell id="ApN2YI6DK6Mzw7adcPMo-102" value="Authorised User&lt;br&gt;(Admin)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
           <mxGeometry x="325" y="1450" width="120" height="50" as="geometry" />
         </mxCell>
         <mxCell id="ApN2YI6DK6Mzw7adcPMo-103" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" source="ApN2YI6DK6Mzw7adcPMo-105" parent="WIyWlLk6GJQsqaUBKTNV-1">
