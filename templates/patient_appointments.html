@@ -28,35 +28,44 @@
                     <h6 class="text-warning">User ID: {{ user.id }}</h6>
                 </div>
                 <hr class="col-12 dotted">
-                
-                <div class="col-12 col-sm-3 col-md-12 text-center pt-3">
-                    <a href="#all_appointments" id="all_appointments_link" class="profile_button d-flex justify-content-center align-items-center text-reset text-decoration-none">
-                        <div class="col-12 button_bg text-center" style="min-height:50px;">
-                            <p class="text-white">All Appointments</p>
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 col-sm-6 col-md-12 text-center equal-height">
+                            <a href="#all_appointments" id="all_appointments_link"
+                                class="profile_button d-flex justify-content-center align-items-center text-reset text-decoration-none">
+                                <div class="col-12 button_bg text-center">
+                                    <p class="text-white">All Appointments</p>
+                                </div>
+                            </a>
                         </div>
-                    </a>
-                </div>
-                <div class="col-12 col-sm-3 col-md-12 text-center">
-                    <a href="#attended_appointments" id="attended_appointments_link" class="profile_button d-flex justify-content-center align-items-center text-reset text-decoration-none">
-                        <div class="col-12 button_bg text-center" style="min-height:50px;">
-                            <p class="text-white">Attended Appointments</p>
+                        <div class="col-12 col-sm-6 col-md-12 text-center equal-height">
+                            <a href="#attended_appointments" id="attended_appointments_link"
+                                class="profile_button d-flex justify-content-center align-items-center text-reset text-decoration-none">
+                                <div class="col-12 button_bg text-center">
+                                    <p class="text-white">Attended Appointments</p>
+                                </div>
+                            </a>
                         </div>
-                    </a>
-                </div>
-                <div class="col-12 col-sm-3 col-md-12 text-center">
-                    <a href="#upcoming_appointments" id="upcoming_appointments_link" class="profile_button d-flex justify-content-center align-items-center text-reset text-decoration-none">
-                        <div class="col-12 button_bg text-center" style="min-height:50px;">
-                            <p class="text-white">Upcoming Appointments</p>
+                        <div class="col-12 col-sm-6 col-md-12 text-center equal-height">
+                            <a href="#upcoming_appointments" id="upcoming_appointments_link"
+                                class="profile_button d-flex justify-content-center align-items-center text-reset text-decoration-none">
+                                <div class="col-12 button_bg text-center">
+                                    <p class="text-white">Upcoming Appointments</p>
+                                </div>
+                            </a>
                         </div>
-                    </a>
-                </div>
-                <div class="col-12 col-sm-3 col-md-12 text-center">
-                    <a href="{% url 'profile' %}" id="personal_Details_link" class="profile_button d-flex justify-content-center align-items-center text-reset text-decoration-none">
-                        <div class="col-12 button_bg text-center" style="min-height:50px;">
-                            <p class="text-white">Personal Details</p>
+                        <div class="col-12 col-sm-6 col-md-12 text-center equal-height">
+                            <a href="{% url 'profile' %}" id="personal_Details_link"
+                                class="profile_button d-flex justify-content-center align-items-center text-reset text-decoration-none">
+                                <div class="col-12 button_bg text-center">
+                                    <p class="text-white">Personal Details</p>
+                                </div>
+                            </a>
                         </div>
-                    </a>
+                    </div>
                 </div>
+
             </div>
         </div>
 
@@ -206,34 +215,34 @@
 
 <script>
     // Function to show the specified appointment section and hide others
-function showContent(sectionId) {
-    // Hide all content sections
-    document.getElementById('all_appointments').style.display = 'none';
-    document.getElementById('attended_appointments').style.display = 'none';
-    document.getElementById('upcoming_appointments').style.display = 'none';
+    function showContent(sectionId) {
+        // Hide all content sections
+        document.getElementById('all_appointments').style.display = 'none';
+        document.getElementById('attended_appointments').style.display = 'none';
+        document.getElementById('upcoming_appointments').style.display = 'none';
 
-    // Show the specified content section
-    document.getElementById(sectionId).style.display = 'block';
-}
+        // Show the specified content section
+        document.getElementById(sectionId).style.display = 'block';
+    }
 
-// Event listener for clicking on the links to switch content sections
-document.addEventListener('DOMContentLoaded', function () {
-    // Show personal details by default
-    showContent('all_appointments');
-
-    // Add event listeners for each button
-    document.getElementById('all_appointments_link').addEventListener('click', function () {
+    // Event listener for clicking on the links to switch content sections
+    document.addEventListener('DOMContentLoaded', function () {
+        // Show personal details by default
         showContent('all_appointments');
-    });
 
-    document.getElementById('attended_appointments_link').addEventListener('click', function () {
-        showContent('attended_appointments');
-    });
+        // Add event listeners for each button
+        document.getElementById('all_appointments_link').addEventListener('click', function () {
+            showContent('all_appointments');
+        });
 
-    document.getElementById('upcoming_appointments_link').addEventListener('click', function () {
-        showContent('upcoming_appointments');
+        document.getElementById('attended_appointments_link').addEventListener('click', function () {
+            showContent('attended_appointments');
+        });
+
+        document.getElementById('upcoming_appointments_link').addEventListener('click', function () {
+            showContent('upcoming_appointments');
+        });
     });
-});
 
 </script>
 

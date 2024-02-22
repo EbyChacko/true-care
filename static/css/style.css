@@ -260,3 +260,18 @@ footer h5 {
   }
   
 
+  .equal-height {
+    display: flex;
+    flex-direction: column;
+}
+
+.equal-height .profile_button {
+    height: 100%;
+}
+
+.equal-height .button_bg {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

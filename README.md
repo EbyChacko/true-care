@@ -1,39 +1,184 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# True Care Hospital
 
-Welcome,
+The live link can be found here - [True  Care Hospital](https://true-care-hospital-8dee2f42b5aa.herokuapp.com/)
 
-This is the Code Institute student template for Codeanywhere. If you are using Gitpod then you need [this template](https://github.com/Code-Institute-Org/gitpod-full-template) instead.  We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+![ScreenShot](https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708595430/samples/true_care/Readme/all-devices-black_jog1mt.png)
 
-You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Codeanywhere and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **August 30th, 2023**
+Welcome to True Care Hospital, your healthcare destination designed to cater to your medical needs seamlessly. Our platform offers a range of features to enhance your healthcare experience:
 
-## Codeanywhere Reminders
+1. Hospital Details: Access comprehensive information about our hospital, services, and facilities without the need for sign-in, providing you with transparency and clarity.
 
-To run a frontend (HTML, CSS, Javascript only) application in Codeanywhere, in the terminal, type:
+2. Appointment Booking: Registered users can effortlessly schedule appointments online, ensuring convenience and efficiency in managing your healthcare appointments.
 
-`python3 -m http.server`
+3. User Profiles: Customize your personal profile by adding details and photos, enabling a personalized experience tailored to your needs and preferences.
 
-A button should appear to click: _Open Preview_ or _Open Browser_.
+4. Doctor Profiles: Our platform empowers doctors to create and manage their profiles, facilitating streamlined communication and interaction with patients. Doctors can efficiently handle appointments, provide diagnoses, and prescribe medications, enhancing the quality of care delivered.
 
-To run a frontend (HTML, CSS, Javascript only) application in Codeanywhere with no-cache, you can use this alias for `python3 -m http.server`.
+5. Medical Records Access: Patients can securely access and download prescriptions and medical reports from their profiles, promoting transparency and facilitating continuity of care.
 
-`http_server`
+True Care Hospital offers a comprehensive solution for both online and offline medical consultations, providing a reliable and efficient healthcare option for all your needs.
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+(Developer: Eby Chacko)
 
-A button should appear to click: _Open Preview_ or _Open Browser_.
+___
 
-In Codeanywhere you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+## Table of Contents
 
-To log into the Heroku toolbelt CLI:
+- [Project Goals](#project-goals)
+- [User Experience](#user-experience)
+- [Design](#design)
+- [Features](#features)
+- [Unimplemented Features](#unimplemented-features)
+- [Technologies Used](#technologies-used)
+- [Testing](#testing)
+- [Bugs](#bugs)
+- [Deployment](#deployment)
+- [Clone the Repository Code Locally](#clone-the-repository-code-locally)
+- [Credits](#credits)
 
-1. Log in to your Heroku account and go to _Account Settings_ in the menu under your avatar.
-2. Scroll down to the _API Key_ and click _Reveal_
-3. Copy the key
-4. In Codeanywhere, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+___
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
 
----
 
-Happy coding!
+## User Experience
+
+- __Target Audience__
+
+    - The True Care Hospital website is designed to cater to a diverse range of users seeking convenient and reliable healthcare solutions. Our targeted users include:
+
+    - Patients: Individuals looking for accessible and high-quality healthcare services both online and offline. They seek convenience in scheduling appointments, accessing medical records, and communicating with healthcare professionals effectively.
+
+    - Caregivers: Family members or guardians responsible for managing the healthcare needs of their loved ones. They require easy access to medical information, appointment scheduling, and communication with healthcare providers to ensure the well-being of those under their care.
+
+    - Medical Professionals: Doctors and healthcare professionals interested in providing online consultations and expanding their patient base. They benefit from features that streamline appointment management, facilitate communication with patients, and ensure efficient delivery of healthcare services.
+
+    - Health-conscious Individuals: Individuals proactively managing their health and seeking information on preventive care, wellness services, and healthcare resources. They appreciate easy access to healthcare information, tips for maintaining well-being, and options for seeking medical advice when needed.
+
+Overall, our website caters to a diverse audience with varying healthcare needs, offering a user-friendly platform that prioritizes accessibility, convenience, and quality in healthcare delivery.
+___
+
+## UX
+This site was created respecting the Five Planes Of Website Design:<br>
+### Strategy
+
+**User Stories and Epics:** <br>
+User stories and epics can be viewed here on the project [kanban board ](https://github.com/users/EbyChacko/projects/5)
+
+
+### Project Goals
+
+The goal of the True Care Hospital project is to create a seamless and user-friendly  healthcare platform that bridges the gap between patients and healthcare providers. Through intuitive features such as appointment booking, personalized user profiles, our aim is to enhance the accessibility, convenience, and quality of healthcare services for individuals seeking both online and offline medical consultations. We strive to empower users to easily access healthcare information, schedule appointments, manage medical records, and receive personalized care, ultimately promoting better health outcomes and patient satisfaction.
+
+- __User Goals__
+
+  - Convenient Access: Users aim to easily access information about True Care Hospital's services, facilities, and medical professionals without requiring a sign-in process.
+  - Seamless Appointment Management: Registered users seek to efficiently schedule appointments online, saving time and effort in booking medical consultations.
+  - Personalized Experience: Users desire the ability to create and customize their profiles with personal details and photos, enabling a personalized healthcare journey tailored to their needs.
+  - Transparent Communication: Patients expect transparent communication with doctors, including the ability to access medical records, prescriptions, and diagnoses conveniently from their profiles.
+  - Quality Healthcare: Users aspire to receive high-quality healthcare services both online and offline, ensuring effective diagnoses, treatments, and medical consultations.
+
+- __Site Owner Goals__
+
+  - User Engagement: The site owner aims to attract and engage users by providing comprehensive information about True Care Hospital's services and facilities without the need for sign-in, fostering trust and transparency.
+  - Appointment Management Efficiency: The site owner seeks to streamline the appointment booking process for registered users, ensuring efficient management of appointments and optimizing resource utilization.
+  - User Database Expansion: By encouraging users to create profiles and engage with the platform, the site owner aims to expand the user database, facilitating targeted marketing efforts and fostering long-term user relationships.
+  - Doctor-Patient Communication: Facilitating effective communication between doctors and patients, including the ability for doctors to manage appointments and provide diagnoses, enhances the site owner's goal of providing quality healthcare services and fostering patient satisfaction.
+  - Data Security and Compliance: Ensuring the security and privacy of user data, including medical records and personal information, is a priority for the site owner to maintain trust and compliance with healthcare regulations.
+
+### Scope<hr>
+
+Scope for the True Care Hospital Project:
+
+#### Website Development:
+
+- Design and develop a user-friendly website accessible to both desktop and mobile users.
+Implement intuitive navigation and responsive design to enhance user experience.
+Incorporate features for displaying hospital details, services offered, and facilities available without requiring user sign-in.
+
+#### User Management:
+
+- Develop a user authentication system allowing users to create accounts, log in, and manage their profiles.
+- Enable users to personalize their profiles by adding personal details and photos.
+- Implement security measures to protect user data and ensure compliance with privacy regulations.
+
+#### Appointment Management:
+
+- Create a booking system allowing registered users to schedule appointments with healthcare professionals.
+- Develop features for managing appointment slots, including availability and scheduling conflicts.
+- Provide confirmation notifications and reminders to users regarding their upcoming appointments.
+
+#### Doctor Profiles and Appointment Handling:
+
+- Enable doctors to create and manage their profiles, including adding professional details and availability.
+- Implement functionalities for doctors to view and manage appointments booked by patients.
+- Allow doctors to provide diagnoses, add prescriptions, and update medical records for patient appointments.
+
+#### Communication Features:
+
+- Facilitate secure communication between patients and healthcare professionals through messaging or chat functionalities.
+- Enable patients to access medical reports, prescriptions, and diagnoses conveniently from their profiles.
+- Implement notification systems to alert users about updates to their medical records or appointments.
+
+#### Data Management and Security:
+
+- Develop a robust database system for storing user profiles, appointment details, medical records, and other relevant data.
+- Implement data encryption and security protocols to protect sensitive information and ensure compliance with healthcare data regulations.
+- Regularly backup and maintain data integrity to prevent loss or corruption of critical information.
+
+#### Testing and Deployment:
+
+- Conduct thorough testing of all website functionalities to identify and address any bugs or usability issues.
+- Deploy the website on a reliable hosting platform with adequate resources to handle user traffic and ensure uptime.
+- Provide ongoing maintenance and support to address user feedback, optimize performance, and implement updates as needed.
+
+The scope outlined above encompasses the key features and functionalities of the True Care Hospital project, aiming to create a comprehensive virtual healthcare platform that meets the needs of both patients and healthcare professionals.
+
+___
+
+### Structure
+
+#### All Page Header
+- True care logo work as a loink to the home page
+- Navigation Bar: navigation links to Home, About Us, Departmentsn Contact US, Appointments.
+- If the user is authenticated then the right corner of the nav bar show the user name and the log out button. otherwise it will show two buttons for login and sign up
+- the appointment will navigate to the appointment form only if the user is authenticated, otherwise navigate to a signup or login page.
+
+#### All Page Footer
+- emergency contact Number
+- Appointment contact Number
+- Appointment Enquiry e-mail
+- Address
+- Location Map
+- links to the releavent pages
+- copyright details
+- social media links
+
+#### Home Page
+- Carausel Images
+- Key features and service details
+
+
+#### Department Page
+
+- Show all the department with brief discription
+- button for each department to show detailed view
+
+#### Department Details Page
+
+- detailed description about he department
+- details of doctors who give service in the department
+
+#### Contact Us Page
+- Important Contact details
+- form to Message to hospital by providing some personal details
+
+#### Appointment Page
+
+- Form to submit an appointment
+- If the user has previously updated their personal details, they will automatically populate in the Appointment form. Otherwise, the user need to update it atleast with the appoinment creation.
+- when the appoinment is submitted the page is navigated to the page that show all appointments of the user.
+
+
+
+#### 
+
