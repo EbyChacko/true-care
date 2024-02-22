@@ -236,3 +236,15 @@ The wireframes for desktop were created with Photoshop tool.
   <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708609070/samples/true_care/Readme/page-diagnosis_page_hytbfs.webp"><br>
 </details>
 
+**FLOWCHARTS**<br>
+The Flowchart for my program was created using <b>[draw.io](https://app.diagrams.net/)</b> and it visually represents how the system works.<br>
+
+<details>
+  <summary>Flow Chart</summary>
+  <h4>Patient Flow chart</h4>
+  <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708623988/samples/true_care/Readme/Flow_Chart_Patient_lmjuaw.webp"><br>
+  <h4>Doctor Flow Chart</h4>
+  <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708623989/samples/true_care/Readme/Flow_Chart_Doctor_qlnzhf.webp"><br>
+  <h4>Admin Flow Chart</h4>
+  <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708624389/samples/true_care/Readme/Flow_Chart_Admin_1_umdhjl.webp"><br>
+</details><br>
