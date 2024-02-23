@@ -329,8 +329,230 @@ All the features mensioned above are accessible to all users, regardless of whet
     <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708691849/samples/true_care/Readme/signup_login_tlyp3t.png"><br>
 
 
-7. **Contact Us Page**:
+7. **Sign Up Page**:
 
    If the user is not signed in, they can select the "Sign Up" option, which will then navigate them to the signup form. <br>
     <br>
     <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708691849/samples/true_care/Readme/signup_form_lmeeq5.png"><br>
+
+
+
+8. **Update profile Page**:
+
+   Upon successful signup, users will be automatically directed to the update profile page. This step is essential as it ensures that users provide necessary personal details required for future procedures. By guiding users to update their profiles immediately after signup, True Care Hospital ensures a seamless and efficient user experience while facilitating smooth progression through the healthcare journey. <br>
+    <br>
+    <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708692651/samples/true_care/Readme/Screenshot_2024-02-23_at_12.50.15_bpz7s7.png"><br>
+
+9. **Profile Page**:
+
+   Upon updating all details, users are directed to their personal profile page, which showcases all provided information. This includes a default profile picture, username, and automatically generated user ID. The page serves as a centralized hub for users to view and manage their personal information efficiently. Additionally, users can easily navigate to their appointments through a dedicated navigation button, ensuring seamless access to their healthcare schedule.<br>
+    <br>
+    <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708693562/samples/true_care/Readme/Profile_page_lhn319.png"><br>
+
+
+10. **Appointment View Page**:
+
+    For new users accessing the "My Appointments" page, a streamlined experience awaits. Upon arrival, a blank page greets them, accompanied by a message indicating that no appointments are currently scheduled. Alongside this message, a prominent button invites users to initiate the appointment booking process directly from the page. This user-friendly approach ensures that new users can effortlessly begin their journey with True Care Hospital by scheduling their first appointment with ease.
+
+    Additionally, users have access to navigation buttons allowing them to filter appointments based on various criteria, including "All Appointments," "Attended Appointments," and "Upcoming Appointments." Furthermore, a convenient button is provided for users to easily navigate back to their personal details page.<br>
+    <br>
+    <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708693561/samples/true_care/Readme/Appointment_view_page_rpkiph.png"><br>
+
+
+11. **Appointment Page**:
+
+    When a user decides to create an appointment, they are directed to the appointment page. Here, users can review the personal details they have already provided, facilitating a seamless booking process. Should the need arise to modify any of the data, users have the option to update it directly while creating the appointment.
+
+    As part of the appointment creation process, users are prompted to select the relevant department. Upon selecting a department, the doctor list dynamically filters to display only those physicians associated with the chosen department. This feature streamlines the selection process, ensuring that users have access to relevant healthcare providers based on their specific medical needs.<br>
+    <br>
+    <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708691851/samples/true_care/Readme/Screenshot_2024-02-23_at_12.19.00_xhnkvi.png"><br>
+
+
+12. **Appointment view Page**:
+
+    Upon successfully creating an appointment, the user is redirected back to their profile page, where the newly created appointment is displayed. Users are presented with options to view appointment details and to delete the appointment if desired. 
+    
+    The delete option is configured to function only under specific conditions: the appointment must be upcoming, and it must not yet be approved. This ensures that users can only delete appointments that have not yet occurred and are still pending approval, preventing accidental deletion of confirmed or past appointments.
+    
+    
+    By selecting to view the appointment, users are seamlessly navigated to the appointment details page, providing comprehensive information about the scheduled appointment.<br>
+    <br>
+    <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708697138/samples/true_care/Readme/appointments_vxmtck.png"><br>
+
+
+
+13. **Appointment Details Page**:
+
+    If the user chooses to view the appointment details, they are navigated to a detailed view of the appointment. Here, users have the option to make changes to the appointment by clicking the edit button on the details page. This functionality allows users to easily modify appointment details as needed, ensuring flexibility and convenience in managing their healthcare schedule.
+
+    If the user edits the appointment, the approval status of the appointment is automatically set to false. This ensures that any modifications made to the appointment require re-approval, maintaining the integrity and accuracy of the scheduling process.<br>
+    <br>
+    <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708695563/samples/true_care/Readme/Appointment_details_y0lyni.png"><br>
+
+
+14. **Profile Picture Page**:
+
+    Users have the option to add a profile picture on their profile page. By clicking on the default profile picture displayed, users are seamlessly navigated to the profile picture upload page. Here, users can upload an image of up to 10 MB in size to personalize their profile. This feature enhances user customization and engagement, allowing individuals to express their identity visually within the True Care Hospital platform.<br>
+    <br>
+    <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708697138/samples/true_care/Readme/profile_Picture_fa8wh6.png"><br>
+
+All the above ementioned features are designed for the  users outside the hospital who seek services from True Care Hospital. However, there is a distinct user type within the system: the doctor. Doctors possess all the functionalities available to normal users but are provided with a different profile view specifically for their professional details. 
+
+To access this specialized profile view, doctors are required to create a profile similar to that of a patient. Additionally, the admin must set an "IS_DOCTOR" field in the doctor's personal details. Once this is done, doctors gain access to the profile view curated specifically for their profession, enabling them to manage their professional information effectively within the True Care Hospital system.
+
+
+15. **Doctor personal details Page**:
+
+    In addition to the standard user profile, doctors have  an additional section for professional details within their personal details page. This enables doctors to manage their professional information seamlessly alongside their personal details. Doctors have the option to add these professional details either directly from the navigation bar or within the personal details page itself. This ensures that doctors can efficiently update and maintain both their personal and professional information.<br>
+    <br>
+    <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708698091/samples/true_care/Readme/Doctor_Profile_n43zpm.png"><br>
+
+16. **Doctor Profile Page**:
+
+    The main feature of the doctor's page is the doctor profile page, where upon loading, the doctor can immediately view the appointments booked for the current day that have already been approved. From this page, the doctor can easily navigate to filtered views of appointments, such as "All Appointments," "Upcoming Appointments," "Attended Appointments," and "Appointments Pending Approval."
+
+    In each view, the doctor can access relevant details about the appointments, including patient name, patient ID, and attendance status. Additionally, in the "All Appointments" view, the doctor has the ability to approve any unapproved appointments.<br>
+    <br>
+    <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708701379/samples/true_care/Readme/Screenshot_2024-02-23_at_15.15.51_wjin3m.png"><br>
+
+    Specifically in the "Pending Approval" view, the doctor can either approve the appointment or modify the approval details as needed. It's important to note that any changes made to the approval status must be communicated with the patient via call or email, as there is currently no notification system implemented. However, consideration will be given to implementing such a system in the future. <br>
+    <br>
+    <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708701303/samples/true_care/Readme/Screenshot_2024-02-23_at_15.14.18_mia98t.png"><br>
+
+
+17. **Doctor personal details Page**:
+
+    When a doctor selects an appointment from the list, a new appointment detail section is opened, displaying basic personal details of the patient, including their name, ID, address, mobile number, email, gender, and date of birth.
+
+
+
+    Additionally, within this section, the doctor can access a diagnosis form to fill out, detailing the patient's medical condition. Furthermore, there is a prescription form available for the doctor to prescribe medications, as well as a section to add medical reports such as blood results, ECG, X-ray, etc.<br>
+    <br>
+    <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708702604/samples/true_care/Readme/Screenshot_2024-02-23_at_15.35.44_e0mlhe.png"><br>
+    Upon saving the diagnosis form, the status of the appointment attendance is automatically marked as "attended," reflecting the completion of the appointment.
+
+    Any prescriptions or medical reports added by the doctor dynamically appear on the page, ensuring that all relevant information is readily accessible and visible for both the doctor and the patient. This streamlined approach enhances efficiency and facilitates comprehensive patient care within the True Care Hospital platform.<br>
+    <br>
+    <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708702603/samples/true_care/Readme/Screenshot_2024-02-23_at_15.35.44_2_ivnwxd.png"><br>
+
+
+15. **Doctor personal details Page**:
+
+    When a doctor adds a prescription or medical report, it dynamically appears in the patient's appointment details page. This ensures that patients have access to their updated medical information, including prescriptions and reports, directly within their appointment details. Patients can then easily download these documents as needed, facilitating seamless access to their healthcare records and enhancing their ability to manage their health effectively.<br>
+    <br>
+    <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708703333/samples/true_care/Readme/prescription_and_medical_report_z47nmk.png"><br>
+
+
+
+[Back to Table of Contents](#table-of-contents)
+___
+
+### Future Feature Considerations
+
+* As a future consideration, adding a reception user role to the system would enhance the efficiency of managing appointment approvals and medical report uploads. This reception user would be responsible for handling these tasks, relieving the burden from the doctor's page. By delegating these responsibilities to the reception user, doctors can focus on providing medical care while receptionists manage administrative tasks. 
+
+* Another future consideration is to implement a chat facility within the True Care Hospital platform, facilitating communication between users and doctors, as well as between doctors themselves. This chat feature would enable users to easily communicate with their assigned doctors, seeking clarification on medical concerns or discussing treatment plans. Additionally, it would allow doctors to collaborate and consult with each other, enhancing the quality of care provided to patients.
+
+* Implementing a notification system to inform users about appointments and updates. This system will ensure seamless communication between users, receptionists, and doctors, enhancing the overall user experience.
+
+    Initially, notifications will be sent to the receptionist whenever an appointment is created.
+
+    Furthermore, if any updates are made to appointments by the receptionist or doctor, users will receive notifications to stay informed about any changes.
+
+[Back to Table of Contents](#table-of-contents)
+___
+
+## Responsive Layout and Design
+The project design has been adapted to all types of devices using Bootstrap predefined breakpoints.
+
+**Tested devices:**
+
+
+    - Moto G4 
+    - iPhone SE 
+    - iPhone XR 
+    - iPhone 11 
+    - iPhone 13
+    - iPhone 5/SE 
+    - iPhone 6/7/8 
+    - Ipad
+    - Ipad Air 
+    - Ipad Mini
+    - Ipad Pro 
+    - Pixel 5 
+    - Surface Duo 
+    - Surface Pro 7 
+    - Nest Hub 
+    - Nest Hub Max
+    - Samsung Galaxy S20 Ultra 
+    - Samsung Galaxy S8 
+    - Galaxy Note 2 
+    - Galaxy Tab S4
+    - Asus Vivobook
+
+All the above devices are virtually tested using the Google chrome web browser.
+
+
+## Tools Used
+
+[GitHub](https://github.com/) - used for hosting the source code of the program<br>
+[Visual Studio](https://code.visualstudio.com/) - for writing and testing the code<br>
+[Heroku](https://dashboard.heroku.com/) - used for deploying the project<br>
+[Adobe Photoshop](https://www.adobe.com/ie/products/photoshop.html) - for creating the wireframes, Edit or Resize Images<br>
+[DBeaver](https://dbeaver.io/) - used for creating ER Diagram<br>
+[Font Awesome](https://fontawesome.com/) - for creating atractive UX with icons<br>
+[Bootstrap5](https://getbootstrap.com/) - for adding predifined styled elements and creating responsiveness<br>
+[Google Fonts](https://fonts.google.com/) - for typography<br>
+[JsHint](https://jshint.com/) - used for validating the javascript code<br>
+[PEP8 Validator](http://pep8online.com/) - used for validating the python code<br>
+[HTML - W3C HTML Validator](https://validator.w3.org/#validate_by_uri+with_options) - used for validating the HTML<br>
+[CSS - Jigsaw CSS Validator](https://jigsaw.w3.org/css-validator/#validate_by_uri) - used for validating the CSS<br>
+[Chrome Del Tools](https://developer.chrome.com/docs/devtools/) - for debugging the project<br>
+[W.A.V.E.](https://wave.webaim.org/) - for testing accessibility<br>
+[ElephantSQL](https://www.elephantsql.com/) - for storing static data<br>
+[Docker desktop](https://www.docker.com/products/docker-desktop/) - for testing the websockets locally<br>
+[LightHouse]() - for testing performance<br>
+
+
+### Python packages
+
+    asgiref==3.7.2<br>
+    bleach==6.1.0<br>
+    Brotli==1.1.0<br>
+    certifi==2023.11.17<br>
+    cffi==1.16.0<br>
+    chardet==5.2.0<br>
+    charset-normalizer==3.3.2<br>
+    cloudinary==1.38.0<br>
+    cryptography==42.0.1<br>
+    cssselect2==0.7.0<br>
+    defusedxml==0.7.1<br>
+    dj-database-url==0.5.0<br>
+    dj3-cloudinary-storage==0.0.6<br>
+    Django==4.2.1<br>
+    django-allauth==0.57.0<br>
+    django-crispy-forms==2.1<br>
+    django-summernote==0.8.20.0<br>
+    fonttools==4.49.0<br>
+    gunicorn==20.1.0<br>
+    html5lib==1.1<br>
+    idna==3.6<br>
+    oauthlib==3.2.2<br>
+    pillow==10.2.0<br>
+    psycopg2-binary==2.9.9<br>
+    pycparser==2.21<br>
+    pydyf==0.8.0<br>
+    PyJWT==2.8.0<br>
+    pyphen==0.14.0<br>
+    python3-openid==3.2.0<br>
+    reportlab==4.1.0<br>
+    requests==2.31.0<br>
+    requests-oauthlib==1.3.1<br>
+    six==1.16.0<br>
+    sqlparse==0.4.4<br>
+    tinycss2==1.2.1<br>
+    typing_extensions==4.9.0<br>
+    urllib3==2.1.0<br>
+    webencodings==0.5.1<br>
+    whitenoise==5.3.0<br>
+    zopfli==0.2.3v
