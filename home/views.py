@@ -133,7 +133,7 @@ def update_appointment(request, id):
     patient = request.user.patient
 
     if request.method == 'POST':
-        booking_form = BookingForm(request.POST, instance=appointment)
+        booking_form = BookingForm(request.POST)
 
         if booking_form.is_valid():
             # Save the updated appointment details

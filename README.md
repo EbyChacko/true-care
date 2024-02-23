@@ -55,6 +55,8 @@ ___
     - Health-conscious Individuals: Individuals proactively managing their health and seeking information on preventive care, wellness services, and healthcare resources. They appreciate easy access to healthcare information, tips for maintaining well-being, and options for seeking medical advice when needed.
 
 Overall, our website caters to a diverse audience with varying healthcare needs, offering a user-friendly platform that prioritizes accessibility, convenience, and quality in healthcare delivery.
+
+[Back to Table of Contents](#table-of-contents)
 ___
 
 ## UX
@@ -208,9 +210,10 @@ ___
 
 ___
 
-### Skeleton
+### SKELETON
 **Wireframes**<br>
 The wireframes for desktop were created with Photoshop tool.
+
 
 <details>
   <summary>Wire Frames</summary>
@@ -236,15 +239,98 @@ The wireframes for desktop were created with Photoshop tool.
   <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708609070/samples/true_care/Readme/page-diagnosis_page_hytbfs.webp"><br>
 </details>
 
-**FLOWCHARTS**<br>
+___
+
+### FLOWCHARTS<br>
 The Flowchart for my program was created using <b>[draw.io](https://app.diagrams.net/)</b> and it visually represents how the system works.<br>
 
 <details>
   <summary>Flow Chart</summary>
   <h4>Patient Flow chart</h4>
-  <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708623988/samples/true_care/Readme/Flow_Chart_Patient_lmjuaw.webp"><br>
+  <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708684864/samples/true_care/Readme/Patient_Flow_chart_fe8y6l.webp"><br>
   <h4>Doctor Flow Chart</h4>
-  <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708623989/samples/true_care/Readme/Flow_Chart_Doctor_qlnzhf.webp"><br>
+  <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708684864/samples/true_care/Readme/admin_flow_chart_sutjgs.webp"><br>
   <h4>Admin Flow Chart</h4>
-  <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708624389/samples/true_care/Readme/Flow_Chart_Admin_1_umdhjl.webp"><br>
+  <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708684864/samples/true_care/Readme/Doctor_Flow_chart_hb08pc.webp"><br>
 </details><br>
+
+### DATABASE<br>
+The project uses the PostgreSQL relational database for storing the data.<br>
+The final output of the ER diagram is created using the [DBEAVER](https://dbeaver.io/) Free universal database Manager.
+<details>
+  <summary>ER Diagram</summary>
+  <h4>Final ER Diagram</h4>
+  <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708686780/samples/true_care/Readme/ER_Diagram_vkyd5p.webp"><br>
+</details><br>
+
+[Back to Table of Contents](#table-of-contents)
+
+___
+
+## Agile Methodology
+This project was developed using the Agile methodology.<br>
+All epics and user stories implementation progress was registered using [Github issues](https://github.com/EbyChacko/true-care/issues). As the user stories were accomplished, they were moved in the Kanban Board from **To Do**, to **In-progress** and then to **Done** lists. 
+
+[Kanban Board can be viewed here](https://github.com/users/EbyChacko/projects/5)
+
+
+[Back to Table of Contents](#table-of-contents)
+
+___
+
+## Features
+### Exixsting Features
+
+1. **All Pages**:
+
+    On every page of the website, a navigation bar positioned in the header area offers seamless access to various sections, featuring the True Care Hospital logo and navigation buttons leading to different pages. Users can effortlessly navigate to any page from anywhere on the website. Notably, access to the appointment page is restricted to authenticated users; those who aren't logged in will be redirected to a login/signup page. Here, users can either log in if they already have an account or sign up for a new one. Additionally, this functionality is directly integrated into the navigation bar: if a user is logged in, the navbar will display their username and a logout button instead of the signup/login options.<br>
+    <br>
+    <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708689489/samples/true_care/Readme/Header_b8ftxa.png"><br>
+   
+
+    In the footer section, users can find essential contact details for quick access, including phone numbers, email addresses, and the hospital's physical address. Additionally, a location map is provided for easy reference. The footer also contains copyright information and links to the hospital's social media profiles. To facilitate navigation, quick links to different pages are included in the footer, allowing users to access various sections without needing to scroll back to the header. This ensures a user-friendly browsing experience and enhances accessibility across the website.<br>
+    <br>
+    <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708689488/samples/true_care/Readme/Footer_nofqby.png"><br>
+   
+
+2. **Home Page**:
+
+    On the homepage, the website prominently features a carousel of images along with brief descriptions highlighting the significance of the hospital. These visuals emphasize the importance of the institution while also spotlighting its unique key features. Additionally, there is a warm welcome extended to international customers, underscoring the hospital's commitment to providing exceptional care to a diverse range of patients.<br>
+    <br>
+    <img src=" https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708689831/samples/true_care/Readme/Home_Page_adhgje.png"><br>
+
+
+
+3. **About Us Page**:
+
+    True Care Hospital's About Us page serves as a beacon of trust and reliability for users seeking medical assistance. Through compelling narratives and testimonials from satisfied patients, we illustrate our track record of success and the positive impact we've had on countless lives. By adding the Vision, Mission and the phelosophy, I added more than just a repository of information—it's an invitation to experience the unparalleled quality and compassion that define True Care Hospital. <br>
+    <br>
+    <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708690215/samples/true_care/Readme/Screenshot_2024-02-23_at_12.05.59_2_guvjhi.png"><br>
+
+4. **Departments Page**:
+
+    On the Departments page, users will find concise descriptions of each department, added via the hospital's admin page. These descriptions offer insights into the specialized services provided by each department. Additionally, for further exploration, a "Learn More" button accompanies each department, guiding users to dedicated pages with comprehensive information about the department's offerings, medical specialties, and expert staff. This user-friendly approach ensures easy navigation and empowers users to make informed decisions about their healthcare options at True Care Hospital. <br>
+    <br>
+    <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708690216/samples/true_care/Readme/Screenshot_2024-02-23_at_12.05.59_k7xzjz.png"><br>
+
+5. **Contact Us Page**:
+
+    The Contact page serves as a centralized hub for all contact details essential for users. This includes emergency contact numbers, appointment booking contact information such as mobile numbers and email addresses, as well as dedicated channels for international customers. Additionally, users can utilize a convenient form to directly communicate with the hospital, providing their personal details such as name, mobile number, and email for seamless messaging. This comprehensive approach ensures easy access to communication channels and facilitates direct interaction with True Care Hospital. <br>
+    <br>
+    <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708691119/samples/true_care/Readme/Screenshot_2024-02-23_at_12.19.00_2_sdvaft.png"><br>
+
+All the features mensioned above are accessible to all users, regardless of whether they are signed in or not.
+
+
+6. **Signup / login Page**:
+
+    If a user attempts to access the appointment page without being logged in, they will be redirected to a signup or login page. This page will feature two buttons—one for signing up and another for logging in—along with a back button for returning to the home page. <br>
+    <br>
+    <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708691849/samples/true_care/Readme/signup_login_tlyp3t.png"><br>
+
+
+7. **Contact Us Page**:
+
+   If the user is not signed in, they can select the "Sign Up" option, which will then navigate them to the signup form. <br>
+    <br>
+    <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708691849/samples/true_care/Readme/signup_form_lmeeq5.png"><br>
