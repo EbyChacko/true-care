@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.utils import timezone
 from django.db.models import Q
 from datetime import date
-from django.http import HttpResponseRedirect, JsonResponse
+from django.http import HttpResponseRedirect, JsonResponse, Http404
 from django.urls import reverse_lazy, reverse
 from .models import Department, Patient, Doctor, PersonalDetail, booking, DoctorDiagnosis, Prescription, MedicalReport, ReportNames
 from .forms import CustomerMessageForm,  PersonalDetailForm, PatientForm, BookingForm, UploadPictureForm, DoctorForm, DiagnosisForm, PrescriptionForm, MedicalReportForm
@@ -126,23 +126,18 @@ def appointment(request):
 # to update appointments
 @login_required
 def update_appointment(request, id):
-    # Retrieve the appointment object
     appointment = get_object_or_404(booking, pk=id)
-
     personal_detail = request.user.patient.personal_details
     patient = request.user.patient
-
     if request.method == 'POST':
-        booking_form = BookingForm(request.POST)
-
+        booking_form = BookingForm(request.POST, instance=appointment)
         if booking_form.is_valid():
-            # Save the updated appointment details
-            appointment = booking_form.save(commit=False)
-            appointment.patient_id = patient
-            appointment.personal_detail = personal_detail
-            appointment.date_booked = timezone.now()  # Update the date_booked
-            appointment.approved = False  # Set approved to False
+            updated_appointment = booking_form.save(commit=False)
+            appointment.department = updated_appointment.department
+            appointment.doctor = updated_appointment.doctor
+            appointment.booking_date = updated_appointment.booking_date
             appointment.save()
+            
             return redirect('patient_appointments')
     else:
         booking_form = BookingForm(instance=appointment)
@@ -161,6 +156,7 @@ def update_appointment(request, id):
         'doctor': appointment.doctor.pk,
         'booking_date': appointment.booking_date.strftime('%Y-%m-%d') if appointment.booking_date else '',
     })
+
 
 
 
@@ -270,12 +266,17 @@ def patient_appointments(request):
 
 # to show the appointment details in a new page
 def appointment_details(request, id):
-    appointment = get_object_or_404(booking, id=id)
+    try:
+        appointment = booking.objects.get(patient_id=request.user.patient.id, id=id)
+    except booking.DoesNotExist:
+        return render(request, '404.html', {'Message':'Appointment Not Found'})
     now = timezone.now()
     personal_detail = request.user.patient.personal_details
+        
     patient = request.user.patient
     prescriptions = Prescription.objects.filter(booking=appointment)
     medical_reports = MedicalReport.objects.filter(booking=appointment)
+
     return render(request,'appointment_details.html',{
         'personal_detail': personal_detail,
         'patient': patient,
@@ -295,7 +296,7 @@ def delete_appointment(request, id):
     except booking.DoesNotExist:
         messages.error(request, 'Appointment not found.')
     
-    return HttpResponseRedirect(reverse('profile'))
+    return HttpResponseRedirect(reverse('patient_appointments'))
 
 
 # to upload and update the profile picture

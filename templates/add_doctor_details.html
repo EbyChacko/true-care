@@ -12,32 +12,41 @@
             <div class="text_centre">
                 <h1><i class="fa-regular fa-file-lines"></i></h1>
                 <h3 class="pb-4">Professional Details of the Doctor </h3>
-                <form class="bg-white text-start rounded-5 p-5" method="POST" action="" enctype="multipart/form-data">
+                <form class="bg-white text-start rounded-5 p-5 needs-validation" method="POST" action="" enctype="multipart/form-data" novalidate>
                     {% csrf_token %}
                     <div class="pb-2 pt-4">
                         <h5 class="text-uppercase text-center">Dr. {{user}}'s Details</h5>
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="" style="width:130px" required>Designation</span>
-                        <input type="text" name="designation" value="{{ doctor.designation }}" class="form-control">
+                        <input type="text" name="designation" value="{{ doctor.designation }}" class="form-control" required>
+                        <div class="invalid-feedback">
+                            Please enter your designation.
+                        </div>
                     </div>
-                    <p id="designationError" style="color: red; visibility: hidden;" class="text-start"></p>
-
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="" style="width:130px" required>Doctor ID</span>
-                        <input type="text" name="doctor_Number" value="{{ doctor.doctor_Number }}" class="form-control">
+                        <input type="text" name="doctor_Number" value="{{ doctor.doctor_Number }}" class="form-control" required>
+                        <div class="invalid-feedback">
+                            Please enter your doctor ID.
+                        </div>
                     </div>
-                    <p id="doctor_NumberError" style="color: red; visibility: hidden;" class="text-start"></p>
 
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="" style="width:130px" required>Qualification</span>
-                        <input type="text" name="education" value="{{ doctor.education }}" class="form-control">
+                        <input type="text" name="education" value="{{ doctor.education }}" class="form-control" required>
+                        <div class="invalid-feedback">
+                            Please enter your qualification.
+                        </div>
                     </div>
-                    <p id="educationError" style="color: red; visibility: hidden;" class="text-start"></p>
+
 
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="" style="width:130px" required>Specialisation</span>
-                        <input type="text" name="speciality" value="{{ doctor.speciality }}" class="form-control">
+                        <input type="text" name="speciality" value="{{ doctor.speciality }}" class="form-control" required>
+                        <div class="invalid-feedback">
+                            Please enter your specialisation.
+                        </div>
                     </div>
                     <p id="specialityError" style="color: red; visibility: hidden;" class="text-start"></p>
                     <div class="input-group mb-3">
@@ -50,6 +59,9 @@
                                 </option>
                             {% endfor %}
                         </select>
+                        <div class="invalid-feedback">
+                            Please Select your department.
+                        </div>
                     </div>
                     <p id="departmentError" style="color: red; visibility: hidden;" class="text-start"></p>
 
@@ -85,6 +97,28 @@
             }
         });
     });
+
+
+    (function () {
+        'use strict'
+
+        var forms = document.querySelectorAll('.needs-validation')
+        Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+
+                    form.classList.add('was-validated')
+                }, false)
+            })
+    })()
+
+    function validateForm() {
+        return true;
+    }
 
 </script>
 

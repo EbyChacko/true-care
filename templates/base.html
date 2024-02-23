@@ -100,6 +100,15 @@
     </nav>
   </header>
 
+  {% if messages %}
+  {% for message in messages %}
+  <div class="alert alert-dark" role="alert">
+    {{ message }}
+
+  </div>
+  {% endfor %}
+  {% endif %}
+
   {% block content %} 
   
   

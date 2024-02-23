@@ -12,67 +12,51 @@
             <div class="text_centre">
                 <h1><i class="fa-regular fa-file-lines"></i></h1>
                 <h3 class="pb-2">Appointment Form </h3>
-                <form class="bg-white text-start rounded-5 p-5" method="POST" action="" enctype="multipart/form-data">
+                <form class="bg-white text-start rounded-5 p-5 needs-validation" method="POST" action="" enctype="multipart/form-data" novalidate>
                     {% csrf_token %}
                     <div class="pb-2 pt-4">
                         <h5>Appointment Details</h5>
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="" style="width:130px">Department</span>
-                        <select name="department" id="departments" value="appointment.department.value" class="form-control"
+                        <select name="department" id="departments" value="appointment.department.value" class="form-select"
                             id="department" required>
                             <option value="">Select Department...</option>
                             {% for department in departments %}
                             <option value="{{ department.pk }}" {% if department.pk == appointment.department.pk %} selected {% endif %}>
                                 {{ department.department_name }}</option>{% endfor %}
                         </select>
+                        <div class="invalid-feedback">
+                            Please select a department.
+                        </div>
                     </div>
-                    {% if form.department.errors %}
-                    <ul>
-                        {% for error in form.field_name.errors %}
-                        <li>{{ error }}</li>
-                        {% endfor %}
-                    </ul>
-                    {% endif %}
-                    <p id="departmentError" style="color: red; visibility: hidden;" class="text-start"></p>
-
+                
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="" style="width:130px">Doctor</span>
-                        <select name="doctor" id="doctor" value="{{ doctor.name.value }}" class="form-control" required>
+                        <select name="doctor" id="doctor" value="{{ doctor.name.value }}" class="form-select" required>
                             <option value="">Select Doctor...</option>
                             {% for doctor in doctors %}
                             <option value="{{ doctor.pk }}" {% if doctor.pk == appointment.doctor.pk %} selected {% endif %}>
                                 {{ doctor.personal_details.name }} ({{ doctor.department.department_name }})</option>
                             {% endfor %}
                         </select>
+                        <div class="invalid-feedback">
+                            Please select a doctor.
+                        </div>
                     </div>
-                    {% if form.doctor.errors %}
-                    <ul>
-                        {% for error in form.field_name.errors %}
-                        <li>{{ error }}</li>
-                        {% endfor %}
-                    </ul>
-                    {% endif %}
-                    <p id="doctorError" style="color: red; visibility: hidden;" class="text-start"></p>
-
+                
                     <div class="input-group mb-3">
-                        <span class="input-group-text" id="" style="width:130px" required>Date</span>
-                        <input type="date" name="booking_date" value="{{ booking_date }}"
-                            class="form-control">
+                        <span class="input-group-text" id="" style="width:130px">Date</span>
+                        <input type="date" name="booking_date" value="{{ booking_date }}" class="form-control" required>
+                        <div class="invalid-feedback">
+                            Please select a valid date.
+                        </div>
                     </div>
-                    {% if form.booking_date.errors %}
-                    <ul>
-                        {% for error in form.field_name.errors %}
-                        <li>{{ error }}</li>
-                        {% endfor %}
-                    </ul>
-                    {% endif %}
-                    <p id="booking_dateError" style="color: red; visibility: hidden;" class="text-start"></p>
-
+                
                     {% if redirect_field_value %}
                     <input type="hidden" name="next" value="{% url 'message_confirmation' %}" />
                     {% endif %}
-
+                
                     <input type="submit" class="btn button" value="Submit">
                     <input type="reset" value="Reset Form" class="btn button1">
                 </form>
@@ -101,7 +85,32 @@
             }
         });
     });
+
     
+var forms = document.querySelectorAll('.needs-validation');
+
+Array.prototype.slice.call(forms).forEach(function (form) {
+    form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+            event.preventDefault();
+            event.stopPropagation();
+        } else {
+            var dateInput = form.querySelector('input[name="booking_date"]');
+            var selectedDate = new Date(dateInput.value);
+            var today = new Date();
+            if (selectedDate < today) {
+                event.preventDefault();
+                event.stopPropagation();
+                dateInput.classList.add('is-invalid');
+                dateInput.nextElementSibling.textContent = 'Please select a date today or in the future.';
+            }
+        }
+
+        form.classList.add('was-validated');
+    }, false);
+});
+
+
     </script>
 
 {% endblock %}
