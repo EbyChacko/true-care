@@ -99,15 +99,19 @@
       </div>
     </nav>
   </header>
+  
+  
 
   {% if messages %}
   {% for message in messages %}
-  <div class="alert alert-dark" role="alert">
+  <div class="alert alert-dark alert-dismissible fade show" role="alert">
     {{ message }}
-
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
   {% endfor %}
   {% endif %}
+
+
 
   {% block content %} 
   
@@ -119,15 +123,22 @@
       <div class="row">
         <div class="col-md-12 col-xl-4 mb-3 text-start pt-2">
           <h5 class="text-uppercase font-weight-bold">Emergency Contact</h5>
-          <p>+353 23 456 7890</p>
+          <a class="text-reset text-decoration-none" href="tel:+353 23 456 7890">
+            <p><i class="fa fa-phone-volume"> </i> +353 23 456 7890</p>
+        </a>
         </div>
         <div class="col-md-12 col-xl-4  mb-3 text-start pt-2">
           <h5 class="text-uppercase font-weight-bold">Appointments</h5>
-          <p>+353 89 123 4567</p>
+          <a class="text-reset text-decoration-none" href="tel:+353 89 123 4567">
+            <p><i class="fa fa-phone-volume"> </i> +353 89 123 4567</p>
+        </a>
         </div>
         <div class="col-md-12 col-xl-4  mb-3 text-start pt-2">
           <h5 class="text-uppercase font-weight-bold">Email Us</h5>
-          <p>info@truecarehospital.com</p>
+          <a class="text-reset text-decoration-none" href="mailto:info@truecarehospital.com">
+            <i class="fa-regular fa-envelope"> </i> info@truecarehospital.com
+        </a>
+          <p></p>
         </div>
       </div>
       <hr>
@@ -147,14 +158,8 @@
               </a>
             </li>
             <li>
-              <a href="#">
-                Our Doctors
-              </a>
-            </li>
-            <li>
-              <a href="{% url 'appointment' %}">
-                Make an appointment
-              </a>
+              <a class="nav-link"
+                href="{% if user.is_authenticated %}{% url 'appointment' %}{% else %}{% url 'login_or_signup' %}{% endif %}">Appointments</a>
             </li>
             <li>
               <a href="{% url 'contact' %}">Contact Us</a>
@@ -189,15 +194,28 @@
           </div>
           <div class="col-sm-12 col-xl-6 text-center pt-4">
             <p>Follow us on</p>
-            <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-f social"></i></a>
-            <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter social"></i></a>
-            <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram social"></i></a>
-            <a href="linkedin.com/in/eby-chacko-85695b245" target="_blank"><i class="fab fa-linkedin social"></i></a>
-            <a href="https://www.youtube.com/" target="_blank"><i class="fab fa-youtube social"></i></a>
+            <a href="https://www.facebook.com/" target="_blank"><p class="d-none">Facebook</p><i class="fab fa-facebook-f social"></i></a>
+            <a href="https://twitter.com/" target="_blank"><p class="d-none">Twitter</p><i class="fab fa-twitter social"></i></a>
+            <a href="https://www.instagram.com/" target="_blank"><p class="d-none">Instagram</p><i class="fab fa-instagram social"></i></a>
+            <a href="linkedin.com/in/eby-chacko-85695b245" target="_blank"><p class="d-none">Linkedin</p><i class="fab fa-linkedin social"></i></a>
+            <a href="https://www.youtube.com/" target="_blank"><p class="d-none">Youtube</p><i class="fab fa-youtube social"></i></a>
           </div>
         </div>
       </div>
   </footer>
+
+
+  <script>
+document.addEventListener('DOMContentLoaded', function() {
+    var alertElements = document.querySelectorAll('.alert');
+    alertElements.forEach(function(alertElement) {
+      setTimeout(function() {
+        alertElement.style.display = 'none';
+      }, 3000);
+    });
+  });
+  </script>
+
 
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
     integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
@@ -209,5 +227,6 @@
   <script src="{% static 'js/script.js' %}"></script>
 
 </body>
+
 
 </html>

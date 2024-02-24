@@ -87,8 +87,16 @@
                                         <h5 class=" text-warning">Date: {{ appointment.booking_date }}</h5>
                                         <h6 class=" text-white">Department : {{ appointment.department }}</h6>
                                         <h6 class=" text-white">Doctor : Dr. {{ appointment.doctor }}</h6>
-                                        <h6 class=" text-white">Status : {% if appointment.approved %}Approved
-                                            {% else%}Not Approved{% endif %}</h6>
+                                        <h6 class="text-white">
+                                            Status :
+                                            {% if appointment.attended %}
+                                                Attended
+                                            {% elif appointment.approved %}
+                                                Approved
+                                            {% else %}
+                                                Not Approved
+                                            {% endif %}
+                                        </h6>
                                     </div>
                                     <div class="row">
                                         <div class="col-12 d-flex justify-content-center pt-2">
@@ -135,8 +143,7 @@
                                         <h5 class=" text-warning">Date: {{ attended_appointment.booking_date }}</h5>
                                         <h6 class=" text-white">Department : {{ attended_appointment.department }}</h6>
                                         <h6 class=" text-white">Doctor : Dr. {{ attended_appointment.doctor }}</h6>
-                                        <h6 class=" text-white">Status : {% if attended_appointment.approved %}Approved
-                                            {% else%}Not Approved{% endif %}</h6>
+                                        <h6 class=" text-white">Status : Attended</h6>
                                     </div>
                                     <div class="row">
                                         <div class="col-12 d-flex justify-content-center pt-2">

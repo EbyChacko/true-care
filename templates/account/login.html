@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-
 {% load i18n %}
 {% load account socialaccount %}
 
@@ -13,17 +12,23 @@
             <div class="text_centre">
                 <h1><i class="fa-solid fa-hospital-user "></i></h1>
                 <h3 class="pb-3" >{% trans "Log In" %}</h3>
-                <form class="login bg-white text-start rounded-5 p-5" method="POST" action="{% url 'account_login' %}">
+                <form class="login bg-white text-start rounded-5 p-5 needs-validation" method="POST" action="{% url 'account_login' %}" novalidate>
                     {% csrf_token %}
                     
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="username-label" style="width:170px">User Name</span>
-                        <input type="text" name="login" value="" class="form-control" id="username" aria-labelledby="username-label">
+                        <input type="text" name="login" value="" class="form-control" id="username" aria-labelledby="username-label" required>
+                        <div class="invalid-feedback" id="username-feedback">
+                            Please provide a username.
+                        </div>
                     </div>
                     
                     <div class="input-group mb-3">
-                        <span class="input-group-text" id="password-confirm-label" style="width:170px">Password</span>
-                        <input type="password" name="password" value="" class="form-control" id="password" aria-labelledby="password-label">
+                        <span class="input-group-text" id="password-label" style="width:170px">Password</span>
+                        <input type="password" name="password" value="" class="form-control" id="password" aria-labelledby="password-label" required>
+                        <div class="invalid-feedback" id="password-feedback">
+                            Please provide a password.
+                        </div>
                     </div>
                 
                     <input type="hidden" name="next" value="{{ next }}" />
@@ -37,4 +42,57 @@
         </div>
     </div>
 </div>
+
+<script>
+    (function () {
+      'use strict';
+    
+      // Fetch the form fields and feedback elements
+      var form = document.querySelector('.login');
+      var usernameInput = document.getElementById('username');
+      var passwordInput = document.getElementById('password');
+      var usernameFeedback = document.getElementById('username-feedback');
+      var passwordFeedback = document.getElementById('password-feedback');
+    
+      // Function to validate username
+      function validateUsername() {
+        if (usernameInput.value.trim() === '') {
+          usernameInput.setCustomValidity("Please provide a username.");
+          usernameFeedback.style.display = 'block';
+          return false;
+        } else {
+          usernameInput.setCustomValidity("");
+          usernameFeedback.style.display = 'none';
+          return true;
+        }
+      }
+    
+      // Function to validate password
+      function validatePassword() {
+        if (passwordInput.value.trim() === '') {
+          passwordInput.setCustomValidity("Please provide a password.");
+          passwordFeedback.style.display = 'block';
+          return false;
+        } else {
+          passwordInput.setCustomValidity("");
+          passwordFeedback.style.display = 'none';
+          return true;
+        }
+      }
+    
+      // Event listeners for form submission and input fields
+      form.addEventListener('submit', function(event) {
+        if (!validateUsername() || !validatePassword()) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      });
+    
+      usernameInput.addEventListener('input', validateUsername);
+      passwordInput.addEventListener('input', validatePassword);
+    })();
+    </script>
+    
+
 {% endblock %}
