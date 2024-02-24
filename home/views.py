@@ -67,7 +67,7 @@ def departments(request):
 # to show the department details in the department_details.html
 def department_details(request, slug):
     try:
-        department = get_object_or_404(Department, slug=slug)
+        department = Department.objects.get(slug=slug)
         doctors = Doctor.objects.filter(department=department, personal_details__is_doctor=True)
     except Doctor.DoesNotExist:
         return render(request, '404.html', {'Message':'Department Not Found'})
@@ -133,7 +133,7 @@ def appointment(request):
 @login_required
 def update_appointment(request, id):
     try:
-        appointment = get_object_or_404(booking, pk=id)
+        appointment = booking.objects.get(pk=id)
         personal_detail = request.user.patient.personal_details
         patient = request.user.patient
         departments = Department.objects.all()
@@ -432,16 +432,17 @@ def add_doctor_details(request):
 
 def doctor_appointment_details(request, id):
     try:
-        appointment = get_object_or_404(booking, id=id)
+        appointment = booking.objects.get(doctor=request.user.patient.personal_details.doctor, id=id)
         now = timezone.now()
         patient_detail = appointment.patient_id.personal_details
         patient = appointment.patient_id
-        personal_detail = request.user.patient.personal_details
         prescriptions = Prescription.objects.filter(booking=appointment)
         medical_reports = MedicalReport.objects.filter(booking=appointment)
         report_names = ReportNames.objects.all()
+        personal_detail = request.user.patient.personal_details
     except ObjectDoesNotExist:
-       return render(request, '404.html')
+        print('Error Happened')
+        return render(request, '404.html',{'Message':'No Appointment Found'},)
     try:
         diagnosis_instance = DoctorDiagnosis.objects.get(booking=appointment)
         initial_diagnosis_data = {
@@ -514,7 +515,7 @@ def doctor_appointment_details(request, id):
 
 def delete_prescription(request, prescription_id):
     try:
-        prescription = get_object_or_404(Prescription, pk=prescription_id)
+        prescription = Prescription.objects.get(booking__doctor=request.user.patient.personal_details.doctor, pk=prescription_id)
     except Prescription.DoesNotExist:
        return render(request, '404.html', {'Message':'Prescription Not Found'})
     appointment_id = prescription.booking.id
@@ -524,7 +525,7 @@ def delete_prescription(request, prescription_id):
 
 def delete_medical_report(request, medical_report_id):
     try:
-        medical_report = get_object_or_404(MedicalReport, pk=medical_report_id)
+        medical_report = MedicalReport.objects.get(booking__doctor=request.user.patient.personal_details.doctor, pk=medical_report_id)
     except MedicalReport.DoesNotExist:
        return render(request, '404.html', {'Message':'No Report Found'})
     appointment_id = medical_report.booking.id
@@ -534,7 +535,7 @@ def delete_medical_report(request, medical_report_id):
 
 def generate_prescription_pdf(request, id):
     try:
-        appointment = get_object_or_404(booking, id=id)
+        appointment = booking.objects.get(id=id)
         prescriptions = Prescription.objects.filter(booking=appointment)
     except Prescription.DoesNotExist:
        return render(request, '404.html', {'Message':'No Prescription Found'})
