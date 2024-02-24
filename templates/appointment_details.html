@@ -23,21 +23,23 @@
                         <br>
                         <h5>Appointment Date : {{ appointment.booking_date }}</h5>
                         <h6>Department : {{ appointment.department }}</h6>
-                        <p>Doctor : Dr. {{ appointment.doctor }}</p><br>
-
+                        <p>Doctor : Dr. {{ appointment.doctor }}</p>
+                        <p class="text-tertiary">Date booked : {{ appointment.date_booked }}</p>
+                        <hr>
+                        {% if not appointment.attended %}
+                        <br>
                         <p>Dear {{ appointment.patient_id }},</p>
 
                         <p>You have an appointment scheduled with Dr. {{ appointment.doctor }} on
                             {{ appointment.booking_date }} at the {{ appointment.department }} Department.</p>
+                            <p>Thank You</p>
                         <br>
-                        <p class="text-tertiary">Date booked : {{ appointment.date_booked }}</p>
                         <hr>
                         <h5>Status : {% if appointment.approved %}Approved{% else %}Not Approved{% endif %}</h5>
                         <p>Contact Reception for Further details... <a class="text-reset text-decoration-none"
                                 href="tel:0484 668 1234">
                                 <i class="fa fa-phone-volume"> </i> +353 89 123 4567
                             </a></p>
-                        {% if not appointment.attended %}
                         <div class="col-12 text-start ps-5 py-3">
                             <a href="{% url 'update_appointment' id=appointment.id %}"
                                 class="  text-reset text-decoration-none px-2">
