@@ -110,6 +110,7 @@ def appointment(request):
             booking.save()
             request.user.email = personal_detail_form.cleaned_data['email']
             request.user.save()
+            messages.success(request, 'Appointment Submitted. Our Staff Will contact you soon')
             return redirect('patient_appointments')
     else:
         booking_form = BookingForm()
@@ -149,7 +150,9 @@ def update_appointment(request, id):
             appointment.department = updated_appointment.department
             appointment.doctor = updated_appointment.doctor
             appointment.booking_date = updated_appointment.booking_date
+            appointment.approved = False
             appointment.save()
+            messages.success(request, 'Appointment Submitted. Our Staff Will contact you soon')
             return redirect('patient_appointments')
     else:
         booking_form = BookingForm(instance=appointment)
@@ -220,7 +223,10 @@ def profile_view(request):
             request.user.username = personal_detail_form.cleaned_data['name']
             request.user.email = personal_detail_form.cleaned_data['email']
             request.user.save()
+            messages.success(request, 'Profile successfully updated.')
             return redirect('profile')
+        else:
+            messages.error(request, 'Form validation failed. Please correct the errors.')
     else:
         personal_detail_form = PersonalDetailForm(instance=personal_detail)
         patient_form = PatientForm(instance=patient)
@@ -434,6 +440,7 @@ def add_doctor_details(request):
         doctor_form = DoctorForm(request.POST, request.FILES, instance=doctor)
         if doctor_form.is_valid():
             doctor_form.save()
+            messages.success(request, 'Updated your Professional Details')
             return redirect('profile')
     else:
         doctor_form = DoctorForm(instance=doctor)
@@ -502,16 +509,19 @@ def doctor_appointment_details(request, id):
             diagnosis_instance.save()
             appointment.attended = True
             appointment.save()
+            messages.success(request, 'Diagnosis Saved')
             return redirect('doctor_appointment_details', id=id)
         if prescription_form.is_valid():
             prescription = prescription_form.save(commit=False)
             prescription.booking = appointment
             prescription.save()
+            messages.success(request, 'Added a Drug to the prescription')
             return redirect('doctor_appointment_details', id=id)
         if medical_report_form.is_valid():
             medicai_report = medical_report_form.save(commit=False)
             medicai_report.booking = appointment
             medicai_report.save()
+            messages.success(request, 'Added a medical report')
             return redirect('doctor_appointment_details', id=id)
     else:
         diagnosis_form = DiagnosisForm(initial=initial_diagnosis_data)
@@ -538,6 +548,7 @@ def delete_prescription(request, prescription_id):
        return render(request, '404.html', {'Message':'Prescription Not Found'})
     appointment_id = prescription.booking.id
     prescription.delete()
+    messages.success(request, 'Deleted a Drug From the prescription')
     return redirect('doctor_appointment_details', id=appointment_id)
 
 
@@ -549,6 +560,7 @@ def delete_medical_report(request, medical_report_id):
        return render(request, '404.html', {'Message':'No Report Found'})
     appointment_id = medical_report.booking.id
     medical_report.delete()
+    messages.success(request, 'Deleted a Medical Report')
     return redirect('doctor_appointment_details', id=appointment_id)
 
 

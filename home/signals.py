@@ -5,6 +5,7 @@ from .models import Patient, PersonalDetail
 
 @receiver(post_save, sender=User)
 def create_patient(sender,instance, created, **kwargs):
+    """Create an instance of the patient when the user is created"""
     if not PersonalDetail.objects.filter(email=instance.email).exists():
         personal_details = PersonalDetail.objects.create(name=instance.username, email=instance.email)
         Patient.objects.create(user=instance, personal_details=personal_details, date_of_birth=None)
