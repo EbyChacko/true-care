@@ -24,20 +24,28 @@ ___
 
 ## Table of Contents
 
-- [Project Goals](#project-goals)
 - [User Experience](#user-experience)
-- [Design](#design)
+- [UX](#ux)
+- [Strategy](#strategy)
+- [Scope](#scope)
+- [Structure](#structure)
+- [Skeleton](#skeleton)
+- [Surface](#surface)
+    - [Colour Scheme](#colour-scheme)
+    - [Fonts](#fonts)
+- [Agile Methodology](#agile-methodology)
 - [Features](#features)
-- [Unimplemented Features](#unimplemented-features)
-- [Technologies Used](#technologies-used)
+- [Future Feature Considerations](#future-feature-considerations)
+- [Responsive Layout and Design](#responsive-layout-and-design)
+- [Tools Used](#tools-used)
+- [Python packages](#python-packages)
 - [Testing](#testing)
-- [Bugs](#bugs)
 - [Deployment](#deployment)
-- [Clone the Repository Code Locally](#clone-the-repository-code-locally)
+- [Deploy on Heroku](#deploy-on-heroku)
+- [Fork the repository](#fork-the-repository)
+- [Clone the repository](#clone-the-repository)
 - [Credits](#credits)
-
-___
-
+- [Acknowledgements](#acknowledgements)
 
 
 ## User Experience
@@ -61,7 +69,7 @@ ___
 
 ## UX
 This site was created respecting the Five Planes Of Website Design:<br>
-### Strategy
+### STRATEGY
 
 **User Stories and Epics:** <br>
 User stories and epics can be viewed here on the project [kanban board ](https://github.com/users/EbyChacko/projects/5)
@@ -87,7 +95,9 @@ The goal of the True Care Hospital project is to create a seamless and user-frie
   - Doctor-Patient Communication: Facilitating effective communication between doctors and patients, including the ability for doctors to manage appointments and provide diagnoses, enhances the site owner's goal of providing quality healthcare services and fostering patient satisfaction.
   - Data Security and Compliance: Ensuring the security and privacy of user data, including medical records and personal information, is a priority for the site owner to maintain trust and compliance with healthcare regulations.
 
-### Scope<hr>
+[Back to Table of Contents](#table-of-contents)
+___
+### SCOPE
 
 Scope for the True Care Hospital Project:
 
@@ -135,9 +145,10 @@ Incorporate features for displaying hospital details, services offered, and faci
 
 The scope outlined above encompasses the key features and functionalities of the True Care Hospital project, aiming to create a comprehensive virtual healthcare platform that meets the needs of both patients and healthcare professionals.
 
+[Back to Table of Contents](#table-of-contents)
 ___
 
-### Structure
+### STRUCTURE
 
 #### All Page Header
 - True care logo work as a loink to the home page
@@ -208,6 +219,7 @@ ___
 - When the doctor add any prescription or medical report, it will show instanly in the same page.
 - This prescription and the medical report can view or downloaded by the patient.
 
+[Back to Table of Contents](#table-of-contents)
 ___
 
 ### SKELETON
@@ -239,9 +251,7 @@ The wireframes for desktop were created with Photoshop tool.
   <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708609070/samples/true_care/Readme/page-diagnosis_page_hytbfs.webp"><br>
 </details>
 
-___
-
-### FLOWCHARTS<br>
+### Flowcharts<br>
 The Flowchart for my program was created using <b>[draw.io](https://app.diagrams.net/)</b> and it visually represents how the system works.<br>
 
 <details>
@@ -254,7 +264,7 @@ The Flowchart for my program was created using <b>[draw.io](https://app.diagrams
   <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708684864/samples/true_care/Readme/Doctor_Flow_chart_hb08pc.webp"><br>
 </details><br>
 
-### DATABASE<br>
+### Database<br>
 The project uses the PostgreSQL relational database for storing the data.<br>
 The final output of the ER diagram is created using the [DBEAVER](https://dbeaver.io/) Free universal database Manager.
 <details>
@@ -262,6 +272,23 @@ The final output of the ER diagram is created using the [DBEAVER](https://dbeave
   <h4>Final ER Diagram</h4>
   <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708686780/samples/true_care/Readme/ER_Diagram_vkyd5p.webp"><br>
 </details><br>
+
+[Back to Table of Contents](#table-of-contents)
+
+___
+
+### SURFACE
+
+#### Colour Scheme
+
+1. I utilized the Bootstrap color palette for both background and text elements, primarily employing shades such as dark, light, black, white, and warning.
+2. For the buttons, I employed the following color palette:
+<img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708801398/samples/true_care/Readme/colour_pallete_txiq4v.png"><br>
+
+#### Fonts
+* The fonts I used for this site were imported from [Google Fonts](https://fonts.google.com/):<br>
+For the whole project i used the Font Family, Quicksand<br>
+
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -493,6 +520,10 @@ The project design has been adapted to all types of devices using Bootstrap pred
 All the above devices are virtually tested using the Google chrome web browser.
 
 
+[Back to Table of Contents](#table-of-contents)
+
+___
+
 ## Tools Used
 
 [GitHub](https://github.com/) - used for hosting the source code of the program<br>
@@ -556,3 +587,96 @@ All the above devices are virtually tested using the Google chrome web browser.
     webencodings==0.5.1<br>
     whitenoise==5.3.0<br>
     zopfli==0.2.3v
+
+[Back to Table of Contents](#table-of-contents)
+___
+## Testing
+The testing documentation can be found at [TESTING.MD](TESTING.md)
+
+
+[Back to Table of Contents](#table-of-contents)
+
+___
+## Deployment
+
+### Deploy on Heroku
+ 1. Create Pipfile 
+ 
+ In the terminal enter the command ` pip3 freeze > requirements.txt`, and a file with all requirements will be created. 
+ 
+ 2. Setting up Heroku
+
+    * Go to the Heroku website (https://www.heroku.com/) 
+    * Login to Heroku and choose *Create App* 
+    * Click *New* and *Create a new app*
+    * Choose a name and select your location
+    * Go to the *Resources* tab 
+    * From the Resources list select *Heroku Postgres*
+    * Navigate to the *Deploy* tab
+    * Click on *Connect to Github* and search for your repository
+    * Navigate to the *Settings* tab
+    * Reveal Config Vars and add your aws, Database URL and Secret key.    
+
+1. Deployment on Heroku
+
+    * Go to the Deploy tab.
+    * Choose the main branch for deploying and enable automatic deployment 
+    * Select manual deploy for building the App 
+    
+### Fork the repository
+For creating a copy of the repository on your account and change it without affecting the original project, use<b>Fork</b> directly from GitHub:
+- On [My Repository Page](https://github.com/EbyChacko/true-care), press <i>Fork</i> in the top right of the page
+- A forked version of my project will appear in your repository<br></br>
+
+### Clone the repository
+For creating a clone of the repository on your local machine, use<b>Clone</b>:
+- On [My Repository Page](https://github.com/EbyChacko/true-care), click the <i>Code</i> green button, right above the code window
+- Chose from <i>HTTPS, SSH and GitClub CLI</i> format and copy (preferably <i>HTTPS</i>)
+- In your <i>IDE</i> open <i>Git Bash</i>
+- Enter the command <code>git clone</code> followed by the copied URL
+- Your clone was created
+<hr>
+
+## Credits
+
+### Project Idea
+* The idea of the project i got from this [Youtube video](https://www.youtube.com/watch?v=0ca2crqyl0E&list=PL1JrLEBAapUU-TG7gb8L10GChSFWxCyMP). It is a Django Tutorial in 'Malayalam' Language.
+
+
+### Code
+* For Form Validation I used the  [BootStrap Form validation](https://getbootstrap.com/docs/5.0/forms/validation/) . However, I have customized it for specific requirements of my website.
+* For creating the ER Diagram I followed this [Blog](https://technology.amis.nl/database/quick-start-with-free-managed-postgresql-database-on-elephantsql/).
+* For creating the Kanban board, I refered this [example project](https://github.com/Gareth-McGirr/Portfolio-Project-4-SizzleAndSteak/projects/1).
+* For Generate PDF prescription, I refer the following youtube videos.<br>
+  [ One](https://www.youtube.com/watch?v=1x_ACMFzGYM), [ Two](https://youtu.be/B3OCXBL4Hxs )
+* For Using Signals.py I refered this [Youtube Video](https://www.youtube.com/watch?v=Kc1Q_ayAeQk).
+
+### IFrame Map
+* [MAPS.ie](https://www.maps.ie/create-google-map/)
+
+### Images
+* [Carausel Image 1](https://www.freepik.com/free-photo/little-girl-with-teddy-bear-toy-doctor-s-appointment_20553410.htm#query=friendly%20doctor%20and%20child&position=0&from_view=search&track=ais&uuid=965db307-5a2d-409c-99cb-4cbb41edd64e)
+* [Carausel Image 2](https://www.freepik.com/free-ai-image/beds-medical-equipment-stand-out-with-soothing-blue-tones-hospital-room_84701660.htm#query=hospital&position=14&from_view=search&track=sph&uuid=6f863326-1766-4173-8ba0-a938d358b244)
+* [Carausel Image 3](https://www.freepik.com/free-photo/happy-senior-woman-wheelchair-communicating-with-nurse-hallway-clinic_25567371.htm#query=friendly%20doctor%20and%20patient&position=2&from_view=search&track=ais&uuid=8f8c6029-a511-47de-bed5-5bbaa42809a2)
+* [About Us Image](https://www.freepik.com/free-photo/middle-aged-woman-with-skin-cancer-talking-with-her-doctor_14831365.htm#query=doctor%20and%20the%20patients&position=4&from_view=search&track=ais&uuid=5d494681-593f-4e89-8cb1-e2f860dc7889)
+* [Department Page Image](https://www.freepik.com/free-photo/empty-hallway-background_26406114.htm#query=hospital%20departments&position=49&from_view=search&track=ais&uuid=8e8bd730-b3e7-48a8-a713-bcfe2197021a)
+* [Contact Page Image ](https://www.freepik.com/free-photo/young-happy-businesswoman-working-desktop-pc-communicating-mobile-phone-office_26144178.htm#query=professional%20call&position=6&from_view=search&track=ais&uuid=11c65d5b-3417-48b2-951c-4af8edeb2887)
+* [Contact Form Image](https://www.freepik.com/free-vector/flat-design-illustration-customer-support_12982910.htm#query=contact&position=15&from_view=search&track=sph&uuid=3aaf6068-18cb-4f61-b5f0-c068d734be13)
+* [Default Profile Picture](https://www.freepik.com/free-vector/businessman-character-avatar-isolated_6769264.htm#query=default%20profile%20picture&position=0&from_view=search&track=ais&uuid=b97b4012-627e-4569-99cf-6eeba5358ee9)
+* [Default Doctor Image](https://www.freepik.com/free-vector/medical-healthcare-character-icons_5608731.htm#query=default%20medical%20worker%20image&position=1&from_view=search&track=ais&uuid=e133ead6-7979-49cf-9b3d-0089c0cd4eae)
+* [Doctor 1](https://www.freepik.com/free-photo/studio-image-confident-attractive-middle-aged-female-doctor-with-short-dyed-hairstyle-posing-isolated-wearing-white-coat-stethoscope_11102045.htm#page=3&query=doctor%20faces&position=11&from_view=search&track=ais&uuid=d8bd6b25-d372-4314-b4b9-f46d8a2aaacb)
+* [Doctor 2](https://www.freepik.com/free-photo/standing-medical-smiling-staff-surgeon-cutout_1241036.htm#page=3&query=doctor%20faces&position=13&from_view=search&track=ais&uuid=d8bd6b25-d372-4314-b4b9-f46d8a2aaacb)
+* [Doctor 3](https://www.freepik.com/free-photo/female-student-practicing-medicine_16408912.htm#page=3&query=doctor%20faces&position=19&from_view=search&track=ais&uuid=d8bd6b25-d372-4314-b4b9-f46d8a2aaacb)
+* [Doctor 4](https://www.freepik.com/free-photo/portrait-health-worker-with-copy-space_14602871.htm#page=3&query=doctor%20faces&position=35&from_view=search&track=ais&uuid=d8bd6b25-d372-4314-b4b9-f46d8a2aaacb)
+
+* [Doctor 5](https://www.freepik.com/free-photo/female-doctor-hospital-with-stethoscope_12164487.htm#page=3&query=doctor%20faces&position=8&from_view=search&track=ais&uuid=d8bd6b25-d372-4314-b4b9-f46d8a2aaacb)
+* [Doctor 6](https://www.freepik.com/free-photo/medium-shot-smiley-woman-doctor_7436905.htm#page=3&query=doctor%20faces&position=4&from_view=search&track=ais&uuid=d8bd6b25-d372-4314-b4b9-f46d8a2aaacb)
+
+
+## Acknowledgements
+- [Code Institute](https://github.com/Code-Institute-Org/full_stack_solutions) for all the material and support offered<br>
+- My mentor [Graeme Taylor](https://www.linkedin.com/in/g--taylor/) for great tips and his willingness to help me as much as possible with the problems encountered during the development of the project<br>
+- Slack community for great involvement in helping each other<br>
+
+[Back to Table of Contents](#table-of-contents)
+<hr>
