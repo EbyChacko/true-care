@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404,redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import AnonymousUser
 from django.contrib import messages
+from django.core.exceptions import ObjectDoesNotExist
 from django.utils import timezone
 from django.db.models import Q
 from datetime import date
@@ -50,7 +51,6 @@ def about(request):
 # to show the department details in the departments.html
 def departments(request):
     personal_detail = None
-    
     try:
         if not isinstance(request.user, AnonymousUser):
             personal_detail = request.user.patient.personal_details
@@ -66,8 +66,12 @@ def departments(request):
 
 # to show the department details in the department_details.html
 def department_details(request, slug):
-    department = get_object_or_404(Department, slug=slug)
-    doctors = Doctor.objects.filter(department=department, personal_details__is_doctor=True)
+    try:
+        department = get_object_or_404(Department, slug=slug)
+        doctors = Doctor.objects.filter(department=department, personal_details__is_doctor=True)
+    except Doctor.DoesNotExist:
+        return render(request, '404.html', {'Message':'Department Not Found'})
+    
     personal_detail = None
     if not isinstance(request.user, AnonymousUser):
         try:
@@ -84,9 +88,11 @@ def department_details(request, slug):
 # to create appointments
 @login_required
 def appointment(request):
-    personal_detail = request.user.patient.personal_details if hasattr(request.user, 'patient') else None
-    patient = request.user.patient if hasattr(request.user, 'patient') else None
-
+    try:
+        personal_detail = request.user.patient.personal_details if hasattr(request.user, 'patient') else None
+        patient = request.user.patient if hasattr(request.user, 'patient') else None
+    except ObjectDoesNotExist:
+        return render(request, '404.html', {'Message':'User Not Found'})
     if request.method == 'POST':
         booking_form = BookingForm(request.POST)
         personal_detail_form = PersonalDetailForm(request.POST, request.FILES, instance=personal_detail)
@@ -126,9 +132,14 @@ def appointment(request):
 # to update appointments
 @login_required
 def update_appointment(request, id):
-    appointment = get_object_or_404(booking, pk=id)
-    personal_detail = request.user.patient.personal_details
-    patient = request.user.patient
+    try:
+        appointment = get_object_or_404(booking, pk=id)
+        personal_detail = request.user.patient.personal_details
+        patient = request.user.patient
+        departments = Department.objects.all()
+        doctors = Doctor.objects.filter(personal_details__is_doctor=True)
+    except ObjectDoesNotExist:
+        return render(request, '404.html', {'Message':'Appointment Not Found'})
     if request.method == 'POST':
         booking_form = BookingForm(request.POST, instance=appointment)
         if booking_form.is_valid():
@@ -137,14 +148,9 @@ def update_appointment(request, id):
             appointment.doctor = updated_appointment.doctor
             appointment.booking_date = updated_appointment.booking_date
             appointment.save()
-            
             return redirect('patient_appointments')
     else:
         booking_form = BookingForm(instance=appointment)
-
-    departments = Department.objects.all()
-    doctors = Doctor.objects.filter(personal_details__is_doctor=True)
-
     return render(request, 'update_appointment.html', {
         'booking_form': booking_form,
         'appointment' : appointment,
@@ -159,11 +165,10 @@ def update_appointment(request, id):
 
 
 
-
 # to show the doctors detaisl in the doctors.html page
 def doctors(request):
     dict_doctor={
-        'doctor': Doctor.objects.filter(personal_details__is_doctor=True)
+        'doctors': Doctor.objects.filter(personal_details__is_doctor=True)
     }
     return render(request,'doctors.html', dict_doctor)
 
@@ -172,7 +177,6 @@ def doctors(request):
 def contact(request):
     personal_detail = None
     form = CustomerMessageForm()
-    
     try:
         if not isinstance(request.user, AnonymousUser):
             personal_detail = request.user.patient.personal_details
@@ -183,7 +187,6 @@ def contact(request):
         if form.is_valid():
             form.save()
             return redirect('message_confirmation')
-    
     return render(request, 'contact.html', {
         'form': form,
         'personal_detail': personal_detail,
@@ -198,8 +201,11 @@ def MessageConfirmation(request):
 # to update the personal details
 @login_required
 def profile_view(request):
-    personal_detail = request.user.patient.personal_details
-    patient = request.user.patient
+    try:
+        personal_detail = request.user.patient.personal_details
+        patient = request.user.patient
+    except ObjectDoesNotExist:
+        return render(request, '404.html', {'Message':'Profile Not Found'})
     if request.method == 'POST':
         personal_detail_form = PersonalDetailForm(request.POST, request.FILES, instance=personal_detail)
         patient_form = PatientForm(request.POST, instance=patient)
@@ -232,9 +238,14 @@ def login_or_signup(request):
 def profile(request):
     user = request.user
     now = timezone.now()
-    personal_detail = request.user.patient.personal_details
-    patient = request.user.patient
-    doctor = personal_detail.doctor
+    try:
+        personal_detail = request.user.patient.personal_details
+        patient = request.user.patient
+        doctor = personal_detail.doctor
+    except ObjectDoesNotExist:
+        return render(request, '404.html', {'Message':'Profile Not Found'})
+
+    
     return render(request,'profile.html',{
         'personal_detail': personal_detail,
         'patient': patient,
@@ -243,40 +254,48 @@ def profile(request):
         })
 
 
-# profile page
+# Patient page
 def patient_appointments(request):
     user = request.user
     now = timezone.now()
-    personal_detail = request.user.patient.personal_details
-    patient = request.user.patient
-    appointments = booking.objects.filter(patient_id__user=user).order_by('booking_date')
-    attended_appointments = booking.objects.filter(patient_id__user=user, attended=True).order_by('booking_date')
-    upcoming_appointments = booking.objects.filter(
-    Q(patient_id__user=user) & (Q(attended=False) | Q(attended__isnull=True))
-).order_by('booking_date')
-    return render(request,'patient_appointments.html',{
+    personal_detail = None
+    patient = None
+    appointments = []
+    attended_appointments = []
+    upcoming_appointments = []
+
+    try:
+        personal_detail = request.user.patient.personal_details
+        patient = request.user.patient
+        appointments = booking.objects.filter(patient_id__user=user).order_by('booking_date')
+        attended_appointments = booking.objects.filter(patient_id__user=user, attended=True).order_by('booking_date')
+        upcoming_appointments = booking.objects.filter(
+            Q(patient_id__user=user) & (Q(attended=False) | Q(attended__isnull=True))
+        ).order_by('booking_date')
+    except ObjectDoesNotExist:
+        return render(request, '404.html')
+
+    return render(request, 'patient_appointments.html', {
         'personal_detail': personal_detail,
         'patient': patient,
         'appointments': appointments,
         'attended_appointments': attended_appointments,
-        'upcoming_appointments':upcoming_appointments,
-        'now' : now,
-        })
+        'upcoming_appointments': upcoming_appointments,
+        'now': now,
+    })
 
 
 # to show the appointment details in a new page
 def appointment_details(request, id):
     try:
         appointment = booking.objects.get(patient_id=request.user.patient.id, id=id)
-    except booking.DoesNotExist:
+        personal_detail = request.user.patient.personal_details
+        patient = request.user.patient
+        prescriptions = Prescription.objects.filter(booking=appointment)
+        medical_reports = MedicalReport.objects.filter(booking=appointment)
+    except ObjectDoesNotExist:
         return render(request, '404.html', {'Message':'Appointment Not Found'})
     now = timezone.now()
-    personal_detail = request.user.patient.personal_details
-        
-    patient = request.user.patient
-    prescriptions = Prescription.objects.filter(booking=appointment)
-    medical_reports = MedicalReport.objects.filter(booking=appointment)
-
     return render(request,'appointment_details.html',{
         'personal_detail': personal_detail,
         'patient': patient,
@@ -294,14 +313,18 @@ def delete_appointment(request, id):
         appointment.delete()
         messages.success(request, 'Appointment deleted successfully.')
     except booking.DoesNotExist:
-        messages.error(request, 'Appointment not found.')
+       return render(request, '404.html', {'Message':'Appointment Not Found'})
     
     return HttpResponseRedirect(reverse('patient_appointments'))
 
 
 # to upload and update the profile picture
 def upload_picture(request):
-    personal_detail = request.user.patient.personal_details
+    try:
+        personal_detail = request.user.patient.personal_details
+    except ObjectDoesNotExist:
+       return render(request, '404.html', {'Message':'Appointment Not Found'})
+
     if request.method == 'POST':
         upload_picture_form = UploadPictureForm(request.POST, request.FILES, instance=personal_detail)
         if upload_picture_form.is_valid():
@@ -326,8 +349,11 @@ def upload_picture(request):
 
 
 def get_doctors(request):
-    department_id = request.GET.get('department_id')
-    doctors = Doctor.objects.filter(department_id=department_id, personal_details__is_doctor=True)
+    try:
+        department_id = request.GET.get('department_id')
+        doctors = Doctor.objects.filter(department_id=department_id, personal_details__is_doctor=True)
+    except Doctor.DoesNotExist:
+       return render(request, '404.html', {'Message':'Doctor Not Found'})
     options = '<option value="">Select Doctor...</option>'
     for doctor in doctors:
         options += f'<option value="{doctor.pk}">{doctor.personal_details.name} ({doctor.department.department_name})</option>'
@@ -337,14 +363,18 @@ def get_doctors(request):
 def doctor_profile(request):
     user = request.user
     now = date.today()
-    personal_detail = request.user.patient.personal_details
-    patient = request.user.patient
-    doctor = personal_detail.doctor
-    all_appointments = booking.objects.filter(doctor__personal_details=personal_detail).order_by('booking_date')
-    today_appointments = all_appointments.filter(booking_date=now, approved=True)
-    upcoming_appointments = all_appointments.filter(booking_date__gt=now)
-    pending_approval = all_appointments.filter(booking_date__gt=now, approved=False)
-    attended_appointments = all_appointments.filter(attended=True)
+    try:
+        personal_detail = request.user.patient.personal_details
+        patient = request.user.patient
+        doctor = personal_detail.doctor
+        all_appointments = booking.objects.filter(doctor__personal_details=personal_detail).order_by('booking_date')
+        today_appointments = all_appointments.filter(booking_date=now, approved=True)
+        upcoming_appointments = all_appointments.filter(booking_date__gt=now)
+        pending_approval = all_appointments.filter(booking_date__gt=now, approved=False)
+        attended_appointments = all_appointments.filter(attended=True)
+    except ObjectDoesNotExist:
+       return render(request, '404.html')
+    
     return render(request, 'doctor_profile.html', {
         'personal_detail': personal_detail,
         'patient': patient,
@@ -359,20 +389,31 @@ def doctor_profile(request):
     
 
 def approve_appointment(request, appointment_id):
-    appointment = booking.objects.get(pk=appointment_id)
+    try:
+        appointment = booking.objects.get(pk=appointment_id)
+    except booking.DoesNotExist:
+       return render(request, '404.html', {'Message':'Appointment Not Found'})
     appointment.approved = True
     appointment.save()
     return redirect('doctor_profile')
 
 def disapprove_appointment(request, appointment_id):
-    appointment = booking.objects.get(pk=appointment_id)
+    try:
+        appointment = booking.objects.get(pk=appointment_id)
+    except booking.DoesNotExist:
+       return render(request, '404.html', {'Message':'Appointment Not Found'})
     appointment.approved = False
     appointment.save()
     return redirect('doctor_profile')
 
 
 def add_doctor_details(request):
-    personal_detail = request.user.patient.personal_details
+    try:
+        personal_detail = request.user.patient.personal_details
+        departments = Department.objects.all()
+        doctor = personal_detail.doctor
+    except ObjectDoesNotExist:
+       return render(request, '404.html', {'Message':'Doctor Not Found'})
     doctor = personal_detail.doctor
     if request.method == 'POST':
         doctor_form = DoctorForm(request.POST, request.FILES, instance=doctor)
@@ -381,8 +422,6 @@ def add_doctor_details(request):
             return redirect('profile')
     else:
         doctor_form = DoctorForm(instance=doctor)
-    departments = Department.objects.all()
-    doctor = personal_detail.doctor
     return render(request, 'add_doctor_details.html', {
         'personal_detail': personal_detail,
         'doctor_form': doctor_form,
@@ -392,11 +431,17 @@ def add_doctor_details(request):
 
 
 def doctor_appointment_details(request, id):
-    appointment = get_object_or_404(booking, id=id)
-    now = timezone.now()
-    personal_detail = appointment.patient_id.personal_details
-    patient = appointment.patient_id
-
+    try:
+        appointment = get_object_or_404(booking, id=id)
+        now = timezone.now()
+        patient_detail = appointment.patient_id.personal_details
+        patient = appointment.patient_id
+        personal_detail = request.user.patient.personal_details
+        prescriptions = Prescription.objects.filter(booking=appointment)
+        medical_reports = MedicalReport.objects.filter(booking=appointment)
+        report_names = ReportNames.objects.all()
+    except ObjectDoesNotExist:
+       return render(request, '404.html')
     try:
         diagnosis_instance = DoctorDiagnosis.objects.get(booking=appointment)
         initial_diagnosis_data = {
@@ -429,12 +474,10 @@ def doctor_appointment_details(request, id):
             'physical_examination': '',
             'diagnosis': '',
         }
-
     if request.method == 'POST':
         diagnosis_form = DiagnosisForm(request.POST, instance=diagnosis_instance)
         prescription_form = PrescriptionForm(request.POST)
         medical_report_form = MedicalReportForm(request.POST, request.FILES)
-
         if diagnosis_form.is_valid():
             diagnosis_instance = diagnosis_form.save(commit=False)
             diagnosis_instance.booking = appointment
@@ -442,13 +485,11 @@ def doctor_appointment_details(request, id):
             appointment.attended = True
             appointment.save()
             return redirect('doctor_appointment_details', id=id)
-
         if prescription_form.is_valid():
             prescription = prescription_form.save(commit=False)
             prescription.booking = appointment
             prescription.save()
             return redirect('doctor_appointment_details', id=id)
-        
         if medical_report_form.is_valid():
             medicai_report = medical_report_form.save(commit=False)
             medicai_report.booking = appointment
@@ -458,14 +499,10 @@ def doctor_appointment_details(request, id):
         diagnosis_form = DiagnosisForm(initial=initial_diagnosis_data)
         prescription_form = PrescriptionForm()
         medical_report_form = MedicalReportForm()
-
-    prescriptions = Prescription.objects.filter(booking=appointment)
-    medical_reports = MedicalReport.objects.filter(booking=appointment)
-    report_names = ReportNames.objects.all()
-
     return render(request, 'doctor_appointment_detail.html', {
-        'personal_detail': personal_detail,
+        'patient_detail': patient_detail,
         'patient': patient,
+        'personal_detail' :personal_detail,
         'appointment': appointment,
         'now': now,
         'diagnosis_form': diagnosis_form,
@@ -476,34 +513,38 @@ def doctor_appointment_details(request, id):
 
 
 def delete_prescription(request, prescription_id):
-    prescription = get_object_or_404(Prescription, pk=prescription_id)
+    try:
+        prescription = get_object_or_404(Prescription, pk=prescription_id)
+    except Prescription.DoesNotExist:
+       return render(request, '404.html', {'Message':'Prescription Not Found'})
     appointment_id = prescription.booking.id
     prescription.delete()
     return redirect('doctor_appointment_details', id=appointment_id)
 
 
 def delete_medical_report(request, medical_report_id):
-    medical_report = get_object_or_404(MedicalReport, pk=medical_report_id)
+    try:
+        medical_report = get_object_or_404(MedicalReport, pk=medical_report_id)
+    except MedicalReport.DoesNotExist:
+       return render(request, '404.html', {'Message':'No Report Found'})
     appointment_id = medical_report.booking.id
     medical_report.delete()
     return redirect('doctor_appointment_details', id=appointment_id)
 
 
 def generate_prescription_pdf(request, id):
-
-    appointment = get_object_or_404(booking, id=id)
-    prescriptions = Prescription.objects.filter(booking=appointment)
-    
+    try:
+        appointment = get_object_or_404(booking, id=id)
+        prescriptions = Prescription.objects.filter(booking=appointment)
+    except Prescription.DoesNotExist:
+       return render(request, '404.html', {'Message':'No Prescription Found'})
     doctor = appointment.doctor
     doctor_name = doctor.personal_details.name
-
     pdf_filename = 'Prescription.pdf'
     pdf = SimpleDocTemplate(pdf_filename, pagesize=letter)
-
     data = [
         ["Drug", "Dose", "Frequency", "Route", "Quantity", "Comment"]
     ]
-
     for prescription in prescriptions:
         data.append([
             prescription.drug_name,
@@ -513,7 +554,6 @@ def generate_prescription_pdf(request, id):
             prescription.quantity,
             prescription.comment,
         ])
-
     table = Table(data)
 
     style = TableStyle([('BACKGROUND', (0, 0), (-1, 0), 'lightgrey'),
