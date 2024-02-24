@@ -104,14 +104,14 @@
 
   {% if messages %}
   {% for message in messages %}
-  <div class="alert alert-dark alert-dismissible fade show" role="alert">
-    {{ message }}
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-  </div>
+  <div class="bg-warning">
+    <div class="alert alert-dismissible fade show" role="alert">
+      {{ message }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+</div>
   {% endfor %}
   {% endif %}
-
-
 
   {% block content %} 
   
@@ -216,7 +216,7 @@ document.addEventListener('DOMContentLoaded', function() {
     alertElements.forEach(function(alertElement) {
       setTimeout(function() {
         alertElement.style.display = 'none';
-      }, 3000);
+      }, 5000);
     });
   });
   </script>

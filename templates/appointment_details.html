@@ -54,7 +54,7 @@
                             {% endif %}
                         </div>
                         {% else %}
-                        {% if medical_reports %}
+                        {% if prescriptions %}
                         <div class="card  my-5">
                             <div class="card-body">
                                 <h3 class="card-title">Prescriptions</h3>
@@ -76,7 +76,6 @@
                                     {% endfor %}
                                     <a class="btn button3" href="{% url 'generate_prescription_pdf' appointment.id %}" target="_blank">Download Prescription</a>
                                 </div>
-                                
                             </div>
                         </div>
                         {% endif %}
@@ -108,10 +107,7 @@
                         {% endif %}
                         {% endif %}
                     </div>
-
                 </div>
-
-
             </div>
         </div>
     </div>
@@ -124,4 +120,5 @@
         newWindow.focus();
     }
 </script>
+
 {% endblock %}
