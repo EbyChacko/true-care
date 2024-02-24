@@ -25,8 +25,8 @@ def base_view(request):
                   {'personal_detail': personal_detail})
 
 
-# to show the index.html
 def index(request):
+    """ This Function is load the home page"""
     personal_detail = None
     try:
         if not isinstance(request.user, AnonymousUser):
@@ -36,8 +36,9 @@ def index(request):
     return render(request, 'index.html', {'personal_detail': personal_detail})
 
 
-# to show the about.html
+
 def about(request):
+    """ To load the about us page """
     personal_detail = None
     
     try:
@@ -48,8 +49,8 @@ def about(request):
     return render(request, 'about.html', {'personal_detail': personal_detail})
 
 
-# to show the department details in the departments.html
 def departments(request):
+    """ This function get the depatrtments and render in the department page"""
     personal_detail = None
     try:
         if not isinstance(request.user, AnonymousUser):
@@ -64,8 +65,8 @@ def departments(request):
     return render(request, 'departments.html', dict_dept)
 
 
-# to show the department details in the department_details.html
 def department_details(request, slug):
+    """ This function Get the details of the department with the argument slug and pass to the department_details page"""
     try:
         department = Department.objects.get(slug=slug)
         doctors = Doctor.objects.filter(department=department, personal_details__is_doctor=True)
@@ -85,9 +86,10 @@ def department_details(request, slug):
     }
     return render(request, 'department_details.html', dict_dept_details)
 
-# to create appointments
+
 @login_required
 def appointment(request):
+    """ This function is to Post the appointment in the booking model"""
     try:
         personal_detail = request.user.patient.personal_details if hasattr(request.user, 'patient') else None
         patient = request.user.patient if hasattr(request.user, 'patient') else None
@@ -116,7 +118,6 @@ def appointment(request):
 
     departments = Department.objects.all()
     doctors = Doctor.objects.filter(personal_details__is_doctor=True)
-
     return render(request, 'appointment.html', {
         'booking_form': booking_form,
         'departments': departments,
@@ -132,6 +133,7 @@ def appointment(request):
 # to update appointments
 @login_required
 def update_appointment(request, id):
+    """To update the appointment detailes if wanted"""
     try:
         appointment = booking.objects.get(pk=id)
         personal_detail = request.user.patient.personal_details
@@ -165,16 +167,17 @@ def update_appointment(request, id):
 
 
 
-# to show the doctors detaisl in the doctors.html page
 def doctors(request):
+    """To show the doctors and their details in a page """
     dict_doctor={
-        'doctors': Doctor.objects.filter(personal_details__is_doctor=True)
+        'doctors': Doctor.objects.filter(personal_details__is_doctor=True),
+        'personal_detail': request.user.patient.personal_details,
     }
     return render(request,'doctors.html', dict_doctor)
 
 
-# to perform the contact.html and its form validation
 def contact(request):
+    """To perform the messaging by the user to the hopital"""
     personal_detail = None
     form = CustomerMessageForm()
     try:
@@ -193,14 +196,16 @@ def contact(request):
     })
 
 
-# to show the confirmation message
+
 def MessageConfirmation(request):
+    """To show confirmation when the message is submitted """
     return render(request, 'informations.html')
 
 
-# to update the personal details
+
 @login_required
 def profile_view(request):
+    """To update the personal details"""
     try:
         personal_detail = request.user.patient.personal_details
         patient = request.user.patient
@@ -229,13 +234,15 @@ def profile_view(request):
     })
 
 
-# to show guide page to the login or signup page
+
 def login_or_signup(request):
+    """To show guidence for the user if the user choose appointment before login """
     return render(request,'login_or_signup.html')
 
 
-# profile page
+
 def profile(request):
+    """To show the profile page of the user(personal details and professional details if doctor)"""
     user = request.user
     now = timezone.now()
     try:
@@ -254,8 +261,8 @@ def profile(request):
         })
 
 
-# Patient page
 def patient_appointments(request):
+    """This function is to show the appointments that are created by the patient"""
     user = request.user
     now = timezone.now()
     personal_detail = None
@@ -285,8 +292,10 @@ def patient_appointments(request):
     })
 
 
-# to show the appointment details in a new page
+
 def appointment_details(request, id):
+    """By this function the patient can see the details of the appointment 
+    (including, the prescription, medical reports if the apoointment is already attended)"""
     try:
         appointment = booking.objects.get(patient_id=request.user.patient.id, id=id)
         personal_detail = request.user.patient.personal_details
@@ -306,8 +315,8 @@ def appointment_details(request, id):
         })
 
 
-# to delete appointments
 def delete_appointment(request, id):
+    """To delete the appointment."""
     try:
         appointment = booking.objects.get(pk=id)
         appointment.delete()
@@ -318,8 +327,9 @@ def delete_appointment(request, id):
     return HttpResponseRedirect(reverse('patient_appointments'))
 
 
-# to upload and update the profile picture
+
 def upload_picture(request):
+    """To add or change the profile picture"""
     try:
         personal_detail = request.user.patient.personal_details
     except ObjectDoesNotExist:
@@ -349,6 +359,7 @@ def upload_picture(request):
 
 
 def get_doctors(request):
+    """To get the doctor o show in the input fields in the forms"""
     try:
         department_id = request.GET.get('department_id')
         doctors = Doctor.objects.filter(department_id=department_id, personal_details__is_doctor=True)
@@ -361,6 +372,7 @@ def get_doctors(request):
 
 
 def doctor_profile(request):
+    """To show the profile view of the user only id the user doctor"""
     user = request.user
     now = date.today()
     try:
@@ -389,6 +401,7 @@ def doctor_profile(request):
     
 
 def approve_appointment(request, appointment_id):
+    """To approve the appointments by the doctor"""
     try:
         appointment = booking.objects.get(pk=appointment_id)
     except booking.DoesNotExist:
@@ -398,6 +411,7 @@ def approve_appointment(request, appointment_id):
     return redirect('doctor_profile')
 
 def disapprove_appointment(request, appointment_id):
+    """To dis-approve the appointments by the doctor"""
     try:
         appointment = booking.objects.get(pk=appointment_id)
     except booking.DoesNotExist:
@@ -408,6 +422,7 @@ def disapprove_appointment(request, appointment_id):
 
 
 def add_doctor_details(request):
+    """To add the professional details of the doctor"""
     try:
         personal_detail = request.user.patient.personal_details
         departments = Department.objects.all()
@@ -431,6 +446,8 @@ def add_doctor_details(request):
 
 
 def doctor_appointment_details(request, id):
+    """To show the appointment choosen by doctor and the doctor can add 
+    diagnisis, prescription and the medical reports related to the appointment."""
     try:
         appointment = booking.objects.get(doctor=request.user.patient.personal_details.doctor, id=id)
         now = timezone.now()
@@ -514,6 +531,7 @@ def doctor_appointment_details(request, id):
 
 
 def delete_prescription(request, prescription_id):
+    """This is to delete the prescription already added to an appointment"""
     try:
         prescription = Prescription.objects.get(booking__doctor=request.user.patient.personal_details.doctor, pk=prescription_id)
     except Prescription.DoesNotExist:
@@ -524,6 +542,7 @@ def delete_prescription(request, prescription_id):
 
 
 def delete_medical_report(request, medical_report_id):
+    """This is to delete the medical report already added to an appointment"""
     try:
         medical_report = MedicalReport.objects.get(booking__doctor=request.user.patient.personal_details.doctor, pk=medical_report_id)
     except MedicalReport.DoesNotExist:
@@ -534,6 +553,8 @@ def delete_medical_report(request, medical_report_id):
 
 
 def generate_prescription_pdf(request, id):
+    """THis function is to generate a PDF file of the prescription for the patient
+    This code is inspired from a youtube video """
     try:
         appointment = booking.objects.get(id=id)
         prescriptions = Prescription.objects.filter(booking=appointment)

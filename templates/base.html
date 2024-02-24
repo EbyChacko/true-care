@@ -158,6 +158,11 @@
               </a>
             </li>
             <li>
+              <a href="{% url 'doctors' %}">
+                Our Doctors
+              </a>
+            </li>
+            <li>
               <a class="nav-link"
                 href="{% if user.is_authenticated %}{% url 'appointment' %}{% else %}{% url 'login_or_signup' %}{% endif %}">Appointments</a>
             </li>

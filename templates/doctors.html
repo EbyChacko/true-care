@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ department.department_name }} Department {% endblock %}
+
+{% block content %}
+
+<div class="container-fluid bg-body-secondery text-center">
+    <div class="container">
+        <div class="row">
+            <a class="text-reset text-decoration-none p-3 text-start" href="{% url 'home' %}"><i
+                    class="fa-solid fa-circle-arrow-left"></i> Back to Home Page</a>
+            <div class="container ">
+                <div class="row">
+
+                    <div class="col  mb-4  mt-3 left p-5 text-start bg-light top mx-auto">
+                        <h2 class="text-center">Our Doctors</h2>
+                        <hr class="dotted">
+                        <div class="card-body">
+                            <div class="col-sm-12 p-5 bg-body-tertiary mx-auto">
+                                <div class="row">
+                                    {% for doctor in doctors %}
+                                    <div class=" col-sm-12 py-3 dotted">
+                                        <div class="row p-3">
+                                            <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 col-xxl-3 text-center">
+                                                {% if doctor.personal_details.picture %}
+                                                <img src="{{ doctor.personal_details.picture.url }}"
+                                                    class="doctor_photo rounded-circle border border-5 border-secondary"
+                                                    alt="{{doctor.personal_details.name}}'s Photo"
+                                                    style="width: 220px; height: 220px; object-fit: cover;">
+                                                {% elif doctor.picture %}
+                                                <img src="{{ doctor.picture.url }}"
+                                                    class="doctor_photo rounded-circle border border-5 border-secondary"
+                                                    alt="{{doctor.personal_details.name}}'s Photo"
+                                                    style="width: 220px; height: 220px; object-fit: cover;">
+                                                {% else %}
+                                                <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1707938913/doctor_photo-default_plh6db.webp"
+                                                    class="doctor_photo rounded-circle border border-5 border-secondary"
+                                                    alt="Doctor default Photo"
+                                                    style="width: 220px; height: 220px; object-fit: cover;">
+                                                {% endif %}
+                                            </div>
+                                            <div class="col-sm-12  col-md-6 col-lg-8 col-xl-8 col-xxl-9 pt-4 ">
+                                                <h4>Dr. {{ doctor.personal_details.name }}</h4>
+                                                <h5>{{ doctor.designation }}</h5>
+                                                <h5>{{ doctor.education }}</h5>
+                                                <p>{{ doctor.speciality }}</p>
+                                                <a href="{% if user.is_authenticated %}{% url 'appointment' %}{% else %}{% url 'login_or_signup' %}{% endif %}"
+                                                    class="btn button">Book an Appointment</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+{% endblock %}
