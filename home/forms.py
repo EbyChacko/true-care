@@ -1,7 +1,9 @@
 from django import forms
-from .models import CustomerMessage, Patient, PersonalDetail,  booking, Doctor, DoctorDiagnosis, Prescription, MedicalReport
+from .models import CustomerMessage, Patient, PersonalDetail,  booking
+from .models import Doctor, DoctorDiagnosis, Prescription, MedicalReport
 
-#form fo the customer message in the contact.html
+
+# form fo the customer message in the contact.html
 class CustomerMessageForm(forms.ModelForm):
     class Meta:
         model = CustomerMessage
@@ -11,11 +13,18 @@ class CustomerMessageForm(forms.ModelForm):
 class PersonalDetailForm(forms.ModelForm):
     class Meta:
         model = PersonalDetail
-        fields = ['name', 'gender', 'address', 'zipcode', 'country', 'mobile', 'email']
+        fields = ['name',
+                  'gender',
+                  'address',
+                  'zipcode',
+                  'country',
+                  'mobile',
+                  'email']
 
 
 class DateInput(forms.DateInput):
-    input_type ='date'
+    input_type = 'date'
+
 
 class PatientForm(forms.ModelForm):
     class Meta:
@@ -23,17 +32,17 @@ class PatientForm(forms.ModelForm):
         fields = ['date_of_birth']
 
         widgets = {
-                'date_of_birth' : DateInput
+                'date_of_birth': DateInput
             }
 
 
 class BookingForm(forms.ModelForm):
     class Meta:
         model = booking
-        fields = ['department', 'doctor','booking_date']
+        fields = ['department', 'doctor', 'booking_date']
 
         widgets = {
-            'booking_date' : DateInput
+            'booking_date': DateInput
         }
 
 
@@ -46,19 +55,28 @@ class UploadPictureForm(forms.ModelForm):
 class DoctorForm(forms.ModelForm):
     class Meta:
         model = Doctor
-        fields = ['designation','doctor_Number', 'education', 'speciality', 'department']
+        fields = ['designation',
+                  'doctor_Number',
+                  'education',
+                  'speciality',
+                  'department'
+                  ]
 
 
 class DiagnosisForm(forms.ModelForm):
     class Meta:
         model = DoctorDiagnosis
-        fields = ['height', 'weight', 'bp', 'pulse', 'saturation', 'temperature', 'allergy', 'medical_history', 'medications', 'present_complaints', 'physical_examination', 'diagnosis' ]
+        fields = ['height', 'weight', 'bp', 'pulse',
+                  'saturation', 'temperature', 'allergy', 'medical_history',
+                  'medications', 'present_complaints',
+                  'physical_examination', 'diagnosis']
 
 
 class PrescriptionForm(forms.ModelForm):
     class Meta:
         model = Prescription
-        fields = ['drug_name', 'dose', 'frequency', 'route', 'quantity', 'comment',]
+        fields = ['drug_name', 'dose', 'frequency',
+                  'route', 'quantity', 'comment']
 
 
 class MedicalReportForm(forms.ModelForm):
