@@ -38,22 +38,27 @@
                 <div class="container ">
                     <div class="d-flex justify-content-center">
                         <ul class="list-inline">
-                            <li class="list-inline-item p-2 px-4 button3" >
-                                <a class="text-decoration-none text-white" id="today_link" href="#today_appointments"> Today's
+                            <li class="list-inline-item p-2 px-4 button3">
+                                <a class="text-decoration-none text-white" id="today_link" href="#today_appointments">
+                                    Today's
                                     Appointments</a>
                             </li>
                             <li class="list-inline-item p-2 px-4 button3">
-                                <a class="text-decoration-none text-white" id="all_link" href="#all_appointments">All Appointments</a>
-                            </li>
-                            <li class="list-inline-item p-2 px-4 button3">
-                                <a class="text-decoration-none text-white" id="upcoming_link" href="#upcoming_appointments">Upcoming
+                                <a class="text-decoration-none text-white" id="all_link" href="#all_appointments">All
                                     Appointments</a>
                             </li>
                             <li class="list-inline-item p-2 px-4 button3">
-                                <a class="text-decoration-none text-white" id="pending_link" href="#pending_approval">Pending Approval</a>
+                                <a class="text-decoration-none text-white" id="upcoming_link"
+                                    href="#upcoming_appointments">Upcoming
+                                    Appointments</a>
                             </li>
                             <li class="list-inline-item p-2 px-4 button3">
-                                <a class="text-decoration-none text-white" id="attended_link" href="#attended_appointments">Attended Appointments</a>
+                                <a class="text-decoration-none text-white" id="pending_link"
+                                    href="#pending_approval">Pending Approval</a>
+                            </li>
+                            <li class="list-inline-item p-2 px-4 button3">
+                                <a class="text-decoration-none text-white" id="attended_link"
+                                    href="#attended_appointments">Attended Appointments</a>
                             </li>
                         </ul>
 
@@ -71,26 +76,28 @@
                         {% if today_appointments %}
                         {% for appointment in today_appointments %}
                         <div class="col-sm-12 text-center">
-                            <a href="{% url 'doctor_appointment_details' appointment.id %}"
-                                class=" text-reset text-decoration-none">
-                                <div class="doctor_appointment_div text-start ps-4 p-2">
-                                    <div class="row py-2">
-                                        <div class="col-sm-4 border-start border-end border-opacity-50 ps-4">
-                                            <h5 class="text-uppercase text-warning">{{ appointment.patient_id }}</h5>
-                                        </div>
-                                        <div class="col-sm-4 border-start border-end border-opacity-50 ps-4">
-                                            <h6 class=" text-white">Patient ID : {{ appointment.patient_id.id }}</h6>
-                                        </div>
-                                        <div class="col-sm-4 border-start border-end border-opacity-50 ps-4">
-                                            {% if appointment.attended %}
-                                            <h6 class=" text-success">Attended</h6>
-                                            {% else %}
-                                            <h6 class="text-danger">Not Attended</h6>
-                                            {% endif %}
-                                        </div>
+                            <div class="doctor_appointment_div text-start ps-4 p-2">
+                                <div class="row py-2">
+                                    <div class="col-md-4 border-start border-end border-opacity-50 ps-4">
+                                        <h5 class="text-uppercase text-warning">{{ appointment.patient_id }}</h5>
+                                    </div>
+                                    <div class="col-md-2 border-start border-end border-opacity-50 ps-4">
+                                        <h6 class=" text-white">Patient ID : {{ appointment.patient_id.id }}</h6>
+                                    </div>
+                                    <div class="col-md-3 border-start border-end border-opacity-50 ps-4">
+                                        {% if appointment.attended %}
+                                        <h6 class=" text-success">Attended</h6>
+                                        {% else %}
+                                        <h6 class="text-danger">Not Attended</h6>
+                                        {% endif %}
+                                    </div>
+                                    <div
+                                        class="col-md-3 border-start border-end border-opacity-50 ps-4 d-flex justify-content-center">
+                                        <a href="{% url 'doctor_appointment_details' appointment.id %}"
+                                            class="text-reset text-decoration-none btn button4">Open</a>
                                     </div>
                                 </div>
-                            </a>
+                            </div>
                         </div>
                         {% endfor %}
                         {% else %}
@@ -106,44 +113,46 @@
                         {% if all_appointments %}
                         {% for appointment in all_appointments %}
                         <div class="col-sm-12 text-center">
-                            <a href="{% url 'doctor_appointment_details' appointment.id %}"
-                                class="text-reset text-decoration-none">
-                                <div class="doctor_appointment_div text-start ps-4 p-2">
-                                    <div class="row py-2">
-                                        <div class="col-md-4 border-start border-end border-opacity-50 ps-4">
-                                            <h5 class="text-uppercase text-warning">{{ appointment.patient_id }}</h5>
-                                        </div>
-                                        <div class="col-md-2 border-start border-end border-opacity-50 ps-4">
-                                            <h6 class="text-white">ID : {{ appointment.patient_id.id }}</h6>
-                                        </div>
-                                        <div class="col-md-2 border-start border-end border-opacity-50 ps-4">
-                                            <h6 class="text-white">Date : {{ appointment.booking_date }}</h6>
-                                        </div>
-                                        <div class="col-md-2 border-start border-end border-opacity-50 ps-4">
-                                            {% if appointment.attended %}
-                                            <h6 class="text-success">Attended</h6>
-                                            {% else %}
-                                            <h6 class="text-danger">Not Attended</h6>
-                                            {% endif %}
-                                        </div>
-                                        <div class="col-md-2 border-start border-end border-opacity-50 ps-4">
-                                            {% if appointment.approved and appointment.attended %}
-                                            <button type="submit" class="btn button2 disabled">Approved</button>
-                                            {% elif appointment.approved and not appointment.attended %}
-                                            <form action="{% url 'disapprove_appointment' appointment.id %}" method="post">
-                                                {% csrf_token %}
-                                                <button type="submit" class="btn button2">Disapprove</button>
-                                            </form>
-                                            {% else %}
-                                            <form action="{% url 'approve_appointment' appointment.id %}" method="post">
-                                                {% csrf_token %}
-                                                <button type="submit" class="btn button3">Approve</button>
-                                            </form>
-                                            {% endif %}
-                                        </div>
+
+                            <div class="doctor_appointment_div text-start ps-4 p-2">
+                                <div class="row py-2">
+                                    <div class="col-md-4 border-start border-end border-opacity-50 ps-4">
+                                        <h5 class="text-uppercase text-warning">{{ appointment.patient_id }}</h5>
                                     </div>
+                                    <div class="col-md-2 border-start border-end border-opacity-50 ps-4">
+                                        <h6 class="text-white">ID : {{ appointment.patient_id.id }}</h6>
+                                    </div>
+                                    <div class="col-md-3 border-start border-end border-opacity-50 ps-4">
+                                        <h6 class="text-white">Date : {{ appointment.booking_date }}</h6>
+                                    </div>
+                                    <div class="col-md-3 border-start border-end border-opacity-50 ps-4">
+                                        {% if appointment.attended %}
+                                        <h6 class="text-success">Attended</h6>
+                                        {% else %}
+                                        <h6 class="text-danger">Not Attended</h6>
+                                        {% endif %}
+                                    </div>
+                                    <div
+                                        class="col-md-12 border-start border-end border-opacity-50 ps-4 pt-4 d-flex justify-content-center">
+                                        {% if appointment.approved and appointment.attended %}
+                                        <button type="button" class="btn button2 disabled">Approved</button>
+                                        {% elif appointment.approved and not appointment.attended %}
+                                        <form action="{% url 'disapprove_appointment' appointment.id %}" method="post">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn button2">Disapprove</button>
+                                        </form>
+                                        {% else %}
+                                        <form action="{% url 'approve_appointment' appointment.id %}" method="post">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn button3">Approve</button>
+                                        </form>
+                                        {% endif %}
+                                        <a href="{% url 'doctor_appointment_details' appointment.id %}"
+                                            class="text-reset text-decoration-none btn button4">Open</a>
+                                    </div>
+
                                 </div>
-                            </a>
+                            </div>
                         </div>
                         {% endfor %}
                         {% else %}
@@ -159,24 +168,26 @@
                         {% if upcoming_appointments %}
                         {% for appointment in upcoming_appointments %}
                         <div class="col-sm-12 text-center">
-                            <a href="{% url 'doctor_appointment_details' appointment.id %}"
-                                class="text-reset text-decoration-none">
                                 <div class="doctor_appointment_div text-start ps-4 p-2">
                                     <div class="row py-2">
                                         <div class="col-md-4 border-start border-end border-opacity-50 ps-4">
                                             <h5 class="text-uppercase text-warning">{{ appointment.patient_id }}</h5>
                                         </div>
-                                        <div class="col-md-2 border-start border-end border-opacity-50 ps-4">
+                                        <div class="col-md-4 border-start border-end border-opacity-50 ps-4">
                                             <h6 class="text-white">ID : {{ appointment.patient_id.id }}</h6>
                                         </div>
-                                        <div class="col-md-3 border-start border-end border-opacity-50 ps-4">
+                                        <div class="col-md-4 border-start border-end border-opacity-50 ps-4">
                                             <h6 class="text-white">Date : {{ appointment.booking_date }}</h6>
                                         </div>
-                                        <div class="col-md-3 border-start border-end border-opacity-50 ps-4">
+                                    </div>
+                                    <div class="row">
+                                        <div
+                                            class="col-md-12 border-start border-end border-opacity-50 ps-4 pt-4 d-flex justify-content-center">
                                             {% if appointment.approved and appointment.attended %}
                                             <button type="submit" class="btn button2 disabled">Approved</button>
                                             {% elif appointment.approved and not appointment.attended %}
-                                            <form action="{% url 'disapprove_appointment' appointment.id %}" method="post">
+                                            <form action="{% url 'disapprove_appointment' appointment.id %}"
+                                                method="post">
                                                 {% csrf_token %}
                                                 <button type="submit" class="btn button2">Disapprove</button>
                                             </form>
@@ -186,10 +197,11 @@
                                                 <button type="submit" class="btn button3">Approve</button>
                                             </form>
                                             {% endif %}
+                                            <a href="{% url 'doctor_appointment_details' appointment.id %}"
+                                                class="text-reset text-decoration-none btn button4">Open</a>
                                         </div>
                                     </div>
                                 </div>
-                            </a>
                         </div>
                         {% endfor %}
                         {% else %}
@@ -205,40 +217,39 @@
                         {% if pending_approval %}
                         {% for appointment in pending_approval %}
                         <div class="col-sm-12 text-center">
-                            <a href="{% url 'doctor_appointment_details' appointment.id %}"
-                                class="text-reset text-decoration-none">
-                                <div class="doctor_appointment_div text-start ps-4 p-2">
-                                    <div class="row py-2">
-                                        <div class="col-md-4 border-start border-end border-opacity-50 ps-4">
-                                            <h5 class="text-uppercase text-warning">{{ appointment.patient_id }}</h5>
-                                        </div>
-                                        <div class="col-md-2 col-lg-4 border-start border-end border-opacity-50 ps-4">
-                                            <h6 class="text-white">ID : {{ appointment.patient_id.id }}</h6>
-                                        </div>
-                                        <div class="col-6 col-md-3 col-lg-2 border-start border-opacity-50 ps-4">
-                                            {% if appointment.approved and appointment.attended %}
-                                            <button type="submit" class="btn button2 disabled">Disapprove</button>
-                                            {% elif appointment.approved and not appointment.attended %}
-                                            <form action="{% url 'disapprove_appointment' appointment.id %}" method="post">
-                                                {% csrf_token %}
-                                                <button type="submit" class="btn button2">Disapprove</button>
-                                            </form>
-                                            {% else %}
-                                            <form action="{% url 'approve_appointment' appointment.id %}" method="post">
-                                                {% csrf_token %}
-                                                <button type="submit" class="btn button3">Approve</button>
-                                            </form>
-                                            {% endif %}
-                                        </div>
-                                        <div class="col-6 col-md-3 col-lg-2 border-end border-opacity-50 ps-4">
-                                            <form action="{% url 'update_appointment' id=appointment.id %}" method="post">
-                                                {% csrf_token %}
-                                                <button type="submit" class="btn button2">Change</button>
-                                            </form>
-                                        </div>
+                            <div class="doctor_appointment_div text-start ps-4 p-2">
+                                <div class="row py-2">
+                                    <div class="col-md-3 border-start border-end border-opacity-50 ps-4">
+                                        <h5 class="text-uppercase text-warning">{{ appointment.patient_id }}</h5>
                                     </div>
+                                    <div class="col-md-3 border-start border-end border-opacity-50 ps-4">
+                                        <h6 class="text-white">ID : {{ appointment.patient_id.id }}</h6>
+                                    </div>
+                                    <div
+                                        class="col-md-6 border-start border-end border-opacity-50 ps-4 d-flex justify-content-center">
+                                        {% if appointment.approved and appointment.attended %}
+                                        <button type="submit" class="btn button2 disabled">Disapprove</button>
+                                        {% elif appointment.approved and not appointment.attended %}
+                                        <form action="{% url 'disapprove_appointment' appointment.id %}" method="post">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn button2">Disapprove</button>
+                                        </form>
+                                        {% else %}
+                                        <form action="{% url 'approve_appointment' appointment.id %}" method="post">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn button3">Approve</button>
+                                        </form>
+                                        {% endif %}
+                                        <form action="{% url 'update_appointment' id=appointment.id %}" method="post">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn button2">Change</button>
+                                        </form>
+                                        <a href="{% url 'doctor_appointment_details' appointment.id %}"
+                                            class="text-reset text-decoration-none btn button4">Open</a>
+                                    </div>
+
                                 </div>
-                            </a>
+                            </div>
                         </div>
                         {% endfor %}
                         {% else %}
@@ -254,22 +265,24 @@
                         {% if attended_appointments %}
                         {% for appointment in attended_appointments %}
                         <div class="col-sm-12 text-center">
-                            <a href="{% url 'doctor_appointment_details' appointment.id %}"
-                                class="text-reset text-decoration-none">
-                                <div class="doctor_appointment_div text-start ps-4 p-2">
-                                    <div class="row py-2">
-                                        <div class="col-md-6 border-start border-end border-opacity-50 ps-4">
-                                            <h5 class="text-uppercase text-warning">{{ appointment.patient_id }}</h5>
-                                        </div>
-                                        <div class="col-md-3 border-start border-end border-opacity-50 ps-4">
-                                            <h6 class="text-white">ID : {{ appointment.patient_id.id }}</h6>
-                                        </div>
-                                        <div class="col-md-3 border-start border-end border-opacity-50 ps-4">
-                                            <h6 class="text-white">Date : {{ appointment.booking_date }}</h6>
-                                        </div>
+                            <div class="doctor_appointment_div text-start ps-4 p-2">
+                                <div class="row py-2">
+                                    <div class="col-md-4 border-start border-end border-opacity-50 ps-4">
+                                        <h5 class="text-uppercase text-warning">{{ appointment.patient_id }}</h5>
+                                    </div>
+                                    <div class="col-md-2 border-start border-end border-opacity-50 ps-4">
+                                        <h6 class="text-white">ID : {{ appointment.patient_id.id }}</h6>
+                                    </div>
+                                    <div class="col-md-3 border-start border-end border-opacity-50 ps-4">
+                                        <h6 class="text-white">Date : {{ appointment.booking_date }}</h6>
+                                    </div>
+                                    <div
+                                        class="col-md-3 border-start border-end border-opacity-50 ps-4 d-flex justify-content-center">
+                                        <a href="{% url 'doctor_appointment_details' appointment.id %}"
+                                            class="text-reset text-decoration-none btn button4">Open</a>
                                     </div>
                                 </div>
-                            </a>
+                            </div>
                         </div>
                         {% endfor %}
                         {% else %}

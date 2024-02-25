@@ -110,6 +110,17 @@ header a:hover {
     margin: 5px;
 }
 
+.button4{
+    border-radius: 99px;
+    background-color: #5f9006;
+    color:#ffffff;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    min-width: 100px;
+    border: 0;
+    margin: 5px;
+}
 
 /* Secondary button hover properties */
 .button1:hover {
@@ -132,6 +143,10 @@ header a:hover {
 
 .button3:hover {
     color: #d600ea;
+}
+
+.button4:hover {
+    color: #82c704;
 }
 
 .actived {
@@ -231,7 +246,6 @@ footer h5 {
 }
 
 .appointment_div:hover {
-    cursor: pointer;
     background: rgb(21, 21, 21);
 }
 
@@ -243,7 +257,6 @@ footer h5 {
 }
 
 .doctor_appointment_div:hover {
-    cursor: pointer;
     background: rgb(21, 21, 21);
 }
 

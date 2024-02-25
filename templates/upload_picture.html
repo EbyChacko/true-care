@@ -20,7 +20,7 @@
                     </div>
                     <div class="row pt-3 px-3">
                         <form class=" text-white text-centre border border-secondary rounded-5 p-5" method="POST"
-                            action="" enctype="multipart/form-data">
+                            enctype="multipart/form-data">
                             {% csrf_token %}
                             {% if personal_detail.picture %}
                             <a href="#" id="profile-link" class="profile_button text-reset text-decoration-none">
@@ -40,7 +40,7 @@
                             <div class="row text-centre d-flex justify-content-center align-items-center">
                                 <div class="col-md-12 col-lg-10 col-xl-8 mb-3">
                                     <input type="file" name="picture" accept="image/*" class="form-control"
-                                        value="{{ personal_detail.picture }}" id="photo-input">
+                                         id="photo-input">
                                 </div>
                                 {% if error_message %}
                                 <p id="pictureError" style="color: red;" class="">{{ error_message }}</p>

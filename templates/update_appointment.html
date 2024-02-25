@@ -12,41 +12,44 @@
             <div class="text_centre">
                 <h1><i class="fa-regular fa-file-lines"></i></h1>
                 <h3 class="pb-2">Appointment Form </h3>
-                <form class="bg-white text-start rounded-5 p-5 needs-validation" method="POST" action="" enctype="multipart/form-data" novalidate>
+                <form class="bg-white text-start rounded-5 p-5 needs-validation" method="POST" enctype="multipart/form-data" novalidate>
                     {% csrf_token %}
                     <div class="pb-2 pt-4">
                         <h5>Appointment Details</h5>
                     </div>
                     <div class="input-group mb-3">
-                        <span class="input-group-text" id="" style="width:130px">Department</span>
-                        <select name="department" id="departments" value="appointment.department.value" class="form-select"
-                            id="department" required>
+                        <span class="input-group-text" style="width:130px">Department</span>
+                        <select name="department" id="departments" class="form-select" required>
                             <option value="">Select Department...</option>
                             {% for department in departments %}
                             <option value="{{ department.pk }}" {% if department.pk == appointment.department.pk %} selected {% endif %}>
-                                {{ department.department_name }}</option>{% endfor %}
+                                {{ department.department_name }}
+                            </option>
+                            {% endfor %}
                         </select>
                         <div class="invalid-feedback">
                             Please select a department.
                         </div>
                     </div>
-                
+                    
                     <div class="input-group mb-3">
-                        <span class="input-group-text" id="" style="width:130px">Doctor</span>
-                        <select name="doctor" id="doctor" value="{{ doctor.name.value }}" class="form-select" required>
+                        <span class="input-group-text" style="width:130px">Doctor</span>
+                        <select name="doctor" id="doctor" class="form-select" required>
                             <option value="">Select Doctor...</option>
                             {% for doctor in doctors %}
                             <option value="{{ doctor.pk }}" {% if doctor.pk == appointment.doctor.pk %} selected {% endif %}>
-                                {{ doctor.personal_details.name }} ({{ doctor.department.department_name }})</option>
+                                {{ doctor.personal_details.name }} ({{ doctor.department.department_name }})
+                            </option>
                             {% endfor %}
                         </select>
                         <div class="invalid-feedback">
                             Please select a doctor.
                         </div>
                     </div>
+                    
                 
                     <div class="input-group mb-3">
-                        <span class="input-group-text" id="" style="width:130px">Date</span>
+                        <span class="input-group-text" style="width:130px">Date</span>
                         <input type="date" name="booking_date" value="{{ booking_date }}" class="form-control" required>
                         <div class="invalid-feedback">
                             Please select a valid date.

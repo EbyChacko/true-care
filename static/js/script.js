@@ -80,7 +80,7 @@ document.getElementById('photo-input').addEventListener('change', function(event
     }
 });
 
-
+// this function is to generate dynamic list of the doctors based on the departments
 $(document).ready(function() {
     $('#departments').change(function() {
         var departmentId = $(this).val();

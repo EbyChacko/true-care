@@ -37,20 +37,16 @@
                         <hr>
                         <h5>Status : {% if appointment.approved %}Approved{% else %}Not Approved{% endif %}</h5>
                         <p>Contact Reception for Further details... <a class="text-reset text-decoration-none"
-                                href="tel:0484 668 1234">
+                                href="tel:+353891234567">
                                 <i class="fa fa-phone-volume"> </i> +353 89 123 4567
                             </a></p>
                         <div class="col-12 text-start ps-5 py-3">
                             <a href="{% url 'update_appointment' id=appointment.id %}"
-                                class="  text-reset text-decoration-none px-2">
-                                <h5 type="submit" class="btn button3" value="">Edit</h5>
-                            </a>
+                                class="  text-reset text-decoration-none px-2 btn button3">Edit</a>
                             {% if appointment.booking_date > now.date or not appointment.approved %}
                             <a href="{% url 'delete_appointment' id=appointment.id %}"
                                 onclick="return confirm('Are you sure you want to delete this appointment?');"
-                                class="text-reset text-decoration-none px-2">
-                                <h5 class="btn button2">Delete</h5>
-                            </a>
+                                class="text-reset text-decoration-none px-2 btn button2">Delete</a>
                             {% else %}
                             <button type="button" class="btn button2" disabled>Delete</button>
                             {% endif %}

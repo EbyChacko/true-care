@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block head_title %} Profile Update {% endblock %}
+{% block title %} Update Profile {% endblock %}
 
 {% load i18n %}
 
@@ -12,31 +12,31 @@
             <div class="text_centre">
                 <h1><i class="fa-solid fa-id-card"></i></h1>
                 <h3 class="pb-3">Update Your Profile </h3>
-                <form class="bg-white text-start rounded-5 p-5 needs-validation" method="POST" action="" enctype="multipart/form-data" novalidate>
+                <form class="bg-white text-start rounded-5 p-5 needs-validation" method="POST" enctype="multipart/form-data" novalidate>
                     {% csrf_token %}
                     <div class="input-group mb-3">
-                        <span class="input-group-text" id="" style="width:130px">Name</span>
+                        <span class="input-group-text" style="width:130px">Name</span>
                         <input type="text" name="name" value="{{ personal_detail_form.name.value }}" class="form-control" id="name" required>
                         <div class="invalid-feedback">
                             Please provide a valid name.
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <span class="input-group-text" id="" style="width:130px">E-mail</span>
+                        <span class="input-group-text" style="width:130px">E-mail</span>
                         <input type="email" name="email" value="{{ personal_detail_form.email.value }}" class="form-control" id="email" required>
                         <div class="invalid-feedback">
                             Please provide a valid email address.
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <span class="input-group-text" id="" style="width:130px">Mobile</span>
+                        <span class="input-group-text" style="width:130px">Mobile</span>
                         <input type="tel" name="mobile" value="{{ personal_detail_form.mobile.value }}" class="form-control" id="mobile" required>
                         <div class="invalid-feedback">
                             Please provide a valid mobile number.
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <span class="input-group-text" id="" style="width:130px">Gender</span>
+                        <span class="input-group-text" style="width:130px">Gender</span>
                         <select name="gender" id="gender" class="form-select" required>
                             <option value="">Choose...</option>
                             <option value="M" {% if personal_detail_form.gender.value == 'M' %} selected {% endif %}>Male</option>
@@ -48,28 +48,28 @@
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <span class="input-group-text" id="" style="width:130px" id="date_of_birth">Date of Birth</span>
+                        <span class="input-group-text" style="width:130px" id="date_of_birth">Date of Birth</span>
                         <input type="date" name="date_of_birth" value="{{ date_of_birth }}" class="form-control" required>
                         <div class="invalid-feedback">
                             Please provide avalid date of birth.
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <span class="input-group-text align-self-start" id="" style="width:130px; max-height:100px; min-height: 100px;">Address</span>
+                        <span class="input-group-text align-self-start" style="width:130px; max-height:100px; min-height: 100px;">Address</span>
                         <textarea name="address" cols="36" class="form-control" id="message" required>{{ personal_detail.address }}</textarea>
                         <div class="invalid-feedback">
                             Please provide your address.
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <span class="input-group-text" id="" style="width:130px" id="country">Country</span>
+                        <span class="input-group-text" style="width:130px" id="country">Country</span>
                         <input type="text" name="country" value="{{ personal_detail_form.country.value }}" class="form-control" required>
                         <div class="invalid-feedback">
                             Please provide your country.
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <span class="input-group-text" id="" style="width:130px" id="zipcode">Zip-Code</span>
+                        <span class="input-group-text" style="width:130px" id="zipcode">Zip-Code</span>
                         <input type="text" name="zipcode" value="{{ personal_detail_form.zipcode.value }}" class="form-control" required>
                         <div class="invalid-feedback">
                             Please provide your zip code.
