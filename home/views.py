@@ -309,7 +309,8 @@ def appointment_details(request, id):
         prescriptions = Prescription.objects.filter(booking=appointment)
         medical_reports = MedicalReport.objects.filter(booking=appointment)
     except ObjectDoesNotExist:
-        return render(request, '404.html', {'Message':'Appointment Not Found'})
+        personal_detail = request.user.patient.personal_details
+        return render(request, '403.html', {'personal_detail':personal_detail})
     now = timezone.now()
     return render(request,'appointment_details.html',{
         'personal_detail': personal_detail,
@@ -465,8 +466,8 @@ def doctor_appointment_details(request, id):
         report_names = ReportNames.objects.all()
         personal_detail = request.user.patient.personal_details
     except ObjectDoesNotExist:
-        print('Error Happened')
-        return render(request, '404.html',{'Message':'No Appointment Found'},)
+        personal_detail = request.user.patient.personal_details
+        return render(request, '403.html',{'personal_detail': personal_detail},)
     try:
         diagnosis_instance = DoctorDiagnosis.objects.get(booking=appointment)
         initial_diagnosis_data = {

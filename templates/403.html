@@ -11,12 +11,8 @@
                 class="col-sm-12 text-centre pt-5 pb-3 d-flex align-items-center justify-content-center message_container">
                 <div>
                     <h1><i class="fa-solid fa-circle-xmark"></i></h1>
-                    <h1>404 - Page Not Found</h1>
-                    {% if Message %}
-                    <h3>{{ Message }}</h3>
-                    {% else %}
-                    <h3>The page you requested could not be found</h3>
-                    {% endif %}
+                    <h1>403 - Forbiden</h1>
+                    <h3>Sorry, You don't have the permission to access this page</h3>
                     <a class="text-reset text-decoration-none p-5 text-start" href="{% url 'home' %}"><i
                             class="fa-solid fa-circle-arrow-left"></i> Return to home page</a>
                 </div>
