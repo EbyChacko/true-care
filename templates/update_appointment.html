@@ -19,7 +19,7 @@
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text" style="width:130px">Department</span>
-                        <select name="department" id="departments" class="form-select" required>
+                        <select name="department" id="departments" aria-label="department" class="form-select" required>
                             <option value="">Select Department...</option>
                             {% for department in departments %}
                             <option value="{{ department.pk }}" {% if department.pk == appointment.department.pk %} selected {% endif %}>
@@ -34,7 +34,7 @@
                     
                     <div class="input-group mb-3">
                         <span class="input-group-text" style="width:130px">Doctor</span>
-                        <select name="doctor" id="doctor" class="form-select" required>
+                        <select name="doctor" id="doctor" aria-label="doctor" class="form-select" required>
                             <option value="">Select Doctor...</option>
                             {% for doctor in doctors %}
                             <option value="{{ doctor.pk }}" {% if doctor.pk == appointment.doctor.pk %} selected {% endif %}>
@@ -50,14 +50,14 @@
                 
                     <div class="input-group mb-3">
                         <span class="input-group-text" style="width:130px">Date</span>
-                        <input type="date" name="booking_date" value="{{ booking_date }}" class="form-control" required>
+                        <input type="date" aria-label="booking_date" name="booking_date" value="{{ booking_date }}" class="form-control" required>
                         <div class="invalid-feedback">
                             Please select a valid date.
                         </div>
                     </div>
                 
                     {% if redirect_field_value %}
-                    <input type="hidden" name="next" value="{% url 'message_confirmation' %}" />
+                    <input type="hidden" name="next" aria-label="hidden" value="{% url 'message_confirmation' %}" />
                     {% endif %}
                 
                     <input type="submit" class="btn button" value="Submit">

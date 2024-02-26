@@ -43,7 +43,7 @@
                                     {% csrf_token %}
                                     <h5>Present Complaints</h5>
                                     <div class="input-group mb-3">
-                                        <textarea name="present_complaints" cols="60" rows="6" class="form-control" id="complaints" required>{{ diagnosis_form.present_complaints.value }}</textarea>
+                                        <textarea name="present_complaints" aria-label="complaints" cols="60" rows="6" class="form-control" id="complaints" required>{{ diagnosis_form.present_complaints.value }}</textarea>
                                         <div class="invalid-feedback">
                                             Please enter present complaints.
                                         </div>
@@ -54,35 +54,35 @@
                                     <h5>Essentials</h5>
                                     <div class="input-group mb-3">
                                         <span class="input-group-text" style="width:130px">Height</span>
-                                        <input type="text" name="height" value="{{ diagnosis_form.height.value }}" class="form-control" id="height" required>
+                                        <input type="text" name="height" aria-label="height" value="{{ diagnosis_form.height.value }}" class="form-control" id="height" required>
                                         <div class="invalid-feedback">
                                             Please enter height.
                                         </div>
                                     </div>
                                     <div class="input-group mb-3">
                                         <span class="input-group-text" style="width:130px">Weight</span>
-                                        <input type="text" name="weight" value="{{ diagnosis_form.weight.value }}" class="form-control" id="weight" required>
+                                        <input type="text" name="weight" aria-label="weight" value="{{ diagnosis_form.weight.value }}" class="form-control" id="weight" required>
                                         <div class="invalid-feedback">
                                             Please enter weight.
                                         </div>
                                     </div>
                                     <h6>Allergies</h6>
                                     <div class="input-group mb-3">
-                                        <textarea name="allergy" cols="50" rows="3" class="form-control" id="allergy">{{ diagnosis_form.allergy.value }}</textarea>
+                                        <textarea name="allergy" cols="50" aria-label="allergy" rows="3" class="form-control" id="allergy">{{ diagnosis_form.allergy.value }}</textarea>
                                         <div class="invalid-feedback">
                                             Please enter Allergies.
                                         </div>
                                     </div>
                                     <h6>Med-History</h6>
                                     <div class="input-group mb-3">
-                                        <textarea name="medical_history" cols="50" rows="3" class="form-control" id="medical_history">{{ diagnosis_form.medical_history.value }}</textarea>
+                                        <textarea name="medical_history" aria-label="history" cols="50" rows="3" class="form-control" id="medical_history">{{ diagnosis_form.medical_history.value }}</textarea>
                                         <div class="invalid-feedback">
                                             Please enter Medical History.
                                         </div>
                                     </div>
                                     <h6>Medications</h6>
                                     <div class="input-group mb-3">
-                                        <textarea name="medications" cols="50" rows="3" class="form-control" id="medications">{{ diagnosis_form.medications.value }}</textarea>
+                                        <textarea name="medications" aria-label="medications" cols="50" rows="3" class="form-control" id="medications">{{ diagnosis_form.medications.value }}</textarea>
                                         <div class="invalid-feedback">
                                             Please enter Medications.
                                         </div>
@@ -93,28 +93,28 @@
                                     <h5>Vital Signs</h5>
                                     <div class="input-group mb-3">
                                         <span class="input-group-text" style="width:130px">BP</span>
-                                        <input type="text" name="bp" value="{{ diagnosis_form.bp.value }}" class="form-control" id="bp" required>
+                                        <input type="text" name="bp" aria-label="bp" value="{{ diagnosis_form.bp.value }}" class="form-control" id="bp" required>
                                         <div class="invalid-feedback">
                                             Please enter BP.
                                         </div>
                                     </div>
                                     <div class="input-group mb-3">
                                         <span class="input-group-text" style="width:130px">Pulse</span>
-                                        <input type="text" name="pulse" value="{{ diagnosis_form.pulse.value }}" class="form-control" id="pulse" required>
+                                        <input type="text" name="pulse" aria-label="pulse" value="{{ diagnosis_form.pulse.value }}" class="form-control" id="pulse" required>
                                         <div class="invalid-feedback">
                                             Please enter pulse.
                                         </div>
                                     </div>
                                     <div class="input-group mb-3">
                                         <span class="input-group-text" style="width:130px">Saturation</span>
-                                        <input type="text" name="saturation" value="{{ diagnosis_form.saturation.value }}" class="form-control" id="saturation" required>
+                                        <input type="text" name="saturation" aria-label="saturation" value="{{ diagnosis_form.saturation.value }}" class="form-control" id="saturation" required>
                                         <div class="invalid-feedback">
                                             Please enter saturation.
                                         </div>
                                     </div>
                                     <div class="input-group mb-3">
                                         <span class="input-group-text" style="width:130px">Temperature</span>
-                                        <input type="text" name="temperature" value="{{ diagnosis_form.temperature.value }}" class="form-control" id="temperature" required>
+                                        <input type="text" name="temperature" aria-label="temperature" value="{{ diagnosis_form.temperature.value }}" class="form-control" id="temperature" required>
                                         <div class="invalid-feedback">
                                             Please enter temperature.
                                         </div>
@@ -124,7 +124,7 @@
                                 
                                     <h5>Physical Examination</h5>
                                     <div class="input-group mb-3">
-                                        <textarea name="physical_examination" cols="60" rows="6" class="form-control" id="physical_examination" required>{{ diagnosis_form.physical_examination.value }}</textarea>
+                                        <textarea name="physical_examination" aria-label="physical Examination" cols="60" rows="6" class="form-control" id="physical_examination" required>{{ diagnosis_form.physical_examination.value }}</textarea>
                                         <div class="invalid-feedback">
                                             Please enter physical examination.
                                         </div>
@@ -134,16 +134,16 @@
                                 
                                     <h5>Diagnosis</h5>
                                     <div class="input-group mb-3">
-                                        <textarea name="diagnosis" cols="60" rows="6" class="form-control" id="diagnosis" required>{{ diagnosis_form.diagnosis.value }}</textarea>
+                                        <textarea name="diagnosis" aria-label="diagnosis" cols="60" rows="6" class="form-control" id="diagnosis" required>{{ diagnosis_form.diagnosis.value }}</textarea>
                                         <div class="invalid-feedback">
                                             Please enter diagnosis.
                                         </div>
                                     </div>
                                 
                                     {% if redirect_field_value %}
-                                    <input type="hidden" name="diagnosis_submit" value="1" />
+                                    <input type="hidden" aria-label="hidden" name="diagnosis_submit" value="1" />
                                     {% endif %}
-                                    <input type="submit" class="btn button" value="Save">
+                                    <input type="submit" aria-label="save" class="btn button" value="Save">
                                 </form>
                             </div>
                         </div>
@@ -183,7 +183,7 @@
                                     {% csrf_token %}
                                     <div class="input-group mb-3">
                                         <span class="input-group-text" style="width:130px">Drug Name</span>
-                                        <input type="text" name="drug_name" value="" class="form-control"
+                                        <input type="text" aria-label="drugName" name="drug_name" value="" class="form-control"
                                             id="drug_name" required>
                                             <div class="invalid-feedback">
                                                 Please enter Drug name.
@@ -192,7 +192,7 @@
 
                                     <div class="input-group mb-3">
                                         <span class="input-group-text" style="width:130px">Dose</span>
-                                        <input type="text" name="dose" value="" class="form-control" id="dose"  required>
+                                        <input type="text" name="dose" aria-label="dose" value="" class="form-control" id="dose"  required>
                                         <div class="invalid-feedback">
                                             Please enter Dose.
                                         </div>
@@ -200,7 +200,7 @@
 
                                     <div class="input-group mb-3">
                                         <span class="input-group-text" style="width:130px">Frequency</span>
-                                        <input type="text" name="frequency" value="" class="form-control"
+                                        <input type="text" name="frequency" aria-label="frequency" value="" class="form-control"
                                             id="frequency"  required>
                                             <div class="invalid-feedback">
                                                 Please enter Frequency.
@@ -209,7 +209,7 @@
 
                                     <div class="input-group mb-3">
                                         <span class="input-group-text" style="width:130px">Route</span>
-                                        <input type="text" name="route" value="" class="form-control" id="route" required>
+                                        <input type="text" name="route" aria-label="route" value="" class="form-control" id="route" required>
                                         <div class="invalid-feedback">
                                             Please enter Route.
                                         </div>
@@ -217,14 +217,14 @@
 
                                     <div class="input-group mb-3">
                                         <span class="input-group-text" style="width:130px">Duration</span>
-                                        <input type="text" name="quantity" value="" class="form-control" id="quantity" required>
+                                        <input type="text" name="quantity" aria-label="duration" value="" class="form-control" id="quantity" required>
                                         <div class="invalid-feedback">
                                             Please enter Duration.
                                         </div>
                                     </div>
                                     <div class="input-group mb-3">
                                         <span class="input-group-text" style="width:130px">Comments</span>
-                                        <textarea name="comment" cols="50" rows="3" class="form-control"
+                                        <textarea name="comment" aria-label="comments" cols="50" rows="3" class="form-control"
                                             id="comment" required></textarea>
                                             <div class="invalid-feedback">
                                                 Please enter comment.
@@ -232,9 +232,9 @@
                                     </div>
 
                                     {% if redirect_field_value %}
-                                    <input type="hidden" name="prescription_submit" value="1" />
+                                    <input type="hidden" aria-label="hidden" name="prescription_submit" value="1" />
                                     {% endif %}
-                                    <input type="submit" class="btn button" value="Add Medicine">
+                                    <input type="submit" aria-label="addMedicine" class="btn button" value="Add Medicine">
                                 </form>
 
                             </div>
@@ -272,7 +272,7 @@
                                     {% csrf_token %}
                                     <div class="input-group mb-3">
                                         <span class="input-group-text" style="width:130px">Report</span>
-                                        <select name="report_name" id="report_name" class="form-control"
+                                        <select name="report_name" aria-label="reportName" id="report_name" class="form-control"
                                             required>
                                             <option value="">Select Report Name...</option>
                                             {% for report_name in report_names %}
@@ -284,7 +284,7 @@
                                         </div>
                                     </div>
                                     <div class="input-group mb-3">
-                                        <input type="file" id="report" required name="report" class="form-control" accept="image/*,.pdf" />
+                                        <input type="file" id="report" aria-label="report" required name="report" class="form-control" accept="image/*,.pdf" />
                                         <div class="invalid-feedback">
                                             Please upload a report.
                                         </div>
@@ -292,9 +292,9 @@
                                     <p id="drug_nameError" style="color: red; visibility: hidden;" class="text-start">
                                     </p>
                                     {% if redirect_field_value %}
-                                    <input type="hidden" name="prescription_submit" value="1" />
+                                    <input type="hidden" aria-label="hidden" name="prescription_submit" value="1" />
                                     {% endif %}
-                                    <input type="submit" class="btn button" value="Add report">
+                                    <input type="submit" aria-label="addReport" class="btn button" value="Add report">
                                 </form>
 
                             </div>

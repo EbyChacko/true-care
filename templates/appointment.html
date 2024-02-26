@@ -59,7 +59,7 @@
                     
                     <div class="input-group mb-3">
                         <span class="input-group-text" style="width:130px" id="date_of_birth">Date of Birth</span>
-                        <input type="date" name="date_of_birth" value="{{ date_of_birth }}" class="form-control"  required>
+                        <input type="date" aria-label="date_of_birth" name="date_of_birth" value="{{ date_of_birth }}" class="form-control"  required>
                         <div class="invalid-feedback">
                             Please enter a valid date of birth.
                         </div>
@@ -100,7 +100,7 @@
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text"  style="width:130px">Department</span>
-                        <select name="department" id="departments" class="form-control"
+                        <select name="department" aria-label="department" id="departments" class="form-control"
                              required>
                             <option  value="">Select Department...</option>
                             {% for department in departments %}
@@ -114,7 +114,7 @@
 
                     <div class="input-group mb-3">
                         <span class="input-group-text" style="width:130px">Doctor</span>
-                        <select name="doctor" id="doctor" class="form-control" required>
+                        <select name="doctor" aria-label="doctor" id="doctor" class="form-control" required>
                             <option value="">Select Doctor...</option>
                             {% for doctor in doctors %}
                             <option value="{{ doctor.pk }}">{{ doctor.personal_details.name }} 
@@ -127,19 +127,27 @@
                     </div>
 
                     <div class="input-group mb-3">
+                        <span class="input-group-text" style="width:130px" id="date_of_birth">Date of Birth</span>
+                        <input type="date" name="date_of_birth" value="{{ date_of_birth }}" class="form-control"  required>
+                        <div class="invalid-feedback">
+                            Please enter a valid date of birth.
+                        </div>
+                    </div>
+
+                    <div class="input-group mb-3">
                         <span class="input-group-text" style="width:130px">Date</span>
-                        <input type="date" name="booking_date" class="form-control" required>
+                        <input type="date" aria-label="date" name="booking_date" class="form-control" required>
                             <div class="invalid-feedback">
-                                Please choose valid a date.
+                                Booking Availble only from tomorrow
                             </div>
                     </div>
 
                     {% if redirect_field_value %}
-                    <input type="hidden" name="next" value="{% url 'message_confirmation' %}" />
+                    <input type="hidden" aria-label="hidden" name="next" value="{% url 'message_confirmation' %}" />
                     {% endif %}
 
-                    <input type="submit" class="btn button" value="Submit" onclick="return validateForm()">
-                    <input type="reset" value="Reset Form" class="btn button1">
+                    <input type="submit" aria-label="submit" class="btn button" value="Submit" onclick="return validateForm()">
+                    <input type="reset" aria-label="reset" value="Reset Form" class="btn button1">
                 </form>
             </div>
 
@@ -232,6 +240,7 @@ $(document).ready(function() {
             }, false);
         });
 })();
+
 
 </script>
 {% endblock %}

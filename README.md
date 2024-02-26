@@ -26,13 +26,13 @@ ___
 
 - [User Experience](#user-experience)
 - [UX](#ux)
-- [Strategy](#strategy)
-- [Scope](#scope)
-- [Structure](#structure)
-- [Skeleton](#skeleton)
-- [Surface](#surface)
-    - [Colour Scheme](#colour-scheme)
-    - [Fonts](#fonts)
+    - [Strategy](#strategy)
+    - [Scope](#scope)
+    - [Structure](#structure)
+    - [Skeleton](#skeleton)
+    - [Surface](#surface)
+        - [Colour Scheme](#colour-scheme)
+        - [Fonts](#fonts)
 - [Agile Methodology](#agile-methodology)
 - [Features](#features)
 - [Future Feature Considerations](#future-feature-considerations)
@@ -74,6 +74,52 @@ This site was created respecting the Five Planes Of Website Design:<br>
 **User Stories and Epics:** <br>
 User stories and epics can be viewed here on the project [kanban board ](https://github.com/users/EbyChacko/projects/5)
 
+<details>
+  <summary>Epics & User Stories</summary>
+  <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708610180/samples/true_care/Readme/Screenshot_2024-02-22_at_13.47.59_wmxlob.png"><br>
+
+  <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708610175/samples/true_care/Readme/Screenshot_2024-02-22_at_13.47.59_2_tp0eyg.png"><br>
+
+  <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708610174/samples/true_care/Readme/Screenshot_2024-02-22_at_13.48.11_oleqtg.png"><br>
+
+  <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708610178/samples/true_care/Readme/Screenshot_2024-02-22_at_13.48.11_2_aocp3m.png"><br>
+
+  <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708610178/samples/true_care/Readme/Screenshot_2024-02-22_at_13.48.49_qktpjp.png"><br>
+
+  <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708610175/samples/true_care/Readme/Screenshot_2024-02-22_at_13.48.49_2_ljvvce.png"><br>
+
+  <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708610174/samples/true_care/Readme/Screenshot_2024-02-22_at_13.49.05_jyzifu.png"><br>
+
+  <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708610179/samples/true_care/Readme/Screenshot_2024-02-22_at_13.49.05_2_p47mlx.png"><br>
+
+  <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708610182/samples/true_care/Readme/Screenshot_2024-02-22_at_13.49.22_z4rjbl.png"><br>
+
+  <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708610176/samples/true_care/Readme/Screenshot_2024-02-22_at_13.49.22_2_r2gbhx.png"><br>
+
+  <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708610180/samples/true_care/Readme/Screenshot_2024-02-22_at_13.49.59_2_phew1b.png"><br>
+
+  <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708610176/samples/true_care/Readme/Screenshot_2024-02-22_at_13.49.59_igvq6n.png"><br>
+
+  <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708610177/samples/true_care/Readme/Screenshot_2024-02-22_at_13.50.16_rpd1dr.png"><br>
+
+  <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708610176/samples/true_care/Readme/Screenshot_2024-02-22_at_13.50.16_2_zgsg52.png"><br>
+
+  <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708610181/samples/true_care/Readme/Screenshot_2024-02-22_at_13.50.35_2_szehon.png"><br>
+
+  <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708913193/samples/true_care/Readme/Screenshot_2024-02-26_at_02.04.58_y1xemd.png"><br>
+
+  <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708610179/samples/true_care/Readme/Screenshot_2024-02-22_at_13.51.29_2_hsx0rn.png"><br>
+
+  <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708913008/samples/true_care/Readme/Screenshot_2024-02-26_at_01.59.27_hcbdxp.png"><br>
+
+  <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708913011/samples/true_care/Readme/Screenshot_2024-02-26_at_01.59.42_gpbft7.png"><br>
+
+  <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708913018/samples/true_care/Readme/Screenshot_2024-02-26_at_01.59.52_eqewuw.png"><br>
+
+  <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708913015/samples/true_care/Readme/Screenshot_2024-02-26_at_02.00.01_pq0kso.png"><br>
+</details>
+
+<br>
 
 ### Project Goals
 

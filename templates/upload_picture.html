@@ -39,7 +39,7 @@
                             <h5 class="py-3">Upload your Photo</h5>
                             <div class="row text-centre d-flex justify-content-center align-items-center">
                                 <div class="col-md-12 col-lg-10 col-xl-8 mb-3">
-                                    <input type="file" name="picture" accept="image/*" class="form-control"
+                                    <input type="file" aria-label="picture" name="picture" accept="image/*" class="form-control"
                                          id="photo-input">
                                 </div>
                                 {% if error_message %}
@@ -48,7 +48,7 @@
                             </div>
 
                             {% if redirect_field_value %}
-                            <input type="hidden" name="next" value="{% url 'message_confirmation' %}" />
+                            <input type="hidden" aria-label="hidden" name="next" value="{% url 'message_confirmation' %}" />
                             {% endif %}
 
                             <input type="submit" class="btn button3" value="Update">

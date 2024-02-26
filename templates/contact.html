@@ -66,26 +66,26 @@
                             {% csrf_token %}
                             <div class="input-group mb-3">
                                 <span class="input-group-text"  style="width:100px">Name</span>
-                                <input type="text" name="{{ form.name.name }}" class="form-control" id="name" >
+                                <input type="text" aria-label="name" name="{{ form.name.name }}" class="form-control" id="name" >
                             </div>
                             <p id="nameError" style="color: red; visibility: hidden;" class="text-start"></p>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" style="width:100px">Mobile</span>
-                                <input type="tel" name="{{ form.mobile.name }}" class="form-control" id="mobile" >
+                                <input type="tel" aria-label="mobile" name="{{ form.mobile.name }}" class="form-control" id="mobile" >
                             </div>
                             <p id="mobileError" style="color: red; visibility: hidden;" class="text-start"></p>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" style="width:100px">Email</span>
-                                <input type="text" name="{{ form.email.name }}" class="form-control" id="email">
+                                <input type="text" aria-label="email" name="{{ form.email.name }}" class="form-control" id="email">
                             </div>
                             <p id="emailError" style="color: red; visibility: hidden;" class="text-start"></p>
                             <div class="input-group mb-3">
                                 <span class="input-group-text align-self-start" style="width:100px; height:100px;">Message</span>
-                                <textarea name="{{ form.message.name }}" rows="15" cols="36" class="form-control" id="message" style="height:100px"></textarea>
+                                <textarea name="{{ form.message.name }}" aria-label="message" rows="15" cols="36" class="form-control" id="message" style="height:100px"></textarea>
                             </div>
                             <p id="messageError" style="color: red; visibility: hidden;" class="text-start"></p>
-                            <input type="submit" class="btn button" value="Send Message" onclick="return validateForm()">
-                            <input type="reset" value="Reset Form" class="btn button1">
+                            <input type="submit" aria-label="send" class="btn button" value="Send Message" onclick="return validateForm()">
+                            <input type="reset" aria-label="reset" value="Reset Form" class="btn button1">
                         </form>
                 </div>
             </div>

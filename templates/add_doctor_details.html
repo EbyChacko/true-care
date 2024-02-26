@@ -19,14 +19,14 @@
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text" style="width:130px">Designation</span>
-                        <input type="text" name="designation" value="{{ doctor.designation }}" class="form-control" required>
+                        <input type="text" aria-label="designation" name="designation" value="{{ doctor.designation }}" class="form-control" required>
                         <div class="invalid-feedback">
                             Please enter your designation.
                         </div>
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text" style="width:130px">Doctor ID</span>
-                        <input type="text" name="doctor_Number" value="{{ doctor.doctor_Number }}" class="form-control" required>
+                        <input type="text" aria-label="ID" name="doctor_Number" value="{{ doctor.doctor_Number }}" class="form-control" required>
                         <div class="invalid-feedback">
                             Please enter your doctor ID.
                         </div>
@@ -34,7 +34,7 @@
 
                     <div class="input-group mb-3">
                         <span class="input-group-text" style="width:130px">Qualification</span>
-                        <input type="text" name="education" value="{{ doctor.education }}" class="form-control" required>
+                        <input type="text" aria-label="qualification" name="education" value="{{ doctor.education }}" class="form-control" required>
                         <div class="invalid-feedback">
                             Please enter your qualification.
                         </div>
@@ -43,7 +43,7 @@
 
                     <div class="input-group mb-3">
                         <span class="input-group-text" style="width:130px">Specialisation</span>
-                        <input type="text" name="speciality" value="{{ doctor.speciality }}" class="form-control" required>
+                        <input type="text" aria-label="specialisation"name="speciality" value="{{ doctor.speciality }}" class="form-control" required>
                         <div class="invalid-feedback">
                             Please enter your specialisation.
                         </div>
@@ -51,7 +51,7 @@
                     <p id="specialityError" style="color: red; visibility: hidden;" class="text-start"></p>
                     <div class="input-group mb-3">
                         <span class="input-group-text" style="width:130px">Department</span>
-                        <select name="department" id="departments" class="form-control" required>
+                        <select name="department" aria-label="department" id="departments" class="form-control" required>
                             <option value="">Select Department...</option>
                             {% for department in departments %}
                                 <option value="{{ department.pk }}" {% if department.pk == doctor.department.pk %} selected {% endif %}>
@@ -66,11 +66,11 @@
                     <p id="departmentError" style="color: red; visibility: hidden;" class="text-start"></p>
 
                     {% if redirect_field_value %}
-                    <input type="hidden" name="next" value="{% url 'message_confirmation' %}" />
+                    <input type="hidden" aria-label="hidden" name="next" value="{% url 'message_confirmation' %}" />
                     {% endif %}
 
-                    <input type="submit" class="btn button" value="Submit">
-                    <input type="reset" value="Reset Form" class="btn button1">
+                    <input type="submit" aria-label="submit" class="btn button" value="Submit">
+                    <input type="reset" aria-label="reset" value="Reset Form" class="btn button1">
                 </form>
             </div>
 

@@ -16,28 +16,28 @@
                     {% csrf_token %}
                     <div class="input-group mb-3">
                         <span class="input-group-text" style="width:130px">Name</span>
-                        <input type="text" name="name" value="{{ personal_detail_form.name.value }}" class="form-control" id="name" required>
+                        <input type="text" aria-label="name" name="name" value="{{ personal_detail_form.name.value }}" class="form-control" id="name" required>
                         <div class="invalid-feedback">
                             Please provide a valid name.
                         </div>
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text" style="width:130px">E-mail</span>
-                        <input type="email" name="email" value="{{ personal_detail_form.email.value }}" class="form-control" id="email" required>
+                        <input type="email" aria-label="email" name="email" value="{{ personal_detail_form.email.value }}" class="form-control" id="email" required>
                         <div class="invalid-feedback">
                             Please provide a valid email address.
                         </div>
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text" style="width:130px">Mobile</span>
-                        <input type="tel" name="mobile" value="{{ personal_detail_form.mobile.value }}" class="form-control" id="mobile" required>
+                        <input type="tel" name="mobile" aria-label="mobile" value="{{ personal_detail_form.mobile.value }}" class="form-control" id="mobile" required>
                         <div class="invalid-feedback">
                             Please provide a valid mobile number.
                         </div>
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text" style="width:130px">Gender</span>
-                        <select name="gender" id="gender" class="form-select" required>
+                        <select name="gender" id="gender" aria-label="gender" class="form-select" required>
                             <option value="">Choose...</option>
                             <option value="M" {% if personal_detail_form.gender.value == 'M' %} selected {% endif %}>Male</option>
                             <option value="F" {% if personal_detail_form.gender.value == 'F' %} selected {% endif %}>Female</option>
@@ -49,35 +49,35 @@
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text" style="width:130px" id="date_of_birth">Date of Birth</span>
-                        <input type="date" name="date_of_birth" value="{{ date_of_birth }}" class="form-control" required>
+                        <input type="date" name="date_of_birth" aria-label="DOB" value="{{ date_of_birth }}" class="form-control" required>
                         <div class="invalid-feedback">
                             Please provide avalid date of birth.
                         </div>
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text align-self-start" style="width:130px; max-height:100px; min-height: 100px;">Address</span>
-                        <textarea name="address" cols="36" class="form-control" id="message" required>{{ personal_detail.address }}</textarea>
+                        <textarea name="address" cols="36" aria-label="address" class="form-control" id="message" required>{{ personal_detail.address }}</textarea>
                         <div class="invalid-feedback">
                             Please provide your address.
                         </div>
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text" style="width:130px" id="country">Country</span>
-                        <input type="text" name="country" value="{{ personal_detail_form.country.value }}" class="form-control" required>
+                        <input type="text" name="country" aria-label="country" value="{{ personal_detail_form.country.value }}" class="form-control" required>
                         <div class="invalid-feedback">
                             Please provide your country.
                         </div>
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text" style="width:130px" id="zipcode">Zip-Code</span>
-                        <input type="text" name="zipcode" value="{{ personal_detail_form.zipcode.value }}" class="form-control" required>
+                        <input type="text" name="zipcode" aria-label="zip-code" value="{{ personal_detail_form.zipcode.value }}" class="form-control" required>
                         <div class="invalid-feedback">
                             Please provide your zip code.
                         </div>
                     </div>
                 
                     {% if redirect_field_value %}
-                    <input type="hidden" name="next" value="{% url 'message_confirmation' %}" />
+                    <input type="hidden" name="next" aria-label="hidden" value="{% url 'message_confirmation' %}" />
                     {% endif %}
                 
                     <input type="submit" class="btn button" value="Update">
