@@ -208,68 +208,40 @@ The performance of the website was tested with [Google Lighthouse](https://devel
 
 **Lighthouse reports:**<br>
 
+Despite attempting to enhance the overall performance of the website by adding the async keyword to JavaScript and CSS files, the desired improvements were not achieved. Some of the results are given below.
+
+
 <details>
 <summary>Desktop</summary>
 
-* Home page<br>
-<img src="docs/read-me-images/validation-images/home-page-lighthouse.png" width="60%"><br><br>
+<img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708945628/samples/true_care/Readme/desktop_1_vmfm3e.png" width="100%"><br><br>
 
-* Messaging page<br>
-<img src="docs/read-me-images/validation-images/messaging-lighthouse.png" width="60%"><br><br>
+<img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708945948/samples/true_care/Readme/desktop_2_majqlk.png" width="100%"><br><br>
 
-* Profile page<br>
-<img src="docs/read-me-images/validation-images/profile-lighthouse.png" width="60%"><br><br>
+<img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708945995/samples/true_care/Readme/desktop_3_hodqtf.png" width="100%"><br><br>
 
-* Contact page<br>
-<img src="docs/read-me-images/validation-images/contact-lighthouse.png" width="60%"><br><br>
+<img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708946014/samples/true_care/Readme/desk_top_4_dkl7uq.png" width="100%"><br><br>
 
-* Change password page<br>
-<img src="docs/read-me-images/validation-images/passsword-lighthouse.png" width="60%"><br><br>
+<img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708946037/samples/true_care/Readme/desktop5_glrt8d.png" width="100%"><br><br>
 
-* email settings page<br>
-<img src="docs/read-me-images/validation-images/email-setting-lighthouse.png" width="60%"><br><br>
+<img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708946058/samples/true_care/Readme/desk_top_6_hvkvth.png" width="100%"><br><br>
 
-* Logout page<br>
-<img src="docs/read-me-images/validation-images/logout-lighthouse.png" width="60%"><br><br>
-
-* Login page<br>
-<img src="docs/read-me-images/validation-images/login-lighthouse.png" width="60%"><br><br>
-
-* Register page<br>
-<img src="docs/read-me-images/validation-images/sign-up-lighthouse.png" width="60%"><br><br>
+<img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708946076/samples/true_care/Readme/desktop_7_fmoqzl.png" width="100%"><br><br>
 </details>
 
 <details>
 <summary>Mobile</summary>  
 
-* Home page<br>
-<img src="docs/read-me-images/validation-images/home-page-lighthouse.png" width="60%"><br><br>
 
-* Messaging page<br>
-<img src="docs/read-me-images/validation-images/messaging-lighthouse.png" width="60%"><br><br>
+<img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708946098/samples/true_care/Readme/mobile1_ndvhoh.png" width="100%"><br><br>
 
-* Profile page<br>
-<img src="docs/read-me-images/validation-images/profile-lighthouse.png" width="60%"><br><br>
+<img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708946118/samples/true_care/Readme/mobile_2_qkvcmj.png" width="100%"><br><br>
 
-* Contact page<br>
-<img src="docs/read-me-images/validation-images/contact-lighthouse.png" width="60%"><br><br>
+<img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708946196/samples/true_care/Readme/mobile_3_hc271b.png" width="100%"><br><br>
 
-* Change password page<br>
-<img src="docs/read-me-images/validation-images/passsword-lighthouse.png" width="60%"><br><br>
-
-* email settings page<br>
-<img src="docs/read-me-images/validation-images/email-setting-lighthouse.png" width="60%"><br><br>
-
-* Logout page<br>
-<img src="docs/read-me-images/validation-images/logout-lighthouse.png" width="60%"><br><br>
-
-* Login page<br>
-<img src="docs/read-me-images/validation-images/login-lighthouse.png" width="60%"><br><br>
-
-* Register page<br>
-<img src="docs/read-me-images/validation-images/sign-up-lighthouse.png" width="60%"><br><br>
 </details><br>
 
+___
 
 ## Manual Feature Testing
 
