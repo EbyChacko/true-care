@@ -371,10 +371,13 @@ Due to time constraints, some unresolved errors were left unaddressed, including
 
     <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708910876/samples/true_care/Readme/Apppintment_form_error_ad0j96.png" width="100%">
 
+3. Although I've successfully improved the performance of some pages by loading CSS and JavaScript asynchronously, not all pages are experiencing the same level of enhancement.
+
 ### Fixed bugs
 
 | **Bug** | **Fix** |
 | --- | --- |
+| Bug: Performance was very low | Solution: Load Css and Javascript asynchronously |
 | Security concern: When incorporating the appointment ID into the URL, it was discovered that users could potentially access and manipulate appointments by altering the ID in the URL.  | Resolution: The view function has been revised to restrict access solely to the appointment owner, thereby mitigating the security vulnerability. |
 | Showing deferent behaviour by the drop down menu in the nav bar, if the user is a doctor.  | To ensure consistent behavior across all pages, retrieve the personal details for the user in all views, enabling the system to identify whether the user is a doctor or not, and adjust the dropdown menu accordingly. |
 

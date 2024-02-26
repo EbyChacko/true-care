@@ -58,27 +58,29 @@ function validateForm() {
 
 
 
-document.getElementById('photo-input').addEventListener('change', function(event) {
-    var input = event.target;
-    if (input.files && input.files[0]) {
-        if (input.files[0].size <= 10485760) {  // Maximum size in bytes (10 MB)
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                document.getElementById('profile-image').src = e.target.result;
-            };
-            reader.readAsDataURL(input.files[0]);
-        } else {
-            // Reset the input field to prevent uploading large files
-            input.value = '';
-            alert('File size too large. Maximum is 10 MB.');
-        }
-        var reader = new FileReader();
-        reader.onload = function(e) {
-            document.getElementById('profile-image').src = e.target.result;
-        };
-        reader.readAsDataURL(input.files[0]);
+document.addEventListener('DOMContentLoaded', function() {
+    var photoInput = document.getElementById('photo-input');
+
+    if (photoInput) {
+
+        photoInput.addEventListener('change', function(event) {
+            var input = event.target;
+            if (input.files && input.files[0]) {
+                if (input.files[0].size <= 10485760) {  // Maximum size in bytes (10 MB)
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        document.getElementById('profile-image').src = e.target.result;
+                    };
+                    reader.readAsDataURL(input.files[0]);
+                } else {
+                    input.value = '';
+                    alert('File size too large. Maximum is 10 MB.');
+                }
+            }
+        });
     }
 });
+
 
 // this function is to generate dynamic list of the doctors based on the departments
 $(document).ready(function() {
