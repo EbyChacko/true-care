@@ -4,11 +4,12 @@ Back to [README.MD](README.md)<br>
 
 ## Table of contents
 * [Code Validation](#code-validation)
-* [User Story and Feature Testing](#user-story-and-feature-testing)
+* [Manual Feature Testing](#user-story-and-feature-testing)
 * [Automated View Testing](#automated-view-testing)
 * [Browser Testing](#browser-testing)
 * [Bugs](#bugs)
 
+___
 
 ## Code Validation
 ### HTML
@@ -101,21 +102,22 @@ At the time of deployment the validation the following errors find.
 
 
 <br>
-All The Errors have been fixed. The following Warning is Still there
+All errors have been addressed. However, the following warning exist:
 
 <details>
 <summary>Warning</summary>
 <br>
 <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708899232/samples/true_care/Readme/Pending_Warning_for_all_the_pages_yokqb9.png" width="100%"><br><br>
 </details>
-<br>
 
+___
 
 ### CSS
 The CSS code was validated using [W3 Jigsaw Validator](https://jigsaw.w3.org/css-validator/)<br><br>
 Result as follows : No error found<br>
 
 <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708897996/samples/true_care/Readme/CSS_Validation_result_avmgsq.png" width="100%"><br><br>
+___
 
 ### Javascript
 
@@ -165,12 +167,15 @@ The Javascript code was validated using using [JsHint](https://jshint.com/)<br>
 <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708901193/samples/true_care/Readme/Appointment_evonzj.png" width="100%"><br><br>
 </details>
 
-<br>
+___
 
 ### Python
 The python code was tested using [PEP8 (CI Python Linter)](https://pep8ci.herokuapp.com/) validator.<br>
 
-**Pep8 results:**<br>
+
+<details>
+<summary>Pep8 results:<br></summary> 
+
 * **views.py**<br>
 <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708901860/samples/true_care/Readme/Views_szarl6.png" width="100%"><br><br>
 
@@ -194,7 +199,10 @@ The Accessibility of the website was tested with the google plugin: [Accessibili
 
 **Results for all pages:**<br>
 <img src="https://res.cloudinary.com/dgd5gtn1w/image/upload/v1708906180/samples/true_care/Readme/Accessiblity_Test_e1ucak.png" width="100%"><br><br>
+</details>
+<br>
 
+___
 
 ### Performance
 The performance of the website was tested with [Google Lighthouse](https://developer.chrome.com/docs/lighthouse/overview/)
@@ -262,6 +270,26 @@ The performance of the website was tested with [Google Lighthouse](https://devel
 * Register page<br>
 <img src="docs/read-me-images/validation-images/sign-up-lighthouse.png" width="60%"><br><br>
 </details><br>
+
+
+## Manual Feature Testing
+
+All available incidents on the website have been manually tested, and the results are as follows: <br>
+
+| **Feature** | **Action** | **Expected Result** | **Actual Result** | 
+|-------------|------------|---------------------|-------------------|
+| Open the website | Click the link | Open the home page | Works as expected |
+| SignUp & login Buttons | open the website without login | Must show the sugnup/ login button | Works as expected |
+| Hospital details visible to all the visiters | open the website | User can navigate though all the details of the hospital including Home,About us, departments, contact Us pages | Works as expected |
+| Footer Links | click on the links | Navigate to deferent pages same as the header Nav buttons | Works as expected |
+| Click the number/ email to open call/email option | click the number/email | clicking on the number/mail will open the call/ mail app | Works as expected |
+| Social Media | click on the icon in the footer | Open the social media app | Works as expected |
+| Appointment Creation only for authorised users | click on any of the appointment button in the website before login | Navigate to the Signup / login Page to inform the user that to create an appointment, they should signup or login | Works as expected |
+| Sign Up | input the username, email, password and confirm password | Create a user instance with the provided details and login and navigate to  update profile page  automatically| Works as expected |
+| sign up | input user name, email, password and wrong confirm password | Show an error message in the confirm password area | works as expected |
+| sign up | input wrong email format | show error message under the mail input field | works as expected |
+
+
 
 
 ## Browser Testing
