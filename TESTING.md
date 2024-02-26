@@ -4,8 +4,7 @@ Back to [README.MD](README.md)<br>
 
 ## Table of contents
 * [Code Validation](#code-validation)
-* [Manual Feature Testing](#user-story-and-feature-testing)
-* [Automated View Testing](#automated-view-testing)
+* [Manual Feature Testing](#manual-feature-testing)
 * [Browser Testing](#browser-testing)
 * [Bugs](#bugs)
 
@@ -275,7 +274,7 @@ The performance of the website was tested with [Google Lighthouse](https://devel
 ## Manual Feature Testing
 
 All available incidents on the website have been manually tested, and the results are as follows: <br>
-
+### **Before sign Up / Login**
 | **Feature** | **Action** | **Expected Result** | **Actual Result** | 
 |-------------|------------|---------------------|-------------------|
 | Open the website | Click the link | Open the home page | Works as expected |
@@ -284,12 +283,72 @@ All available incidents on the website have been manually tested, and the result
 | Footer Links | click on the links | Navigate to deferent pages same as the header Nav buttons | Works as expected |
 | Click the number/ email to open call/email option | click the number/email | clicking on the number/mail will open the call/ mail app | Works as expected |
 | Social Media | click on the icon in the footer | Open the social media app | Works as expected |
+| Department page | click on the department button | department page will show all the departments dynamically from the database with a learn more button for each department | works as expected |
+| department details page | click the learn more button from any of the department | open a detailed page of the department with dynamically loaded the doctors details those who works in that department. | works as expected |
+|contact us page | click on the contact us button | A contact page is open with necessory contact details, additionally a form is avilable to write any message to the hospital if the user want to| Works as expected |
+| contact form | input invalid data and submit | error messages shown | works as expected |
+| contact form | input valid data and submit | message submitted and show a confirmation message | works as expected |
 | Appointment Creation only for authorised users | click on any of the appointment button in the website before login | Navigate to the Signup / login Page to inform the user that to create an appointment, they should signup or login | Works as expected |
-| Sign Up | input the username, email, password and confirm password | Create a user instance with the provided details and login and navigate to  update profile page  automatically| Works as expected |
+
+### **Signup / login as a patient**
+
+| **Feature** | **Action** | **Expected Result** | **Actual Result** | 
+|-------------|------------|---------------------|-------------------|
 | sign up | input user name, email, password and wrong confirm password | Show an error message in the confirm password area | works as expected |
 | sign up | input wrong email format | show error message under the mail input field | works as expected |
+| Sign Up | input the username, email, password and confirm password | Create a user instance with the provided details then login and navigate to update profile page  automatically, also a confirmation mail will send to the given email and the notification will show in the screen| Works as expected |
+| Update Profile form | leave the input field blank and try to submit | show error message near the corresponding fields | works as expected |
+| update profile form | Fill all  the data correctly | form will be submitted and the data stored in the datastore and navigate the user to the profile showing all the details on the screen  | Works as expected |
+| Profile photo | click on the default photo in the profile | profile upload page will open | works as expected |
+| upload photo | upload a photo more than 10MB | show an alert "File size too large. Maximum is 10 MB". | works as expected |
+|upload photo | upload a photo less than 10 MB | update the profile picture and redirected to the profile page | works as expected |
+| My appointments in the profile | click on the My appointments button | The page is navigatted to the Appointments page there the user can see the created appointments | works as expected |
+| My appointments in the profile | click on the My appointments button | As a new user there will not be any appointments. So there will a message "You have no scheduled appointments. Book now!",With a button to navigate to the appointment form | Works as expected |
+| Appointment Form | Click any of the button for the appointment | Appointment form is loaded with all the pre updated personal details | Works as expected |
+| Appointment form | add some wrong formatted inputs | error message for each wrong inputs | works as expected |
+| Appointment form | add wrong input in the date filed | show error message, if the data is changed to correct format the form works properly | unexpectedly The form submission is not working, Need to refresh the page to submit the form |
+| Appointment form | choose a department | The doctor field is dynamicaly loaded for the selected department | Works as expected |
+| Appointment form | Fill all the details properly | New appointment created and the page is navigated to the appointments in the profile page, also show a notification message  for the user | Works as expected |
+| Appointments Page | click on the Upcoming appointments button | Show the upcoming appointments of the user if any otherwise show a message | Works as expected |
+| Appointment page | click on the Attended appointments button | show the attended appointments if any otherwise show a message | Works as expected |
+| Appointment page | click on the All appointments button | show the all appointments if any otherwise show a message | Works as expected |
+| Appointment Page | click on the personal details button | navigatted to the personal details page | works as expected |
+| Appointment details | click on the details button in the Appointment | open the detailed view of the appointments. if the appointment is not attended it will show a message saying, "you have scheduled an appointment with the doctor on the date" | Works as expected |
+| Appointment details | click on the details button in the appointment | If the appointment is already attended prescription and medical reports will be shown if the doctor uploaded any | works as expected |
+| delete appointment | click on the delate button in the appointment | An alert is promted to confirm the delete if choose OK the appointment will deleted | works as expected |
+| Delete Button | Check the delete button | if the appointment is attende the delete button will disabled | works as expected |
+| Update appointment | click on the edit button in the appointment details page | update appointment form will show | works as expected |
+| update appointment | add invalid data | error message will show | works as expected |
+| update appointment | add valid data | the appointment is updated and a message will show in the page, also if the appointment was already approved, its status will change to Not Approved | works as expected |
+| Login | add invalid data and click login | error message will show | works as expected |
+| login | add valid data and click login | user logged in and a message will show | works as expected |
+|log out |click log out button | navigated to the log out page to confirm the log out if choose log out the user will logged out with a notification message | workes as expected |
 
+<br>
 
+### **Login as a Doctor**
+
+| **Feature** | **Action** | **Expected Result** | **Actual Result** | 
+|-------------|------------|---------------------|-------------------|
+| Drop down Menu | click on the dropdown menu in the nav bar | The options in the list will be deferent from the normal user | Works as expected |
+| Personal details page | navigate to the personal details page | There will be a extra professional details section as the user is a doctor | Works as expected |
+|professional details | click the update button on the professional details section in the profile page or select the professional details from the drop down menu | A form to fill by the doctor will be loaded | Works as expected |
+| professional details Form | add invalid data and click submit | Show errors | Works as expected |
+| professional details form | add valid data and click submit | updated the professional details and navigated to the personal details page, also show a message for the confirmation | Works as expected |
+| professional details form | open the professional details form | if the details aready entered, the details will will show when the form loads | works as expected |
+| Doctor Profile | choose doctor profile from the deop down menu | Open the list of todays appointments booked and for the doctor that are approved will show there. also navigation buttons to the all appointments, upcoming appointments , Pending approval, Attended appointments etc | Works as expected |
+| appointment behaviours | open deferent appointment pages | appointments have deferent behaviours in deferent pages. | works as expected |
+| change appointment | open pending approval page and click on the change button | update appointment form will open and the doctor have the permision to change the appointment | works as expected |
+| Approve | click approve button | the appointment is aproved and the is _approved value is set to true and the approve button change to disapprove button, also in the patient appointment page, the status is changed to approved | works as expected |
+| appointment details for doctor | click open button in the appointment | open a appointment details page | works as expected |
+| diagnosis form | add invalid data and save | show error message | works as expected |
+| diagnosis form | add valid data and save | the form will be saved and the appointment status will change to  attended| works as expected |
+| prescription form | add invalid data and click add medicine button | show error messages | works as expected |
+|prescription form | add valid data and  click add medicine button | the medicine added to the appointment and dynamically show it in the prescription section with a delete button also the same prescription will show in the patients appointment details page | works as expected |
+| medical report form | add invalid data and click add report button | show error messages | works as expected |
+|medical report form | add valid data and  click add medicine button | the medical report added to the appointment and dynamically show it in the medical report section with delete and show buttons also the same medical report will show in the patients appointment details page | works as expected |
+| delete prescription | click the delete button in the prescription | the prescription is deleted from the appointment, also from the patient appointment page | works as expected |
+| delete medical report | click the delete button in the medical report | the medical report is deleted from the appointment, also from the patient appointment page | works as expected |
 
 
 ## Browser Testing
